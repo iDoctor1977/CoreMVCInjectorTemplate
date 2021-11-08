@@ -1,21 +1,15 @@
 ﻿using System;
 using Injector.Common.DTOModels;
-using Injector.Common.IStores;
 using Injector.Web.Controllers;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Frontend.Controllers
 {
     public class ControllerB : ABaseController
     {
-        #region CONSTRUCTOR
-
-        public ControllerB() { }
-
-        public ControllerB(IWebStore webStore) : base(webStore) { }
-
-        #endregion
+        public ControllerB(ServiceProvider service) : base(service) { }
 
         #region HTTP OPERATIONS
 
@@ -53,7 +47,7 @@ namespace Injector.Frontend.Controllers
             // mapping visual model to DTO
             DTOModelB dtoModelB = new DTOModelB();
 
-            ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.DeleteGet(dtoModelB);
+            ABase_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.DeleteGet(dtoModelB);
 
             return View(vmDeleteB);
         }
@@ -67,7 +61,7 @@ namespace Injector.Frontend.Controllers
                 // mapping visual model to DTO
                 DTOModelB dtoModelB = new DTOModelB();
 
-                ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.DeletePost(dtoModelB);
+                ABase_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.DeletePost(dtoModelB);
             }
 
             return RedirectToAction("List");
@@ -81,7 +75,7 @@ namespace Injector.Frontend.Controllers
             // mapping visual model to DTO
             DTOModelB dtoModelB = new DTOModelB();
 
-            dtoModelB = ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.EditGet(dtoModelB);
+            dtoModelB = ABase_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.EditGet(dtoModelB);
 
             return View(vmEditB);
         }
@@ -95,7 +89,7 @@ namespace Injector.Frontend.Controllers
                 // mapping visual model to DTO
                 DTOModelB dtoModelB = new DTOModelB();
 
-                ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.EditPost(dtoModelB);
+                ABase_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.EditPost(dtoModelB);
             }
 
             return RedirectToAction("List");
@@ -109,7 +103,7 @@ namespace Injector.Frontend.Controllers
             // mapping visual model to DTO
             DTOModelB dtoModelB = new DTOModelB();
 
-            dtoModelB = ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.DetailsGet(dtoModelB);
+            dtoModelB = ABase_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.DetailsGet(dtoModelB);
 
             return View(vmDetailsB);
         }
@@ -122,7 +116,7 @@ namespace Injector.Frontend.Controllers
             // mapping visual model to DTO
             DTOModelB dtoModelB = new DTOModelB();
 
-            dtoModelB = ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.ListGet(dtoModelB);
+            dtoModelB = ABase_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureB.ListGet(dtoModelB);
 
             return View(vmListB);
         }

@@ -1,10 +1,11 @@
-﻿using Injector.Common.IRepositories;
+﻿using Injector.Common.IDbContexts;
+using Injector.Common.IRepositories;
 
 namespace Injector.Common.IStores
 {
     public interface IDataStore
     {
-        IRepositoryA DataRepositoryA { get; set ; }
-        IRepositoryB DataRepositoryB { get; set; }
+        IRepositoryA GetRepositoryA { get; }
+        IRepositoryB GetRepositoryB { get; }
     }
 }

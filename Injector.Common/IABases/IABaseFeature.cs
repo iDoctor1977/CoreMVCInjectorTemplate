@@ -4,6 +4,6 @@ namespace Injector.Common.IABases
 {
     public interface IABaseFeature
     {
-        ICoreStore ABaseStore { get; set; }
+        ICoreStore ABase_CoreStoreInstance { get; }
     }
 }

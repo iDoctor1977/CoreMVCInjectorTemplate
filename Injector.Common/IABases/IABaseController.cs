@@ -4,6 +4,6 @@ namespace Injector.Common.IABases
 {
     public interface IABaseController
     {
-        IWebStore ABaseController_WebStoreInstance { get; set; }
+        IWebStore ABase_WebStoreInstance { get; }
     }
 }

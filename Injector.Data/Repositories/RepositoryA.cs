@@ -2,73 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Injector.Common.IDbContexts;
 using Injector.Common.IEntities;
 using Injector.Common.IRepositories;
 using Injector.Data.ADOModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.Repositories
 {
     public class RepositoryA : ABaseRepository, IRepositoryA
     {
-        #region CONSTRUCTOR
-
-        private RepositoryA() { }
-
-        private RepositoryA(string connectionString) : base(connectionString) { }
-
-        private RepositoryA(IProjectDbContext dbContext) : base(dbContext) { }
-
-        private RepositoryA(string connectionString, IProjectDbContext dbContext) : base(connectionString, dbContext) { }
-
-        #endregion
-
-        #region SINGLETON
-
-        private static IRepositoryA RepositoryAInstance { get; set; }
-
-        public static IRepositoryA Instance()
-        {
-            if (RepositoryAInstance == null)
-            {
-                RepositoryAInstance = new RepositoryA();
-            }
-
-            return RepositoryAInstance;
-        }
-
-        public static IRepositoryA Instance(string connectionString)
-        {
-            if (RepositoryAInstance == null)
-            {
-                RepositoryAInstance = new RepositoryA(connectionString);
-            }
-
-            return RepositoryAInstance;
-        }
-
-        public static IRepositoryA Instance(IProjectDbContext projectDbContext)
-        {
-            if (RepositoryAInstance == null)
-            {
-                RepositoryAInstance = new RepositoryA(projectDbContext);
-            }
-
-            return RepositoryAInstance;
-        }
-
-        public static IRepositoryA Instance(string connectionString, IProjectDbContext projectDbContext)
-        {
-            if (RepositoryAInstance == null)
-            {
-                RepositoryAInstance = new RepositoryA(connectionString, projectDbContext);
-            }
-
-            return RepositoryAInstance;
-        }
-
-        #endregion
+        public RepositoryA(ServiceProvider service) : base(service) { }
 
         public int CreateEntity(IEntityA entityA)
         {

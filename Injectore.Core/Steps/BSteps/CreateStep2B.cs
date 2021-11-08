@@ -1,14 +1,11 @@
 ﻿using Injector.Common.DTOModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Core.Steps.BSteps
 {
     public class CreateStep2B : ABaseStep<DTOModelB>
     {
-        #region CONSTRUCTOR
-
-        public CreateStep2B() { }
-
-        #endregion
+        public CreateStep2B(ServiceProvider service) : base(service) { }
 
         public override DTOModelB Execute(DTOModelB dtoModelB)
         {

@@ -2,34 +2,24 @@
 using Injector.Common.IABases;
 using Injector.Common.IStores;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Web.Controllers
 {
     public abstract class ABaseController : Controller, IABaseController
     {
-        private IWebStore _webStore;
         private const int DefaultEntryKey = -1;
         private readonly Dictionary<int, ActionControllerName> _redirectDictionary = new Dictionary<int, ActionControllerName>();
 
-        #region CONSTRUCTOR
-
-        protected ABaseController()
+        protected ABaseController(ServiceProvider service)
         {
+            service.GetRequiredService<IWebStore>();
             //FillRedirectDictionary();
         }
 
-        protected ABaseController(IWebStore webStore)
+        public IWebStore ABase_WebStoreInstance
         {
-            ABaseController_WebStoreInstance = webStore;
-            //FillRedirectDictionary();
-        }
-
-        #endregion
-
-        public IWebStore ABaseController_WebStoreInstance
-        {
-            get { return _webStore ?? (_webStore = WebStore.Instance()); }
-            set { _webStore = value; }
+            get { return ABase_WebStoreInstance; }
         }
 
         #region EXCEPTIONS HANDLER

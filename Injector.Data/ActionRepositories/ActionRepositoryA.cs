@@ -3,47 +3,15 @@ using System.Collections.Generic;
 using Injector.Common.DTOModels;
 using Injector.Common.IActionRepositories;
 using Injector.Common.IEntities;
-using Injector.Common.IStores;
 using Injector.Data.ADOModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.ActionRepositories
 {
     public class ActionRepositoryA : ABaseActionRepository, IActionRepositoryA
     {
-        private static IActionRepositoryA ActionRepositoryAInstance { get; set; }
+        public ActionRepositoryA(ServiceProvider service) : base(service) { }
 
-        #region CONSTRUCTOR
-
-        private ActionRepositoryA() { }
-
-        private ActionRepositoryA(IDataStore dataStore) : base(dataStore) { }
-
-        #endregion
-
-        #region SINGLETON
-
-        public static IActionRepositoryA Instance()
-        {
-            if (ActionRepositoryAInstance == null)
-            {
-                ActionRepositoryAInstance = new ActionRepositoryA();
-            }
-
-            return ActionRepositoryAInstance;
-        }
-
-        public static IActionRepositoryA Instance(IDataStore dataStore)
-        {
-            if (ActionRepositoryAInstance == null)
-            {
-                ActionRepositoryAInstance = new ActionRepositoryA(dataStore);
-            }
-
-            return ActionRepositoryAInstance;
-        }
-
-        #endregion
-         
         public bool CreateValue(DTOModelA dtoModelA)
         {
             // qui vengono create le Entity
@@ -53,8 +21,8 @@ namespace Injector.Common.ActionRepositories
             EntityA entityA = new EntityA();
             entityA.Name = dtoModelA.Name;
 
-            ABase_DataStore.DataRepositoryA.CreateEntity((IEntityA)entityA);
-            ABase_DataStore.DataRepositoryA.ReadEntityById(entityA.Id);
+            ABaseActionRepository_DataStore.GetRepositoryA.CreateEntity((IEntityA)entityA);
+            ABaseActionRepository_DataStore.GetRepositoryA.ReadEntityById(entityA.Id);
 
             throw new NotImplementedException();
         }

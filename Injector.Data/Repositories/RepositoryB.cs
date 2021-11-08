@@ -4,71 +4,15 @@ using System.Linq;
 using System.Reflection;
 using Injector.Common.IRepositories;
 using Injector.Common.IEntities;
-using Injector.Common.IDbContexts;
 using Microsoft.EntityFrameworkCore;
 using Injector.Data.ADOModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.Repositories
 {
     public class RepositoryB : ABaseRepository, IRepositoryB
     {
-        #region CONSTRUCTOR
-
-        private RepositoryB() { }
-
-        private RepositoryB(string connectionString) : base(connectionString) { }
-
-        private RepositoryB(IProjectDbContext dbContext) : base(dbContext) { }
-
-        private RepositoryB(string connectionString, IProjectDbContext dbContext) : base(connectionString, dbContext) { }
-
-        #endregion
-
-        #region SINGLETON
-
-        private static IRepositoryB RepositoryBInstance { get; set; }
-
-        public static IRepositoryB Instance()
-        {
-            if (RepositoryBInstance == null)
-            {
-                RepositoryBInstance = new RepositoryB();
-            }
-
-            return RepositoryBInstance;
-        }
-
-        public static IRepositoryB Instance(string connectionString)
-        {
-            if (RepositoryBInstance == null)
-            {
-                RepositoryBInstance = new RepositoryB(connectionString);
-            }
-
-            return RepositoryBInstance;
-        }
-
-        public static IRepositoryB Instance(IProjectDbContext projectDbContext)
-        {
-            if (RepositoryBInstance == null)
-            {
-                RepositoryBInstance = new RepositoryB(projectDbContext);
-            }
-
-            return RepositoryBInstance;
-        }
-
-        public static IRepositoryB Instance(string connectionString, IProjectDbContext projectDbContext)
-        {
-            if (RepositoryBInstance == null)
-            {
-                RepositoryBInstance = new RepositoryB(connectionString, projectDbContext);
-            }
-
-            return RepositoryBInstance;
-        }
-
-        #endregion
+        public RepositoryB(ServiceProvider service) : base(service) { }
 
         public int CreateEntity(IEntityB entityB)
         {

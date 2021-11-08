@@ -2,45 +2,13 @@
 using System.Collections.Generic;
 using Injector.Common.DTOModels;
 using Injector.Common.IActionRepositories;
-using Injector.Common.IStores;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.ActionRepositories
 {
     public class ActionRepositoryB : ABaseActionRepository, IActionRepositoryB
     {
-        private static IActionRepositoryB ActionRepositoryAInstance { get; set; }
-
-        #region CONSTRUCTOR
-
-        private ActionRepositoryB() { }
-
-        private ActionRepositoryB(IDataStore dataStore) : base(dataStore) { }
-
-        #endregion
-
-        #region SINGLETON
-
-        public static IActionRepositoryB Instance()
-        {
-            if (ActionRepositoryAInstance == null)
-            {
-                ActionRepositoryAInstance = new ActionRepositoryB();
-            }
-
-            return ActionRepositoryAInstance;
-        }
-
-        public static IActionRepositoryB Instance(IDataStore dataStore)
-        {
-            if (ActionRepositoryAInstance == null)
-            {
-                ActionRepositoryAInstance = new ActionRepositoryB(dataStore);
-            }
-
-            return ActionRepositoryAInstance;
-        }
-
-        #endregion
+        public ActionRepositoryB(ServiceProvider service) : base(service) { }
 
         public bool CreateValue(DTOModelB dtoModelB)
         {

@@ -1,54 +1,19 @@
-﻿using Injector.Core;
-using Injector.Common.IStores;
+﻿using Injector.Common.IStores;
 using Injector.Common.ISuppliers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Web
 {
     public class WebStore : IWebStore
     {
-        private ICoreSupplier _coreSupplier;
-
-        #region CONSTRUCTOR
-
-        private WebStore() { }
-
-        private WebStore(ICoreSupplier coreSupplier)
+        public WebStore(ServiceProvider service)
         {
-            WebStore_CoreSupplierInstance = coreSupplier;
+            service.GetRequiredService<IWebStore>();
         }
-
-        #endregion
-
-        #region SINGLETON
-
-        public static IWebStore Instance()
-        {
-            if (WebStoreInstance == null)
-            {
-                WebStoreInstance = new WebStore();
-            }
-
-            return WebStoreInstance;
-        }
-
-        public static IWebStore Instance(ICoreSupplier coreSupplier)
-        {
-            if (WebStoreInstance == null)
-            {
-                WebStoreInstance = new WebStore(coreSupplier);
-            }
-
-            return WebStoreInstance;
-        }
-
-        #endregion
-
-        private static IWebStore WebStoreInstance { get; set; }
 
         public ICoreSupplier WebStore_CoreSupplierInstance
         {
-            get { return _coreSupplier ?? (_coreSupplier = CoreSupplier.Instance()); }
-            set { _coreSupplier = value; }
+            get { return WebStore_CoreSupplierInstance; }
         }
     }
 }

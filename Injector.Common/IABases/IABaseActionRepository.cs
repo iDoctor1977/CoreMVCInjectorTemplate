@@ -4,6 +4,6 @@ namespace Injector.Common.IABases
 {
     public interface IABaseActionRepository
     {
-        IDataStore ABase_DataStore { get; set; }
+        IDataStore ABaseActionRepository_DataStore { get; }
     }
 }

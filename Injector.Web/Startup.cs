@@ -1,13 +1,18 @@
+using Injector.Common.ActionRepositories;
+using Injector.Common.IABases;
+using Injector.Common.IStores;
+using Injector.Common.ISuppliers;
+using Injector.Common.Repositories;
+using Injector.Core;
+using Injector.Core.Features;
+using Injector.Core.Steps;
+using Injector.Data;
+using Injector.Web.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Injector.Web
 {
@@ -23,6 +28,30 @@ namespace Injector.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region DI Injection.Web
+
+            services.AddTransient<IABaseController, ABaseController>();
+            services.AddTransient<IWebStore, WebStore>();
+            #endregion
+
+            #region DI Injector.Core
+
+            services.AddTransient<ICoreSupplier, CoreSupplier>();
+            services.AddTransient<ICoreStore, CoreStore>();
+            services.AddTransient<IABaseFeature, ABaseFeature>();
+            services.AddTransient(typeof(IABaseStep<>), typeof(ABaseStep<>));
+
+            #endregion
+
+            #region DI Injector Data
+
+            services.AddTransient<IDataSupplier, DataSupplier>();
+            services.AddTransient<IABaseActionRepository, ABaseActionRepository>();
+            services.AddTransient<IDataStore, DataStore>();
+            services.AddTransient<IABaseRepository, ABaseRepository>();
+
+            #endregion
+
             services.AddControllersWithViews();
         }
 

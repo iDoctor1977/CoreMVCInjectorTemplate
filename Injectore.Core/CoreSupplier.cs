@@ -1,64 +1,23 @@
-﻿using Injector.Core.Features;
-using Injector.Common.IFeatures;
+﻿using Injector.Common.IFeatures;
 using Injector.Common.IStores;
 using Injector.Common.ISuppliers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Core
 {
     public class CoreSupplier : ICoreSupplier
     {
-        private ICoreStore _coreStore;
-
-        private IFeatureA _featureA;
-        private IFeatureB _featureB;
-
-        #region CONSTRUCTOR
-
-        protected CoreSupplier() { }
-
-        protected CoreSupplier(ICoreStore coreStore)
+        protected CoreSupplier(ServiceProvider service)
         {
-            CoreSupplie_CoreStoreInstance = coreStore;
+            service.GetRequiredService<ICoreSupplier>();
         }
 
-        #endregion
-
-        #region SINGLETON
-
-        private static ICoreSupplier CoreSupplierInstance { get; set; }
-
-        public static ICoreSupplier Instance()
-        {
-            if (CoreSupplierInstance == null)
-            {
-                CoreSupplierInstance = new CoreSupplier();
-            }
-
-            return CoreSupplierInstance;
-        }
-
-        public static ICoreSupplier Instance(ICoreStore coreStore)
-        {
-            if (CoreSupplierInstance == null)
-            {
-                CoreSupplierInstance = new CoreSupplier(coreStore);
-            }
-
-            return CoreSupplierInstance;
-        }
-
-        #endregion
-
-        public ICoreStore CoreSupplie_CoreStoreInstance
-        {
-            get { return _coreStore ?? (_coreStore = Core.CoreStore.Instance()); }
-            set { _coreStore = value; }
-        }
+        public ICoreStore CoreSupplie_CoreStoreInstance => CoreSupplie_CoreStoreInstance;
 
         #region FEATURES
 
-        public IFeatureA GetFeatureA => _featureA ?? (_featureA = FeatureA.Instance(CoreSupplie_CoreStoreInstance)); // new FeatureA()
-        public IFeatureB GetFeatureB => _featureB ?? (_featureB = FeatureB.Instance(CoreSupplie_CoreStoreInstance)); // new FeatureB()
+        public IFeatureA GetFeatureA => GetFeatureA; // new FeatureA()
+        public IFeatureB GetFeatureB => GetFeatureB; // new FeatureB()
 
         #endregion
     }

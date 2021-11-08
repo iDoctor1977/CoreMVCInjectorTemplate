@@ -1,27 +1,16 @@
 using Injector.Common.IABases;
 using Injector.Common.IStores;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Core.Features
 {
     public class ABaseFeature : IABaseFeature
     {
-        private ICoreStore _coreStore;
-
-        #region CONSTRUCTOR
-
-        internal ABaseFeature() { }
-
-        internal ABaseFeature(ICoreStore coreStore)
+        internal ABaseFeature(ServiceProvider service)
         {
-            ABaseStore = coreStore;
+            service.GetRequiredService<ICoreStore>();
         }
 
-        #endregion
-
-        public ICoreStore ABaseStore
-        {
-            get { return _coreStore ?? (_coreStore = CoreStore.Instance()); }
-            set { _coreStore = value; }
-        }
+        public ICoreStore ABase_CoreStoreInstance => ABase_CoreStoreInstance;
     }
 }

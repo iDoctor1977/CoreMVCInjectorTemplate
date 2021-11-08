@@ -2,7 +2,7 @@
 using Injector.Common.DTOModels;
 using Injector.Common.IABases;
 using Injector.Common.IFeatures;
-using Injector.Common.IStores;
+ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Core.Features
 {
@@ -12,39 +12,7 @@ namespace Injector.Core.Features
         private IABaseStep<DTOModelB> _createStep2;
         private IABaseStep<DTOModelB> _createStep3;
 
-        private static IFeatureB FeatureBInstance { get; set; }
-
-        #region CONSTRUCTOR
-
-        private FeatureB() { }
-
-        private FeatureB(ICoreStore coreStore) : base(coreStore) { }
-
-        #endregion
-
-        #region SINGLETON
-
-        public static IFeatureB Instance()
-        {
-            if (FeatureBInstance == null)
-            {
-                FeatureBInstance = new FeatureB();
-            }
-
-            return FeatureBInstance;
-        }
-
-        public static IFeatureB Instance(ICoreStore coreStore)
-        {
-            if (FeatureBInstance == null)
-            {
-                FeatureBInstance = new FeatureB(coreStore);
-            }
-
-            return FeatureBInstance;
-        }
-
-        #endregion
+        public FeatureB(ServiceProvider service) : base(service) { }
 
         public bool CreatePost(DTOModelB dtoModelB)
         {

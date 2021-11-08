@@ -4,7 +4,8 @@ namespace Injector.Common.IABases
 {
     public interface IABaseStep<T>
     {
-        ICoreStore ABaseStep_CoreStoreInstance { get; set; }
+        ICoreStore ABaseStep_CoreStoreInstance { get; }
+
         void SetNextStep(IABaseStep<T> step);
         T Execute(T vmCreateB);
     }

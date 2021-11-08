@@ -1,29 +1,19 @@
 ﻿using Injector.Common.IABases;
 using Injector.Common.IStores;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Core.Steps
 {
     public abstract class ABaseStep<T> : IABaseStep<T>
     {
         protected IABaseStep<T> NextStep { get; private set; }
-        private ICoreStore _coreStore;
 
-        #region CONSTRUCTOR
-
-        internal ABaseStep() { }
-
-        internal ABaseStep(ICoreStore coreStore)
+        internal ABaseStep(ServiceProvider service)
         {
-            ABaseStep_CoreStoreInstance = coreStore;
+            service.GetRequiredService(typeof(IABaseStep<>));
         }
 
-        #endregion
-
-        public ICoreStore ABaseStep_CoreStoreInstance
-        {
-            get { return _coreStore ?? (_coreStore = CoreStore.Instance()); }
-            set { _coreStore = value; }
-        }
+        public ICoreStore ABaseStep_CoreStoreInstance => ABaseStep_CoreStoreInstance;
 
         public void SetNextStep(IABaseStep<T> nextStep)
         {
