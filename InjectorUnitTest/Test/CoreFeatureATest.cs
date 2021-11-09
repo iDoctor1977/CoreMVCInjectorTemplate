@@ -13,7 +13,7 @@ using Injector.Common.IRepositories;
 using Injector.Common.IEntities;
 using NSubstitute;
 using Microsoft.AspNetCore.Mvc;
-using Injector.Common.IABases;
+using Injector.Common.IBases;
 using Injector.Common.IDbContexts;
 
 namespace InjectorUnitTest.Test

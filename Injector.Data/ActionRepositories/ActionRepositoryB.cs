@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.ActionRepositories
 {
-    public class ActionRepositoryB : ABaseActionRepository, IActionRepositoryB
+    public class ActionRepositoryB : BaseActionRepository, IActionRepositoryB
     {
         public ActionRepositoryB(ServiceProvider service) : base(service) { }
 

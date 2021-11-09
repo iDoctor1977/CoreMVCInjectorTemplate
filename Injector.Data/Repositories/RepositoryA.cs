@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.Repositories
 {
-    public class RepositoryA : ABaseRepository, IRepositoryA
+    public class RepositoryA : BaseRepository, IRepositoryA
     {
         public RepositoryA(ServiceProvider service) : base(service) { }
 
@@ -22,7 +22,7 @@ namespace Injector.Common.Repositories
                 {
                     entityA.Id = new Random().Next();
 
-                    ABaseRepository_DbContext.EntitiesA.Add(entityA);
+                    BaseRepository_DbContext.EntitiesA.Add(entityA);
 
                     return entityA.Id;
                 }
@@ -37,7 +37,7 @@ namespace Injector.Common.Repositories
 
         public bool UpdateEntity(IEntityA entityA)
         {
-            EntityA original = (EntityA)ABaseRepository_DbContext.EntitiesA.Find(entityA.Id);
+            EntityA original = (EntityA)BaseRepository_DbContext.EntitiesA.Find(entityA.Id);
 
             try
             {
@@ -61,7 +61,7 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEntityA original = ABaseRepository_DbContext.EntitiesA.Find(id);
+                IEntityA original = BaseRepository_DbContext.EntitiesA.Find(id);
 
                 if (original != null)
                 {
@@ -80,7 +80,7 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEntityA original = ABaseRepository_DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
+                IEntityA original = BaseRepository_DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
 
                 if (original != null)
                 {
@@ -99,7 +99,7 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEnumerable<IEntityA> entitiesA = ABaseRepository_DbContext.EntitiesA.ToList();
+                IEnumerable<IEntityA> entitiesA = BaseRepository_DbContext.EntitiesA.ToList();
 
                 if (entitiesA.Any())
                 {
@@ -118,11 +118,11 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEntityA original = ABaseRepository_DbContext.EntitiesA.Find(entityA.Id);
+                IEntityA original = BaseRepository_DbContext.EntitiesA.Find(entityA.Id);
 
                 if (original != null)
                 {
-                    ABaseRepository_DbContext.EntitiesA.Remove(original);
+                    BaseRepository_DbContext.EntitiesA.Remove(original);
 
                     return true;
                 }

@@ -1,18 +1,18 @@
 ﻿using Injector.Common.DTOModels;
-using Injector.Common.IABases;
+using Injector.Common.IBases;
 
 namespace Injector.Common.IFeatures
 {
-    public interface IFeatureA : IABaseFeature
+    public interface IFeatureA : IBaseFeature
     {
         #region STEPS
 
-        IABaseStep<DTOModelA> CreateStep1A { get; }
-        IABaseStep<DTOModelA> CreateStep2A { get; }
-        IABaseStep<DTOModelA> CreateStep3A { get; }
+        IBaseStep<DTOModelA> CreateStep1A { get; }
+        IBaseStep<DTOModelA> CreateStep2A { get; }
+        IBaseStep<DTOModelA> CreateStep3A { get; }
 
-        IABaseStep<DTOModelA> DeleteStep1A { get; }
-        IABaseStep<DTOModelA> DeleteStep2A { get; }
+        IBaseStep<DTOModelA> DeleteStep1A { get; }
+        IBaseStep<DTOModelA> DeleteStep2A { get; }
 
         #endregion
 

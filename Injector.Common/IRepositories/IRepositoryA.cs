@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Injector.Common.IABases;
+using Injector.Common.IBases;
 using Injector.Common.IEntities;
 
 namespace Injector.Common.IRepositories
 {
-    public interface IRepositoryA : IABaseRepository
+    public interface IRepositoryA : IBaseRepository
     {
         int CreateEntity(IEntityA entityA);
         bool UpdateEntity(IEntityA entityA);

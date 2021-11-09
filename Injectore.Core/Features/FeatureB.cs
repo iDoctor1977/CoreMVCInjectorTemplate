@@ -1,21 +1,21 @@
 ﻿using Injector.Common.DTOModels;
-using Injector.Common.IABases;
+using Injector.Common.IBases;
 using Injector.Common.IFeatures;
  using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Core.Features
 {
-    public class FeatureB : ABaseFeature, IFeatureB
+    public class FeatureB : BaseFeature, IFeatureB
     {
         public FeatureB(ServiceProvider service) : base(service) { }
 
         #region STEPS
 
-        public IABaseStep<DTOModelB> CreateStep1B => CreateStep1B;
+        public IBaseStep<DTOModelB> CreateStep1B => CreateStep1B;
 
-        public IABaseStep<DTOModelB> CreateStep2B => CreateStep2B;
+        public IBaseStep<DTOModelB> CreateStep2B => CreateStep2B;
 
-        public IABaseStep<DTOModelB> CreateStep3B => CreateStep3B;
+        public IBaseStep<DTOModelB> CreateStep3B => CreateStep3B;
 
         #endregion
 

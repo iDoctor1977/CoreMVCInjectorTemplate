@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Core.Steps.ASteps
 {
-    public class CreateStep1A : ABaseStep<DTOModelA>
+    public class CreateStep1A : BaseStep<DTOModelA>
     {
         public CreateStep1A(ServiceProvider service) : base(service) { }
 
@@ -15,7 +15,7 @@ namespace Injector.Core.Steps.ASteps
             dtoModelA.Name = "pippo";
 
             // Write
-            ABaseStep_CoreStoreInstance.CoreStore_DataSupplierInstance.GetActionRepositoryA.CreateValue(dtoModelA);
+            BaseStep_CoreStoreInstance.CoreStore_DataSupplierInstance.GetActionRepositoryA.CreateValue(dtoModelA);
 
             if (NextStep != null)
             {

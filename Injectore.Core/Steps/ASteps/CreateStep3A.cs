@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Core.Steps.ASteps
 {
-    public class CreateStep3A : ABaseStep<DTOModelA>
+    public class CreateStep3A : BaseStep<DTOModelA>
     {
         public CreateStep3A(ServiceProvider service) : base(service) { }
 

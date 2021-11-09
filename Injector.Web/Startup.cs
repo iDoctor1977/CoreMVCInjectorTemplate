@@ -1,5 +1,5 @@
 using Injector.Common.ActionRepositories;
-using Injector.Common.IABases;
+using Injector.Common.IBases;
 using Injector.Common.IStores;
 using Injector.Common.ISuppliers;
 using Injector.Common.Repositories;
@@ -30,7 +30,7 @@ namespace Injector.Web
         {
             #region DI Injection.Web
 
-            services.AddTransient<IABaseController, ABaseController>();
+            services.AddTransient<IBaseController, BaseController>();
             services.AddTransient<IWebStore, WebStore>();
 
             #endregion
@@ -39,17 +39,17 @@ namespace Injector.Web
 
             services.AddTransient<ICoreSupplier, CoreSupplier>();
             services.AddTransient<ICoreStore, CoreStore>();
-            services.AddTransient<IABaseFeature, ABaseFeature>();
-            services.AddTransient(typeof(IABaseStep<>), typeof(ABaseStep<>));
+            services.AddTransient<IBaseFeature, BaseFeature>();
+            services.AddTransient(typeof(IBaseStep<>), typeof(BaseStep<>));
 
             #endregion
 
-            #region DI Injector Data
+            #region DI Injector.Data
 
             services.AddTransient<IDataSupplier, DataSupplier>();
-            services.AddTransient<IABaseActionRepository, ABaseActionRepository>();
+            services.AddTransient<IBaseActionRepository, BaseActionRepository>();
             services.AddTransient<IDataStore, DataStore>();
-            services.AddTransient<IABaseRepository, ABaseRepository>();
+            services.AddTransient<IBaseRepository, BaseRepository>();
 
             #endregion
 

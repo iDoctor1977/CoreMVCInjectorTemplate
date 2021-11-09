@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Frontend.Controllers
 {
-    public class ControllerA : ABaseController
+    public class ControllerA : BaseController
     {
         public ControllerA(ServiceProvider service) : base(service) { }
 
@@ -35,7 +35,7 @@ namespace Injector.Frontend.Controllers
                 dtoModelA.Name = vmCreateA.Name;
 
                 // ex. with FEATURE
-                ABase_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.CreatePost(dtoModelA);
+                BaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.CreatePost(dtoModelA);
             }
 
             return RedirectToAction("List");
@@ -62,7 +62,7 @@ namespace Injector.Frontend.Controllers
                 // mapping visual model to DTO
                 DTOModelA dtoModelA = new DTOModelA();
 
-                ABase_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.DeletePost(dtoModelA);
+                BaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.DeletePost(dtoModelA);
             }
 
             return RedirectToAction("List");

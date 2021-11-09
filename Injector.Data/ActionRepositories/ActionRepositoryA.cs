@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.ActionRepositories
 {
-    public class ActionRepositoryA : ABaseActionRepository, IActionRepositoryA
+    public class ActionRepositoryA : BaseActionRepository, IActionRepositoryA
     {
         public ActionRepositoryA(ServiceProvider service) : base(service) { }
 
@@ -21,8 +21,8 @@ namespace Injector.Common.ActionRepositories
             EntityA entityA = new EntityA();
             entityA.Name = dtoModelA.Name;
 
-            ABaseActionRepository_DataStore.GetRepositoryA.CreateEntity((IEntityA)entityA);
-            ABaseActionRepository_DataStore.GetRepositoryA.ReadEntityById(entityA.Id);
+            BaseActionRepository_DataStore.GetRepositoryA.CreateEntity((IEntityA)entityA);
+            BaseActionRepository_DataStore.GetRepositoryA.ReadEntityById(entityA.Id);
 
             throw new NotImplementedException();
         }
