@@ -17,9 +17,4 @@
     <ProjectReference Include="..\Injectore.Core\Injectore.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\A\" />
-    <Folder Include="Views\B\" />
-  </ItemGroup>
-
 </Project>

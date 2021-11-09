@@ -32,6 +32,7 @@ namespace Injector.Web
 
             services.AddTransient<IABaseController, ABaseController>();
             services.AddTransient<IWebStore, WebStore>();
+
             #endregion
 
             #region DI Injector.Core
@@ -68,12 +69,13 @@ namespace Injector.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
+
+            // tra UseAuthorization e UseEndpoints possono essere inserirti castom middlewares
 
             app.UseEndpoints(endpoints =>
             {

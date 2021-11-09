@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Injector.Common.IABases;
+﻿using Injector.Common.IABases;
 using Injector.Common.IStores;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,12 +7,14 @@ namespace Injector.Web.Controllers
 {
     public abstract class ABaseController : Controller, IABaseController
     {
+        private readonly IWebStore _webStore;
+
         private const int DefaultEntryKey = -1;
-        private readonly Dictionary<int, ActionControllerName> _redirectDictionary = new Dictionary<int, ActionControllerName>();
+        //private readonly Dictionary<int, ActionControllerName> _redirectDictionary = new Dictionary<int, ActionControllerName>();
 
         protected ABaseController(ServiceProvider service)
         {
-            service.GetRequiredService<IWebStore>();
+            _webStore = service.GetRequiredService<IWebStore>();
             //FillRedirectDictionary();
         }
 
@@ -22,7 +23,7 @@ namespace Injector.Web.Controllers
             get { return ABase_WebStoreInstance; }
         }
 
-        #region EXCEPTIONS HANDLER
+        //#region EXCEPTIONS HANDLER
 
         //protected override void OnException(ExceptionContext filterContext)
         //{
@@ -58,18 +59,18 @@ namespace Injector.Web.Controllers
         //    return RedirectToAction(acn.ActionName, acn.ControllerName);
         //}
 
-        private class ActionControllerName
-        {
-            public string ActionName { get; private set; }
-            public string ControllerName { get; private set; }
+        //private class ActionControllerName
+        //{
+        //    public string ActionName { get; private set; }
+        //    public string ControllerName { get; private set; }
 
-            public ActionControllerName(string actionName, string controllerName)
-            {
-                ActionName = actionName;
-                ControllerName = controllerName;
-            }
-        }
+        //    public ActionControllerName(string actionName, string controllerName)
+        //    {
+        //        ActionName = actionName;
+        //        ControllerName = controllerName;
+        //    }
+        //}
 
-        #endregion
+        //#endregion
     }
 }
