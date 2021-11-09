@@ -4,7 +4,7 @@ namespace Injector.Common.IABases
 {
     public interface IABaseRepository
     {
-        string ConnectionStringName { get; }
-        IProjectDbContext RepositoryDbContext { get; }
+        string ABaseRepository_ConnectionString { get; }
+        IProjectDbContext ABaseRepository_DbContext { get; }
     }
 }

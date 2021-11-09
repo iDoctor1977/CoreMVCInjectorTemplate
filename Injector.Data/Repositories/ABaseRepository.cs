@@ -11,13 +11,13 @@ namespace Injector.Common.Repositories
             service.GetRequiredService<IABaseRepository>();
         }
 
-        public string ConnectionStringName => ConnectionStringName;
+        public string ABaseRepository_ConnectionString => ABaseRepository_ConnectionString;
 
-        public IProjectDbContext RepositoryDbContext => RepositoryDbContext;
+        public IProjectDbContext ABaseRepository_DbContext => ABaseRepository_DbContext;
 
         public void Commit()
         {
-            ProjectDbContext dbContext = RepositoryDbContext as ProjectDbContext;
+            ProjectDbContext dbContext = ABaseRepository_DbContext as ProjectDbContext;
             dbContext.SaveChanges();
         }
     }

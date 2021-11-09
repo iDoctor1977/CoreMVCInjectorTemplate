@@ -1,5 +1,4 @@
-﻿using Injector.Core.Steps.BSteps;
-using Injector.Common.DTOModels;
+﻿using Injector.Common.DTOModels;
 using Injector.Common.IABases;
 using Injector.Common.IFeatures;
  using Microsoft.Extensions.DependencyInjection;
@@ -8,23 +7,25 @@ namespace Injector.Core.Features
 {
     public class FeatureB : ABaseFeature, IFeatureB
     {
-        private IABaseStep<DTOModelB> _createStep1;
-        private IABaseStep<DTOModelB> _createStep2;
-        private IABaseStep<DTOModelB> _createStep3;
-
         public FeatureB(ServiceProvider service) : base(service) { }
+
+        #region STEPS
+
+        public IABaseStep<DTOModelB> CreateStep1B => CreateStep1B;
+
+        public IABaseStep<DTOModelB> CreateStep2B => CreateStep2B;
+
+        public IABaseStep<DTOModelB> CreateStep3B => CreateStep3B;
+
+        #endregion
 
         public bool CreatePost(DTOModelB dtoModelB)
         {
-            _createStep1 = new CreateStep1B();
-            _createStep2 = new CreateStep2B();
-            _createStep3 = new CreateStep3B();
-
             // chain definition
-            _createStep1.SetNextStep(_createStep2);
-            _createStep2.SetNextStep(_createStep3);
+            CreateStep1B.SetNextStep(CreateStep2B);
+            CreateStep2B.SetNextStep(CreateStep3B);
 
-            _createStep1.Execute(dtoModelB);
+            CreateStep1B.Execute(dtoModelB);
 
             if (dtoModelB.Id != 0)
             {

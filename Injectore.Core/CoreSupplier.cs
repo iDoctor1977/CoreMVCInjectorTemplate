@@ -12,8 +12,6 @@ namespace Injector.Core
             service.GetRequiredService<ICoreSupplier>();
         }
 
-        public ICoreStore CoreSupplie_CoreStoreInstance => CoreSupplie_CoreStoreInstance;
-
         #region FEATURES
 
         public IFeatureA GetFeatureA => GetFeatureA; // new FeatureA()

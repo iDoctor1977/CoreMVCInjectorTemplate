@@ -11,6 +11,6 @@ namespace Injector.Core.Features
             service.GetRequiredService<ICoreStore>();
         }
 
-        public ICoreStore ABase_CoreStoreInstance => ABase_CoreStoreInstance;
+        public ICoreStore ABaseFeature_CoreStoreInstance => ABaseFeature_CoreStoreInstance;
     }
 }

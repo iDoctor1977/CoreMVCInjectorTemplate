@@ -22,7 +22,7 @@ namespace Injector.Common.Repositories
                 {
                     entityB.Id = new Random().Next(); ;
 
-                    RepositoryDbContext.EntitiesB.Add(entityB);
+                    ABaseRepository_DbContext.EntitiesB.Add(entityB);
 
                     return entityB.Id;
                 }
@@ -37,7 +37,7 @@ namespace Injector.Common.Repositories
 
         public bool UpdateEntity(IEntityB entityB)
         {
-            EntityB original = (EntityB) RepositoryDbContext.EntitiesB.Find(entityB.Id);
+            EntityB original = (EntityB) ABaseRepository_DbContext.EntitiesB.Find(entityB.Id);
 
             try
             {
@@ -61,7 +61,7 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEntityB original = RepositoryDbContext.EntitiesB.Find(id);
+                IEntityB original = ABaseRepository_DbContext.EntitiesB.Find(id);
 
                 if (original != null)
                 {
@@ -80,7 +80,7 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEntityB original = RepositoryDbContext.EntitiesB.SingleOrDefault(eB => eB.Username == username);
+                IEntityB original = ABaseRepository_DbContext.EntitiesB.SingleOrDefault(eB => eB.Username == username);
 
                 if (original != null)
                 {
@@ -99,7 +99,7 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEnumerable<IEntityB> entitiesB = RepositoryDbContext.EntitiesB.ToList();
+                IEnumerable<IEntityB> entitiesB = ABaseRepository_DbContext.EntitiesB.ToList();
 
                 if (entitiesB.Any())
                 {
@@ -118,11 +118,11 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEntityB original = RepositoryDbContext.EntitiesB.Find(entityB.Id);
+                IEntityB original = ABaseRepository_DbContext.EntitiesB.Find(entityB.Id);
 
                 if (original != null)
                 {
-                    RepositoryDbContext.EntitiesB.Remove(original);
+                    ABaseRepository_DbContext.EntitiesB.Remove(original);
 
                     return true;
                 }
