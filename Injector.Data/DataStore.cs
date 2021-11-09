@@ -1,12 +1,13 @@
 ﻿using Injector.Common.IStores;
 using Injector.Common.IRepositories;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Data
 {
     public class DataStore : IDataStore
     {
-        public DataStore(ServiceProvider service) {
+        public DataStore(IServiceProvider service) {
             service.GetRequiredService<IDataStore>();
         }
 

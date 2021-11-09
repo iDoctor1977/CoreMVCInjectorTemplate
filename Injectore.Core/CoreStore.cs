@@ -1,12 +1,13 @@
 ﻿using Injector.Common.IStores;
 using Injector.Common.ISuppliers;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Core
 {
     public class CoreStore : ICoreStore
     {
-        protected CoreStore(ServiceProvider service)
+        public CoreStore(IServiceProvider service)
         {
             service.GetRequiredService<IDataSupplier>();
         }

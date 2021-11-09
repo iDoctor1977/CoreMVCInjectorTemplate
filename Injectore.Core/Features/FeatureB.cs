@@ -1,13 +1,13 @@
 ﻿using Injector.Common.DTOModels;
 using Injector.Common.IBases;
 using Injector.Common.IFeatures;
- using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Core.Features
 {
     public class FeatureB : BaseFeature, IFeatureB
     {
-        public FeatureB(ServiceProvider service) : base(service) { }
+        public FeatureB(IServiceProvider service) : base(service) { }
 
         #region STEPS
 

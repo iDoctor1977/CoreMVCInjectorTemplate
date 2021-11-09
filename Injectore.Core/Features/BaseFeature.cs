@@ -1,12 +1,13 @@
 using Injector.Common.IBases;
 using Injector.Common.IStores;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Core.Features
 {
     public class BaseFeature : IBaseFeature
     {
-        internal BaseFeature(ServiceProvider service)
+        public BaseFeature(IServiceProvider service)
         {
             service.GetRequiredService<ICoreStore>();
         }

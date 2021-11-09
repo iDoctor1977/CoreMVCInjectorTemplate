@@ -2,6 +2,7 @@
 using Injector.Common.IStores;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Web.Controllers
 {
@@ -11,7 +12,7 @@ namespace Injector.Web.Controllers
 
         //private readonly Dictionary<int, ActionControllerName> _redirectDictionary = new Dictionary<int, ActionControllerName>();
 
-        public BaseController(ServiceProvider service)
+        public BaseController(IServiceProvider service)
         {
             service.GetRequiredService<IWebStore>();
             //FillRedirectDictionary();

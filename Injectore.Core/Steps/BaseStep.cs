@@ -1,6 +1,7 @@
 ﻿using Injector.Common.IBases;
 using Injector.Common.IStores;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Core.Steps
 {
@@ -8,7 +9,7 @@ namespace Injector.Core.Steps
     {
         internal IBaseStep<T> NextStep { get; private set; }
 
-        internal BaseStep(ServiceProvider service)
+        public BaseStep(IServiceProvider service)
         {
             service.GetRequiredService(typeof(IBaseStep<>));
         }

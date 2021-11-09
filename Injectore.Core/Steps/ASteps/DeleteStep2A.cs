@@ -1,11 +1,11 @@
 using Injector.Common.DTOModels;
-using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Core.Steps.ASteps
 {
     public class DeleteStep2A : BaseStep<DTOModelA>
     {
-        public DeleteStep2A(ServiceProvider service) : base(service) { }
+        public DeleteStep2A(IServiceProvider service) : base(service) { }
 
         public override DTOModelA Execute(DTOModelA dtoModelA)
         {

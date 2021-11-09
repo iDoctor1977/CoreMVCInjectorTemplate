@@ -2,12 +2,13 @@
 using Injector.Common.IDbContexts;
 using Injector.Data.ADOModels;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Common.Repositories
 {
     public class BaseRepository : IBaseRepository
     {
-        internal BaseRepository(ServiceProvider service) {
+        public BaseRepository(IServiceProvider service) {
             service.GetRequiredService<IBaseRepository>();
         }
 

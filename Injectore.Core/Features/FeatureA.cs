@@ -9,7 +9,7 @@ namespace Injector.Core.Features
 {
     public class FeatureA : BaseFeature, IFeatureA
     {
-        public FeatureA(ServiceProvider service) : base(service) { }
+        public FeatureA(IServiceProvider service) : base(service) { }
 
         #region STEPS
         public IBaseStep<DTOModelA> CreateStep1A => CreateStep1A;

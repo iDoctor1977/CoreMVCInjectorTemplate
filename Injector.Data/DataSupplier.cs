@@ -1,12 +1,13 @@
 ﻿using Injector.Common.ISuppliers;
 using Injector.Common.IActionRepositories;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Data
 {
     public class DataSupplier : IDataSupplier
     {
-        internal DataSupplier(ServiceProvider service) {
+        public DataSupplier(IServiceProvider service) {
             service.GetRequiredService<IDataSupplier>();
         }
 

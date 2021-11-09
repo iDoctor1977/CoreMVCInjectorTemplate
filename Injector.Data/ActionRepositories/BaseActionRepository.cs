@@ -1,12 +1,13 @@
 ﻿using Injector.Common.IBases;
 using Injector.Common.IStores;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Common.ActionRepositories
 {
     public class BaseActionRepository : IBaseActionRepository
     {
-        internal BaseActionRepository(ServiceProvider service) {
+        public BaseActionRepository(IServiceProvider service) {
             service.GetRequiredService<IDataStore>();
         }
 
