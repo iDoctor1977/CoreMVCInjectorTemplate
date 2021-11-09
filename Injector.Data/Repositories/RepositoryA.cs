@@ -2,73 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Injector.Common.IDbContexts;
 using Injector.Common.IEntities;
 using Injector.Common.IRepositories;
 using Injector.Data.ADOModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.Repositories
 {
-    public class RepositoryA : ABaseRepository, IRepositoryA
+    public class RepositoryA : BaseRepository, IRepositoryA
     {
-        #region CONSTRUCTOR
-
-        private RepositoryA() { }
-
-        private RepositoryA(string connectionString) : base(connectionString) { }
-
-        private RepositoryA(IProjectDbContext dbContext) : base(dbContext) { }
-
-        private RepositoryA(string connectionString, IProjectDbContext dbContext) : base(connectionString, dbContext) { }
-
-        #endregion
-
-        #region SINGLETON
-
-        private static IRepositoryA RepositoryAInstance { get; set; }
-
-        public static IRepositoryA Instance()
-        {
-            if (RepositoryAInstance == null)
-            {
-                RepositoryAInstance = new RepositoryA();
-            }
-
-            return RepositoryAInstance;
-        }
-
-        public static IRepositoryA Instance(string connectionString)
-        {
-            if (RepositoryAInstance == null)
-            {
-                RepositoryAInstance = new RepositoryA(connectionString);
-            }
-
-            return RepositoryAInstance;
-        }
-
-        public static IRepositoryA Instance(IProjectDbContext projectDbContext)
-        {
-            if (RepositoryAInstance == null)
-            {
-                RepositoryAInstance = new RepositoryA(projectDbContext);
-            }
-
-            return RepositoryAInstance;
-        }
-
-        public static IRepositoryA Instance(string connectionString, IProjectDbContext projectDbContext)
-        {
-            if (RepositoryAInstance == null)
-            {
-                RepositoryAInstance = new RepositoryA(connectionString, projectDbContext);
-            }
-
-            return RepositoryAInstance;
-        }
-
-        #endregion
+        public RepositoryA(ServiceProvider service) : base(service) { }
 
         public int CreateEntity(IEntityA entityA)
         {
@@ -78,7 +22,7 @@ namespace Injector.Common.Repositories
                 {
                     entityA.Id = new Random().Next();
 
-                    RepositoryDbContext.EntitiesA.Add(entityA);
+                    BaseRepository_DbContext.EntitiesA.Add(entityA);
 
                     return entityA.Id;
                 }
@@ -93,7 +37,7 @@ namespace Injector.Common.Repositories
 
         public bool UpdateEntity(IEntityA entityA)
         {
-            EntityA original = (EntityA)RepositoryDbContext.EntitiesA.Find(entityA.Id);
+            EntityA original = (EntityA)BaseRepository_DbContext.EntitiesA.Find(entityA.Id);
 
             try
             {
@@ -117,7 +61,7 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEntityA original = RepositoryDbContext.EntitiesA.Find(id);
+                IEntityA original = BaseRepository_DbContext.EntitiesA.Find(id);
 
                 if (original != null)
                 {
@@ -136,7 +80,7 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEntityA original = RepositoryDbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
+                IEntityA original = BaseRepository_DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
 
                 if (original != null)
                 {
@@ -155,7 +99,7 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEnumerable<IEntityA> entitiesA = RepositoryDbContext.EntitiesA.ToList();
+                IEnumerable<IEntityA> entitiesA = BaseRepository_DbContext.EntitiesA.ToList();
 
                 if (entitiesA.Any())
                 {
@@ -174,11 +118,11 @@ namespace Injector.Common.Repositories
         {
             try
             {
-                IEntityA original = RepositoryDbContext.EntitiesA.Find(entityA.Id);
+                IEntityA original = BaseRepository_DbContext.EntitiesA.Find(entityA.Id);
 
                 if (original != null)
                 {
-                    RepositoryDbContext.EntitiesA.Remove(original);
+                    BaseRepository_DbContext.EntitiesA.Remove(original);
 
                     return true;
                 }

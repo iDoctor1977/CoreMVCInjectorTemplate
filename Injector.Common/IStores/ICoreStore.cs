@@ -4,6 +4,6 @@ namespace Injector.Common.IStores
 {
     public interface ICoreStore
     {
-        IDataSupplier CoreStore_DataSupplierInstance { get; set; }
+        IDataSupplier CoreStore_DataSupplierInstance { get; }
     }
 }

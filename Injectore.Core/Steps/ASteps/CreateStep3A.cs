@@ -1,14 +1,11 @@
 ﻿using Injector.Common.DTOModels;
+using System;
 
 namespace Injector.Core.Steps.ASteps
 {
-    public class CreateStep3A : ABaseStep<DTOModelA>
+    public class CreateStep3A : BaseStep<DTOModelA>
     {
-        #region CONSTRUCTOR
-
-        public CreateStep3A() { }
-
-        #endregion
+        public CreateStep3A(IServiceProvider service) : base(service) { }
 
         public override DTOModelA Execute(DTOModelA dtoModelA)
         {

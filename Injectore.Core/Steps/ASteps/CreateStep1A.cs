@@ -1,14 +1,12 @@
 using Injector.Common.DTOModels;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Core.Steps.ASteps
 {
-    public class CreateStep1A : ABaseStep<DTOModelA>
+    public class CreateStep1A : BaseStep<DTOModelA>
     {
-        #region CONSTRUCTOR
-
-        public CreateStep1A() { }
-
-        #endregion
+        public CreateStep1A(IServiceProvider service) : base(service) { }
 
         public override DTOModelA Execute(DTOModelA dtoModelA)
         {
@@ -18,7 +16,7 @@ namespace Injector.Core.Steps.ASteps
             dtoModelA.Name = "pippo";
 
             // Write
-            ABaseStep_CoreStoreInstance.CoreStore_DataSupplierInstance.GetActionRepositoryA.CreateValue(dtoModelA);
+            BaseStep_CoreStoreInstance.CoreStore_DataSupplierInstance.GetActionRepositoryA.CreateValue(dtoModelA);
 
             if (NextStep != null)
             {

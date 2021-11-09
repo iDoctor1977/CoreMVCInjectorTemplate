@@ -1,62 +1,31 @@
-﻿using Injector.Core.Steps.BSteps;
-using Injector.Common.DTOModels;
-using Injector.Common.IABases;
+﻿using Injector.Common.DTOModels;
+using Injector.Common.IBases;
 using Injector.Common.IFeatures;
-using Injector.Common.IStores;
+using System;
 
 namespace Injector.Core.Features
 {
-    public class FeatureB : ABaseFeature, IFeatureB
+    public class FeatureB : BaseFeature, IFeatureB
     {
-        private IABaseStep<DTOModelB> _createStep1;
-        private IABaseStep<DTOModelB> _createStep2;
-        private IABaseStep<DTOModelB> _createStep3;
+        public FeatureB(IServiceProvider service) : base(service) { }
 
-        private static IFeatureB FeatureBInstance { get; set; }
+        #region STEPS
 
-        #region CONSTRUCTOR
+        public IBaseStep<DTOModelB> CreateStep1B => CreateStep1B;
 
-        private FeatureB() { }
+        public IBaseStep<DTOModelB> CreateStep2B => CreateStep2B;
 
-        private FeatureB(ICoreStore coreStore) : base(coreStore) { }
-
-        #endregion
-
-        #region SINGLETON
-
-        public static IFeatureB Instance()
-        {
-            if (FeatureBInstance == null)
-            {
-                FeatureBInstance = new FeatureB();
-            }
-
-            return FeatureBInstance;
-        }
-
-        public static IFeatureB Instance(ICoreStore coreStore)
-        {
-            if (FeatureBInstance == null)
-            {
-                FeatureBInstance = new FeatureB(coreStore);
-            }
-
-            return FeatureBInstance;
-        }
+        public IBaseStep<DTOModelB> CreateStep3B => CreateStep3B;
 
         #endregion
 
         public bool CreatePost(DTOModelB dtoModelB)
         {
-            _createStep1 = new CreateStep1B();
-            _createStep2 = new CreateStep2B();
-            _createStep3 = new CreateStep3B();
-
             // chain definition
-            _createStep1.SetNextStep(_createStep2);
-            _createStep2.SetNextStep(_createStep3);
+            CreateStep1B.SetNextStep(CreateStep2B);
+            CreateStep2B.SetNextStep(CreateStep3B);
 
-            _createStep1.Execute(dtoModelB);
+            CreateStep1B.Execute(dtoModelB);
 
             if (dtoModelB.Id != 0)
             {

@@ -1,38 +1,26 @@
-﻿using System.Collections.Generic;
-using Injector.Common.IABases;
+﻿using Injector.Common.IBases;
 using Injector.Common.IStores;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Injector.Web.Controllers
 {
-    public abstract class ABaseController : Controller, IABaseController
+    public class BaseController : Controller, IBaseController
     {
-        private IWebStore _webStore;
         private const int DefaultEntryKey = -1;
-        private readonly Dictionary<int, ActionControllerName> _redirectDictionary = new Dictionary<int, ActionControllerName>();
 
-        #region CONSTRUCTOR
+        //private readonly Dictionary<int, ActionControllerName> _redirectDictionary = new Dictionary<int, ActionControllerName>();
 
-        protected ABaseController()
+        public BaseController(IServiceProvider service)
         {
+            service.GetRequiredService<IWebStore>();
             //FillRedirectDictionary();
         }
 
-        protected ABaseController(IWebStore webStore)
-        {
-            ABaseController_WebStoreInstance = webStore;
-            //FillRedirectDictionary();
-        }
+        public IWebStore BaseController_WebStoreInstance => BaseController_WebStoreInstance;
 
-        #endregion
-
-        public IWebStore ABaseController_WebStoreInstance
-        {
-            get { return _webStore ?? (_webStore = WebStore.Instance()); }
-            set { _webStore = value; }
-        }
-
-        #region EXCEPTIONS HANDLER
+        //#region EXCEPTIONS HANDLER
 
         //protected override void OnException(ExceptionContext filterContext)
         //{
@@ -68,18 +56,18 @@ namespace Injector.Web.Controllers
         //    return RedirectToAction(acn.ActionName, acn.ControllerName);
         //}
 
-        private class ActionControllerName
-        {
-            public string ActionName { get; private set; }
-            public string ControllerName { get; private set; }
+        //private class ActionControllerName
+        //{
+        //    public string ActionName { get; private set; }
+        //    public string ControllerName { get; private set; }
 
-            public ActionControllerName(string actionName, string controllerName)
-            {
-                ActionName = actionName;
-                ControllerName = controllerName;
-            }
-        }
+        //    public ActionControllerName(string actionName, string controllerName)
+        //    {
+        //        ActionName = actionName;
+        //        ControllerName = controllerName;
+        //    }
+        //}
 
-        #endregion
+        //#endregion
     }
 }
