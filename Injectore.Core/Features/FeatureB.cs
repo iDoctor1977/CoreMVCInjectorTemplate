@@ -7,6 +7,8 @@ namespace Injector.Core.Features
 {
     public class FeatureB : BaseFeature, IFeatureB
     {
+        public FeatureB() : base() { }
+
         public FeatureB(IServiceProvider service) : base(service) { }
 
         #region STEPS

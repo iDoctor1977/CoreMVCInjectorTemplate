@@ -1,5 +1,4 @@
 using Injector.Common.DTOModels;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Injector.Core.Steps.ASteps

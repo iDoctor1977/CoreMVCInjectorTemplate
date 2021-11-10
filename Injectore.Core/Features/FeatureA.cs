@@ -3,12 +3,13 @@ using Injector.Common.DTOModels;
 using Injector.Common.IBases;
 using Injector.Common.IFeatures;
 using Injector.Core.CaseDTOModels;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Core.Features
 {
     public class FeatureA : BaseFeature, IFeatureA
     {
+        public FeatureA() : base() { }
+
         public FeatureA(IServiceProvider service) : base(service) { }
 
         #region STEPS
@@ -26,6 +27,10 @@ namespace Injector.Core.Features
 
         public bool CreatePost(DTOModelA dtoModelA)
         {
+            #region STEPS PIPELINE WITH TPL LIBRARY
+
+            #endregion
+
             // chain definition
             CreateStep1A.SetNextStep(CreateStep2A);
             CreateStep2A.SetNextStep(CreateStep3A);

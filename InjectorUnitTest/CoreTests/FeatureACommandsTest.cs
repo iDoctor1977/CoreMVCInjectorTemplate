@@ -15,28 +15,39 @@ using NSubstitute;
 using Microsoft.AspNetCore.Mvc;
 using Injector.Common.IBases;
 using Injector.Common.IDbContexts;
+using InjectorUnitTest.Common;
 
 namespace InjectorUnitTest.Test
 {
     #region TEST AREA
 
     [TestFixture]
-    public class CoreFeatureATest
+    public class FeatureACommandsTest : BaseTest
     {
-        [Test]
-        public void CreateEntityWithValidInput()
+        [SetUp]
+        public void SetUp()
+        {
+            base.Setup();
+        }
+
+        [Test(Description = "Verifica del funzionamnebto del comand CREATE della Feature")]
+        public void CreateCommandWithValidInput()
         {
             // ARRANGE
-            DTOModelA modelA = new DTOModelA
+            DTOModelA dtoModelA = new DTOModelA
             {
-                Id = 0,
+                Id = 1,
                 Name = "Pippo",
                 Surname = "Poppi"
             };
 
+            FeatureA featureATest = new FeatureA();
+
             // ACT
+            bool result = featureATest.CreatePost(dtoModelA);
 
             // ASSERT
+            Assert.IsTrue(result);
         }
 
         [Test]

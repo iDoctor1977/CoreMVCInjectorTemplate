@@ -7,6 +7,8 @@ namespace Injector.Core.Features
 {
     public class BaseFeature : IBaseFeature
     {
+        public BaseFeature() { }
+
         public BaseFeature(IServiceProvider service)
         {
             service.GetRequiredService<ICoreStore>();
