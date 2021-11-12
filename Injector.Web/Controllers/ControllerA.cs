@@ -3,13 +3,12 @@ using Injector.Common.DTOModels;
 using Injector.Web.Models;
 using Injector.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Frontend.Controllers
 {
     public class ControllerA : BaseController
     {
-        public ControllerA(ServiceProvider service) : base(service) { }
+        public ControllerA(IServiceProvider service) : base(service) { }
 
         #region HTTP OPERATIONS
 
@@ -35,7 +34,7 @@ namespace Injector.Frontend.Controllers
                 dtoModelA.Name = vmCreateA.Name;
 
                 // ex. with FEATURE
-                BaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.CreatePost(dtoModelA);
+                BaseController_CoreSupplier.GetFeatureA.CreatePost(dtoModelA);
             }
 
             return RedirectToAction("List");
@@ -62,7 +61,7 @@ namespace Injector.Frontend.Controllers
                 // mapping visual model to DTO
                 DTOModelA dtoModelA = new DTOModelA();
 
-                BaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.DeletePost(dtoModelA);
+                BaseController_CoreSupplier.GetFeatureA.DeletePost(dtoModelA);
             }
 
             return RedirectToAction("List");

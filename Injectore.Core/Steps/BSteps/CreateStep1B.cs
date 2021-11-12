@@ -10,13 +10,13 @@ namespace Injector.Core.Steps.BSteps
         public override DTOModelB Execute(DTOModelB dtoModelB)
         {
             // Read
-            dtoModelB = BaseStep_CoreStoreInstance.CoreStore_DataSupplierInstance.GetActionRepositoryB.ReadValue(dtoModelB);
+            dtoModelB = BaseStep_DataSupplier.GetActionRepositoryB.ReadValue(dtoModelB);
 
             // Do
             dtoModelB.Email = "pippo@gmail.com";
 
             // Write
-            BaseStep_CoreStoreInstance.CoreStore_DataSupplierInstance.GetActionRepositoryB.CreateValue(dtoModelB);
+            BaseStep_DataSupplier.GetActionRepositoryB.CreateValue(dtoModelB);
 
             if (NextStep != null)
             {

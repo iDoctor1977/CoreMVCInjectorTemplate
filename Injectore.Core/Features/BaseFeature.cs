@@ -1,19 +1,18 @@
-using Injector.Common.IBases;
-using Injector.Common.IStores;
+using Injector.Common.ISuppliers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Injector.Core.Features
 {
-    public class BaseFeature : IBaseFeature
+    public class BaseFeature
     {
-        public BaseFeature() { }
+        private readonly IDataSupplier _dataSupplier;
 
         public BaseFeature(IServiceProvider service)
         {
-            service.GetRequiredService<ICoreStore>();
+            _dataSupplier = service.GetRequiredService<IDataSupplier>();
         }
 
-        public ICoreStore BaseFeature_CoreStoreInstance => BaseFeature_CoreStoreInstance;
+        public IDataSupplier BaseFeature_DataSupplier => _dataSupplier;
     }
 }

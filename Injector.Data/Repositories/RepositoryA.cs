@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Injector.Common.IEntities;
-using Injector.Common.IRepositories;
 using Injector.Data.ADOModels;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.Repositories
 {
-    public class RepositoryA : BaseRepository, IRepositoryA
+    public class RepositoryA : BaseRepository
     {
-        public RepositoryA(ServiceProvider service) : base(service) { }
+        public RepositoryA(IServiceProvider service) : base(service) { }
 
-        public int CreateEntity(IEntityA entityA)
+        public int CreateEntity(EntityA entityA)
         {
             try
             {
@@ -35,9 +32,9 @@ namespace Injector.Common.Repositories
             return 0;
         }
 
-        public bool UpdateEntity(IEntityA entityA)
+        public bool UpdateEntity(EntityA entityA)
         {
-            EntityA original = (EntityA)BaseRepository_DbContext.EntitiesA.Find(entityA.Id);
+            EntityA original = BaseRepository_DbContext.EntitiesA.Find(entityA.Id);
 
             try
             {
@@ -57,11 +54,11 @@ namespace Injector.Common.Repositories
             return false;
         }
 
-        public IEntityA ReadEntityById(int id)
+        public EntityA ReadEntityById(int id)
         {
             try
             {
-                IEntityA original = BaseRepository_DbContext.EntitiesA.Find(id);
+                EntityA original = BaseRepository_DbContext.EntitiesA.Find(id);
 
                 if (original != null)
                 {
@@ -76,11 +73,11 @@ namespace Injector.Common.Repositories
             return null;
         }
 
-        public IEntityA ReadEntityByName(string name)
+        public EntityA ReadEntityByName(string name)
         {
             try
             {
-                IEntityA original = BaseRepository_DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
+                EntityA original = BaseRepository_DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
 
                 if (original != null)
                 {
@@ -95,11 +92,11 @@ namespace Injector.Common.Repositories
             return null;
         }
 
-        public IEnumerable<IEntityA> ReadEntities()
+        public IEnumerable<EntityA> ReadEntities()
         {
             try
             {
-                IEnumerable<IEntityA> entitiesA = BaseRepository_DbContext.EntitiesA.ToList();
+                IEnumerable<EntityA> entitiesA = BaseRepository_DbContext.EntitiesA.ToList();
 
                 if (entitiesA.Any())
                 {
@@ -111,14 +108,14 @@ namespace Injector.Common.Repositories
                 throw new DbUpdateException(GetType().FullName + " - " + MethodBase.GetCurrentMethod().Name, exception);
             }
 
-            return Enumerable.Empty<IEntityA>();
+            return Enumerable.Empty<EntityA>();
         }
 
-        public bool DeleteEntity(IEntityA entityA)
+        public bool DeleteEntity(EntityA entityA)
         {
             try
             {
-                IEntityA original = BaseRepository_DbContext.EntitiesA.Find(entityA.Id);
+                EntityA original = BaseRepository_DbContext.EntitiesA.Find(entityA.Id);
 
                 if (original != null)
                 {

@@ -7,15 +7,18 @@ namespace Injector.Core
 {
     public class CoreSupplier : ICoreSupplier
     {
-        public CoreSupplier(IServiceProvider service)
-        {
-            service.GetRequiredService<ICoreSupplier>();
+        private readonly IFeatureA _featureA;
+        private readonly IFeatureB _featureB;
+
+        public CoreSupplier(IServiceProvider service) {
+            _featureA = service.GetRequiredService<IFeatureA>();
+            _featureB = service.GetRequiredService<IFeatureB>();
         }
 
         #region FEATURES
 
-        public IFeatureA GetFeatureA => GetFeatureA; // new FeatureA()
-        public IFeatureB GetFeatureB => GetFeatureB; // new FeatureB()
+        public IFeatureA GetFeatureA => _featureA; //new FeatureA()
+        public IFeatureB GetFeatureB => _featureB; //new FeatureB()
 
         #endregion
     }

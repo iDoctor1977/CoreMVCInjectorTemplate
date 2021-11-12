@@ -1,10 +1,9 @@
 ﻿using Injector.Common.DTOModels;
-using Injector.Common.IBases;
 using System.Collections.Generic;
 
 namespace Injector.Common.IActionRepositories
 {
-    public interface IActionRepositoryA : IBaseActionRepository
+    public interface IActionRepositoryA
     {
         bool CreateValue(DTOModelA dtoModelA);
         bool UpdateValue(DTOModelA dtoModelA);

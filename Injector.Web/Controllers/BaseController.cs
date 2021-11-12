@@ -1,24 +1,24 @@
-﻿using Injector.Common.IBases;
-using Injector.Common.IStores;
+﻿using Injector.Common.ISuppliers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Injector.Web.Controllers
 {
-    public class BaseController : Controller, IBaseController
+    public class BaseController : Controller
     {
+        private readonly ICoreSupplier _coreSupplier;
         private const int DefaultEntryKey = -1;
 
         //private readonly Dictionary<int, ActionControllerName> _redirectDictionary = new Dictionary<int, ActionControllerName>();
 
         public BaseController(IServiceProvider service)
         {
-            service.GetRequiredService<IWebStore>();
+            _coreSupplier = service.GetRequiredService<ICoreSupplier>();
             //FillRedirectDictionary();
         }
 
-        public IWebStore BaseController_WebStoreInstance => BaseController_WebStoreInstance;
+        public ICoreSupplier BaseController_CoreSupplier => _coreSupplier;
 
         //#region EXCEPTIONS HANDLER
 

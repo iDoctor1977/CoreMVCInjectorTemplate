@@ -1,6 +1,5 @@
 ﻿using System;
 using Injector.Common.DTOModels;
-using Injector.Common.IBases;
 using Injector.Common.IFeatures;
 using Injector.Core.CaseDTOModels;
 
@@ -8,22 +7,7 @@ namespace Injector.Core.Features
 {
     public class FeatureA : BaseFeature, IFeatureA
     {
-        public FeatureA() : base() { }
-
         public FeatureA(IServiceProvider service) : base(service) { }
-
-        #region STEPS
-        public IBaseStep<DTOModelA> CreateStep1A => CreateStep1A;
-
-        public IBaseStep<DTOModelA> CreateStep2A => CreateStep2A;
-
-        public IBaseStep<DTOModelA> CreateStep3A => CreateStep3A;
-
-        public IBaseStep<DTOModelA> DeleteStep1A => DeleteStep1A;
-
-        public IBaseStep<DTOModelA> DeleteStep2A => DeleteStep2A;
-
-        #endregion
 
         public bool CreatePost(DTOModelA dtoModelA)
         {
@@ -31,14 +15,13 @@ namespace Injector.Core.Features
 
             #endregion
 
-            // chain definition
-            CreateStep1A.SetNextStep(CreateStep2A);
-            CreateStep2A.SetNextStep(CreateStep3A);
-
             CaseDTOModelA caseDTOModelsA = new CaseDTOModelA(dtoModelA);
             caseDTOModelsA.consolidate();
+            dtoModelA = caseDTOModelsA.extractDTO();
 
-            dtoModelA = CreateStep1A.Execute(dtoModelA);
+            //dtoModelA = pipeline.Execute(dtoModelA);
+
+            BaseFeature_DataSupplier.GetActionRepositoryA.CreateValue(dtoModelA);
 
             if (dtoModelA.Id != 0)
             {
@@ -50,10 +33,6 @@ namespace Injector.Core.Features
 
         public DTOModelA DeleteGet(DTOModelA dtoModelA)
         {
-            DeleteStep1A.SetNextStep(DeleteStep2A);
-
-            dtoModelA = DeleteStep1A.Execute(dtoModelA);
-
             return dtoModelA;
         }
 

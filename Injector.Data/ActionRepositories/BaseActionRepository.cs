@@ -1,16 +1,17 @@
-﻿using Injector.Common.IBases;
-using Injector.Common.IStores;
+﻿using Injector.Data;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Injector.Common.ActionRepositories
 {
-    public class BaseActionRepository : IBaseActionRepository
+    public class BaseActionRepository
     {
+        private readonly DataStore _dataStore;
+
         public BaseActionRepository(IServiceProvider service) {
-            service.GetRequiredService<IDataStore>();
+            _dataStore = service.GetRequiredService<DataStore>();
         }
 
-        public IDataStore BaseActionRepository_DataStore => BaseActionRepository_DataStore;
+        public DataStore BaseActionRepository_DataStore => _dataStore;
     }
 }

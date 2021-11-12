@@ -1,5 +1,4 @@
-﻿using Injector.Core.CaseDTOModels;
-using Injector.Common.DTOModels;
+﻿using Injector.Common.DTOModels;
 
 namespace Injector.Core.CaseDTOModels
 {
@@ -24,11 +23,16 @@ namespace Injector.Core.CaseDTOModels
 
         #region PROTECTED
 
-        protected bool IsModelValid()
+        internal bool IsModelValid()
         {
             bool value = !string.IsNullOrWhiteSpace(dtoModelA.Name);
 
             return value;
+        }
+
+        internal DTOModelA extractDTO()
+        {
+            return dtoModelA;
         }
 
         #endregion

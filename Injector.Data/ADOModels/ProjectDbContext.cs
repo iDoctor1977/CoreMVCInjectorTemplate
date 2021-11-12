@@ -1,13 +1,10 @@
-﻿using Injector.Common.IEntities;
-using Microsoft.EntityFrameworkCore;
-using Injector.Common.IDbContexts;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Injector.Data.ADOModels
 {
-    public class ProjectDbContext : DbContext, IProjectDbContext
+    public class ProjectDbContext : DbContext
     {
         private readonly string _connectionStringName;
-
         public ProjectDbContext(DbContextOptions options) : base(options) { }
 
         public ProjectDbContext(string connectionStringName)
@@ -22,9 +19,9 @@ namespace Injector.Data.ADOModels
         //    _connectionStringName = $"Data Source={path}{System.IO.Path.DirectorySeparatorChar}" + dbName;
         //}
 
-        public DbSet<IEntityA> EntitiesA { get; set; }
-        public DbSet<IEntityB> EntitiesB { get; set; }
-        public DbSet<IEntityC> EntitiesC { get; set; }
+        public DbSet<EntityA> EntitiesA { get; set; }
+        public DbSet<EntityB> EntitiesB { get; set; }
+        public DbSet<EntityC> EntitiesC { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

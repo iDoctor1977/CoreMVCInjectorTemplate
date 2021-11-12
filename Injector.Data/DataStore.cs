@@ -1,21 +1,24 @@
-﻿using Injector.Common.IStores;
-using Injector.Common.IRepositories;
+﻿using Injector.Common.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Injector.Data
 {
-    public class DataStore : IDataStore
+    public class DataStore
     {
+        private readonly RepositoryA _repositoryA;
+        private readonly RepositoryB _repositoryB;
+
         public DataStore(IServiceProvider service) {
-            service.GetRequiredService<IDataStore>();
+            _repositoryA = service.GetRequiredService<RepositoryA>();
+            _repositoryB = service.GetRequiredService<RepositoryB>();
         }
 
         #region REPOSITORIES
 
-        public IRepositoryA GetRepositoryA => GetRepositoryA;
+        public RepositoryA GetRepositoryA => _repositoryA;
 
-        public IRepositoryB GetRepositoryB => GetRepositoryB;
+        public RepositoryB GetRepositoryB => _repositoryB;
 
         #endregion
     }

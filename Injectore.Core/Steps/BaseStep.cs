@@ -1,5 +1,5 @@
 ﻿using Injector.Common.IBases;
-using Injector.Common.IStores;
+using Injector.Common.ISuppliers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -7,14 +7,16 @@ namespace Injector.Core.Steps
 {
     public class BaseStep<T> : IBaseStep<T>
     {
-        internal IBaseStep<T> NextStep { get; private set; }
+        private readonly IDataSupplier _dataSupplier;
 
         public BaseStep(IServiceProvider service)
         {
-            service.GetRequiredService(typeof(IBaseStep<>));
+            _dataSupplier = service.GetRequiredService<IDataSupplier>();
         }
 
-        public ICoreStore BaseStep_CoreStoreInstance => BaseStep_CoreStoreInstance;
+        public IDataSupplier BaseStep_DataSupplier => _dataSupplier;
+
+        internal IBaseStep<T> NextStep { get; private set; }
 
         public void SetNextStep(IBaseStep<T> nextStep)
         {
@@ -23,7 +25,7 @@ namespace Injector.Core.Steps
 
         public virtual T Execute(T dtoModelA)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
