@@ -1,11 +1,10 @@
-﻿using Injector.Common.IBases;
-using Injector.Common.ISuppliers;
+﻿using Injector.Common.ISuppliers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Injector.Core.Steps
 {
-    public class BaseStep<T> : IBaseStep<T>
+    public class BaseStep
     {
         private readonly IDataSupplier _dataSupplier;
 
@@ -15,17 +14,5 @@ namespace Injector.Core.Steps
         }
 
         public IDataSupplier BaseStep_DataSupplier => _dataSupplier;
-
-        internal IBaseStep<T> NextStep { get; private set; }
-
-        public void SetNextStep(IBaseStep<T> nextStep)
-        {
-            NextStep = nextStep;
-        }
-
-        public virtual T Execute(T dtoModelA)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

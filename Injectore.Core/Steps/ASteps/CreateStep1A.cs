@@ -3,11 +3,11 @@ using System;
 
 namespace Injector.Core.Steps.ASteps
 {
-    public class CreateStep1A : BaseStep<DTOModelA>
+    public class CreateStep1A : BaseStep
     {
         public CreateStep1A(IServiceProvider service) : base(service) { }
 
-        public override DTOModelA Execute(DTOModelA dtoModelA)
+        public DTOModelA Execute(DTOModelA dtoModelA)
         {
             // Read
 
@@ -16,11 +16,6 @@ namespace Injector.Core.Steps.ASteps
 
             // Write
             BaseStep_DataSupplier.GetActionRepositoryA.CreateValue(dtoModelA);
-
-            if (NextStep != null)
-            {
-                dtoModelA = NextStep.Execute(dtoModelA);
-            }
 
             return dtoModelA;
         }
