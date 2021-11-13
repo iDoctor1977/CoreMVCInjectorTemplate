@@ -1,5 +1,4 @@
 ﻿using Injector.Common.DTOModels;
-using Injector.Common.IBases;
 
 namespace Injector.Common.IFeatures
 {

@@ -2,8 +2,8 @@
 using System.Threading.Tasks.Dataflow;
 using Injector.Common.DTOModels;
 using Injector.Common.IFeatures;
+using Injector.Common.ISteps.A;
 using Injector.Core.CaseDTOModels;
-using Injector.Core.Steps.ASteps;
 
 namespace Injector.Core.Features
 {
@@ -13,37 +13,32 @@ namespace Injector.Core.Features
 
         public bool CreatePost(DTOModelA dtoModelA)
         {
+            CaseDTOModelA caseDTOModelsA = new CaseDTOModelA(dtoModelA);
+
             #region STEPS PIPELINE WITH TPL LIBRARY
 
-            TransformBlock<DTOModelA, DTOModelA> step1 = new TransformBlock<DTOModelA, DTOModelA>(dtoModel => {
-                CreateStep1A createStep1A = BaseFeature_CreateStep1A;
-                return createStep1A.Execute(dtoModelA);
+            TransformBlock<CaseDTOModelA, CaseDTOModelA> step1 = new TransformBlock<CaseDTOModelA, CaseDTOModelA>(caseDtoModel => {
+                ICreateStep1A<CaseDTOModelA> createStep1A = BaseFeature_CreateStep1A;
+                return createStep1A.Execute(caseDtoModel);
             });
 
-            TransformBlock<DTOModelA, DTOModelA> step2 = new TransformBlock<DTOModelA, DTOModelA>(dtoModel => {
-                CreateStep2A createStep2A = BaseFeature_CreateStep2A;
-                return createStep2A.Execute(dtoModelA);
+            TransformBlock<CaseDTOModelA, CaseDTOModelA> step2 = new TransformBlock<CaseDTOModelA, CaseDTOModelA>(caseDtoModel => {
+                ICreateStep2A<CaseDTOModelA> createStep2A = BaseFeature_CreateStep2A;
+                return createStep2A.Execute(caseDtoModel);
             });
 
-            TransformBlock<DTOModelA, DTOModelA> step3 = new TransformBlock<DTOModelA, DTOModelA>(dtoModel => {
-                CreateStep3A createStep3A = BaseFeature_CreateStep3A;
-                return createStep3A.Execute(dtoModelA);
+            TransformBlock<CaseDTOModelA, CaseDTOModelA> step3 = new TransformBlock<CaseDTOModelA, CaseDTOModelA>(caseDtoModel => {
+                ICreateStep3A<CaseDTOModelA> createStep3A = BaseFeature_CreateStep3A;
+                return createStep3A.Execute(caseDtoModel);
             });
 
             step1.LinkTo(step2);
             step2.LinkTo(step3);
 
             //start execution
-            step1.Post(dtoModelA);
+            step1.Post(caseDTOModelsA);
 
             #endregion
-
-            CaseDTOModelA caseDTOModelsA = new CaseDTOModelA(dtoModelA);
-            caseDTOModelsA.setName("nuovo nome");
-            caseDTOModelsA.consolidate();
-            dtoModelA = caseDTOModelsA.extractDTO();
-
-            //dtoModelA = pipeline.Execute(dtoModelA);
 
             BaseFeature_DataSupplier.GetActionRepositoryA.CreateValue(dtoModelA);
 
