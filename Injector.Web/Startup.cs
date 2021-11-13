@@ -6,7 +6,6 @@ using Injector.Common.Repositories;
 using Injector.Core;
 using Injector.Core.Features;
 using Injector.Data;
-using Injector.Data.ADOModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -41,7 +40,7 @@ namespace Injector.Web
             services.AddTransient<RepositoryA, RepositoryA>();
             services.AddTransient<RepositoryB, RepositoryB>();
 
-            services.AddTransient<ProjectDbContext, ProjectDbContext>();
+            //services.AddTransient<ProjectDbContext, ProjectDbContext>();
 
             #endregion
 
