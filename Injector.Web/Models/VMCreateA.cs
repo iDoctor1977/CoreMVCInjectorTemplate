@@ -12,7 +12,7 @@ namespace Injector.Web.Models
 
         [Key]
         [ScaffoldColumn(false)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Nome")]
         [DataType(DataType.Text)]

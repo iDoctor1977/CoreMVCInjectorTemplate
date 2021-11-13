@@ -15,12 +15,7 @@ namespace Injector.Frontend.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            VMCreateA vmCreateA = new VMCreateA();
-            vmCreateA.Name = "Filippo";
-            vmCreateA.Surname = "Foglia";
-            vmCreateA.TelNumber = "3315787943";
-
-            return View(vmCreateA);
+            return View();
         }
 
         [HttpPost]

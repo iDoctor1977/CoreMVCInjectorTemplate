@@ -19,8 +19,8 @@ namespace Injector.Common.ActionRepositories
             EntityA entityA = new EntityA();
             entityA.Name = dtoModelA.Name;
 
-            BaseActionRepository_DataStore.GetRepositoryA.CreateEntity(entityA);
-            BaseActionRepository_DataStore.GetRepositoryA.ReadEntityById(entityA.Id);
+            GetRepositoryA.CreateEntity(entityA);
+            GetRepositoryA.ReadEntityById(entityA.Id);
 
             throw new NotImplementedException();
         }

@@ -27,7 +27,7 @@ namespace Injector.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            #region Dependency
+            #region Dependency Injection with Service Locator
 
             services.AddTransient<ICoreSupplier, CoreSupplier>();
             services.AddTransient<IDataSupplier, DataSupplier>();
@@ -42,7 +42,6 @@ namespace Injector.Web
             services.AddTransient<RepositoryB, RepositoryB>();
 
             services.AddTransient<ProjectDbContext, ProjectDbContext>();
-            services.AddTransient<DataStore, DataStore>();
 
             #endregion
 

@@ -16,6 +16,7 @@ namespace Injector.Core.Features
             #endregion
 
             CaseDTOModelA caseDTOModelsA = new CaseDTOModelA(dtoModelA);
+            caseDTOModelsA.setName("nuovo nome");
             caseDTOModelsA.consolidate();
             dtoModelA = caseDTOModelsA.extractDTO();
 
