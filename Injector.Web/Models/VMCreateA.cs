@@ -1,5 +1,4 @@
-﻿using Injector.Common.IEntities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,7 +12,7 @@ namespace Injector.Web.Models
 
         [Key]
         [ScaffoldColumn(false)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Nome")]
         [DataType(DataType.Text)]
@@ -31,8 +30,5 @@ namespace Injector.Web.Models
 
         [ScaffoldColumn(false)]
         public DateTime? DeleteDate { get; set; }
-
-        // collection navigation property
-        public virtual ICollection<IEntityB> ColEntitiesB { get; set; }
     }
 }

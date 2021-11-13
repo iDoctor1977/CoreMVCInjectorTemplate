@@ -7,15 +7,19 @@ namespace Injector.Data
 {
     public class DataSupplier : IDataSupplier
     {
+        private readonly IActionRepositoryA _actionRepositoryA;
+        private readonly IActionRepositoryB _actionRepositoryB;
+
         public DataSupplier(IServiceProvider service) {
-            service.GetRequiredService<IDataSupplier>();
+            _actionRepositoryA = service.GetRequiredService<IActionRepositoryA>();
+            _actionRepositoryB = service.GetRequiredService<IActionRepositoryB>();
         }
 
         #region ACTION_REPOSITORIES
 
-        public IActionRepositoryA GetActionRepositoryA => GetActionRepositoryA; // new ActionRepositoryA()
+        public IActionRepositoryA GetActionRepositoryA => _actionRepositoryA;
 
-        public IActionRepositoryB GetActionRepositoryB => GetActionRepositoryB; // new ActionRepositoryB()
+        public IActionRepositoryB GetActionRepositoryB => _actionRepositoryB;
 
         #endregion
     }

@@ -1,13 +1,12 @@
 using Injector.Common.ActionRepositories;
-using Injector.Common.IBases;
-using Injector.Common.IStores;
+using Injector.Common.IActionRepositories;
+using Injector.Common.IFeatures;
 using Injector.Common.ISuppliers;
 using Injector.Common.Repositories;
 using Injector.Core;
 using Injector.Core.Features;
-using Injector.Core.Steps;
 using Injector.Data;
-using Injector.Web.Controllers;
+using Injector.Data.ADOModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,28 +27,21 @@ namespace Injector.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            #region DI Injection.Web
-
-            services.AddTransient<IBaseController, BaseController>();
-            services.AddTransient<IWebStore, WebStore>();
-
-            #endregion
-
-            #region DI Injector.Core
+            #region Dependency Injection with Service Locator
 
             services.AddTransient<ICoreSupplier, CoreSupplier>();
-            services.AddTransient<ICoreStore, CoreStore>();
-            services.AddTransient<IBaseFeature, BaseFeature>();
-            services.AddTransient(typeof(IBaseStep<>), typeof(BaseStep<>));
-
-            #endregion
-
-            #region DI Injector.Data
-
             services.AddTransient<IDataSupplier, DataSupplier>();
-            services.AddTransient<IBaseActionRepository, BaseActionRepository>();
-            services.AddTransient<IDataStore, DataStore>();
-            services.AddTransient<IBaseRepository, BaseRepository>();
+
+            services.AddTransient<IFeatureA, FeatureA>();
+            services.AddTransient<IFeatureB, FeatureB>();
+
+            services.AddTransient<IActionRepositoryA, ActionRepositoryA>();
+            services.AddTransient<IActionRepositoryB, ActionRepositoryB>();
+
+            services.AddTransient<RepositoryA, RepositoryA>();
+            services.AddTransient<RepositoryB, RepositoryB>();
+
+            services.AddTransient<ProjectDbContext, ProjectDbContext>();
 
             #endregion
 

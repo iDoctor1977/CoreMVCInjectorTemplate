@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Injector.Common.IActionRepositories
 {
-    public interface IActionRepositoryB : IBaseActionRepository
+    public interface IActionRepositoryB
     {
         bool CreateValue(DTOModelB dtoModelB);
         bool UpdateValue(DTOModelB dtoModelB);

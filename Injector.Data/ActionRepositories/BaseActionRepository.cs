@@ -1,16 +1,25 @@
-﻿using Injector.Common.IBases;
-using Injector.Common.IStores;
+﻿using Injector.Common.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Injector.Common.ActionRepositories
 {
-    public class BaseActionRepository : IBaseActionRepository
+    public class BaseActionRepository
     {
+        private readonly RepositoryA _repositoryA;
+        private readonly RepositoryB _repositoryB;
+
         public BaseActionRepository(IServiceProvider service) {
-            service.GetRequiredService<IDataStore>();
+            _repositoryA = service.GetRequiredService<RepositoryA>();
+            _repositoryB = service.GetRequiredService<RepositoryB>();
         }
 
-        public IDataStore BaseActionRepository_DataStore => BaseActionRepository_DataStore;
+        #region REPOSITORIES
+
+        public RepositoryA GetRepositoryA => _repositoryA;
+
+        public RepositoryB GetRepositoryB => _repositoryB;
+
+        #endregion
     }
 }

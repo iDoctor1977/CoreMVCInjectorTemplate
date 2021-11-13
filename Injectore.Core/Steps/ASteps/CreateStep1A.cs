@@ -1,5 +1,4 @@
 using Injector.Common.DTOModels;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Injector.Core.Steps.ASteps
@@ -16,7 +15,7 @@ namespace Injector.Core.Steps.ASteps
             dtoModelA.Name = "pippo";
 
             // Write
-            BaseStep_CoreStoreInstance.CoreStore_DataSupplierInstance.GetActionRepositoryA.CreateValue(dtoModelA);
+            BaseStep_DataSupplier.GetActionRepositoryA.CreateValue(dtoModelA);
 
             if (NextStep != null)
             {

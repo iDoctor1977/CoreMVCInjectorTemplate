@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using Injector.Common.DTOModels;
 using Injector.Common.IActionRepositories;
-using Injector.Common.IEntities;
 using Injector.Data.ADOModels;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.ActionRepositories
 {
     public class ActionRepositoryA : BaseActionRepository, IActionRepositoryA
     {
-        public ActionRepositoryA(ServiceProvider service) : base(service) { }
+        public ActionRepositoryA(IServiceProvider service) : base(service) { }
 
         public bool CreateValue(DTOModelA dtoModelA)
         {
@@ -21,8 +19,8 @@ namespace Injector.Common.ActionRepositories
             EntityA entityA = new EntityA();
             entityA.Name = dtoModelA.Name;
 
-            BaseActionRepository_DataStore.GetRepositoryA.CreateEntity((IEntityA)entityA);
-            BaseActionRepository_DataStore.GetRepositoryA.ReadEntityById(entityA.Id);
+            GetRepositoryA.CreateEntity(entityA);
+            GetRepositoryA.ReadEntityById(entityA.Id);
 
             throw new NotImplementedException();
         }

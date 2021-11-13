@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using Injector.Common.DTOModels;
 using Injector.Common.IActionRepositories;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.ActionRepositories
 {
     public class ActionRepositoryB : BaseActionRepository, IActionRepositoryB
     {
-        public ActionRepositoryB(ServiceProvider service) : base(service) { }
+        public ActionRepositoryB(IServiceProvider service) : base(service) { }
 
         public bool CreateValue(DTOModelB dtoModelB)
         {
