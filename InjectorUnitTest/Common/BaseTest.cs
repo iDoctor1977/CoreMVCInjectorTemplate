@@ -1,17 +1,22 @@
-﻿using NUnit.Framework;
+﻿using Injector.Web;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InjectorUnitTest.Common
 {
     public class BaseTest
     {
+        internal IServiceProvider services;
+
         [OneTimeSetUp]
         public void TestRunSetup()
         {
+            IWebHost webHost = WebHost.CreateDefaultBuilder().UseStartup<Startup>().Build();
+            IServiceScope serviceScope = webHost.Services.CreateScope();
+            services = serviceScope.ServiceProvider;
         }
 
         [SetUp]
