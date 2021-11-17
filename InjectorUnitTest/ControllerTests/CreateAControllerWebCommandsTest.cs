@@ -1,13 +1,15 @@
-﻿using Injector.Common.DTOModels;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using InjectorUnitTest.Common;
+using Injector.Web.Models;
+using Injector.Frontend.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
-namespace InjectorUnitTest.Test
+namespace InjectorUnitTest.ControllerTests
 {
     #region TEST AREA
 
     [TestFixture]
-    public class FeatureACommandsTest : BaseTest
+    public class CreateAControllerWebCommandsTest : BaseTest
     {
         [SetUp]
         public void SetUp()
@@ -19,28 +21,21 @@ namespace InjectorUnitTest.Test
         public void CreateCommandWithValidInput()
         {
             // ARRANGE
-            DTOModelA dtoModelA = new DTOModelA
+            var vmCreateA = new VMCreateA()
             {
                 Id = 1,
                 Name = "Pippo",
-                Surname = "Poppi"
+                Surname = "iDoctor",
+                TelNumber = "+39 331 578 7943"
             };
 
+            ControllerA controllerATest = new ControllerA(services);
 
             // ACT
+            ActionResult result = controllerATest.Create(vmCreateA);
 
             // ASSERT
-        }
-
-        [Test]
-        //[TestCase(ExpectedResult = "Pluto")]
-        public void CreateWithValidInput()
-        {
-            // ARANGE
-
-            // ACT
-
-            // ASSERT
+            
         }
     }
 
