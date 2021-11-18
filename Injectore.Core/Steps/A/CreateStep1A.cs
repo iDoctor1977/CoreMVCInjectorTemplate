@@ -28,11 +28,8 @@ namespace Injector.Core.Steps.A
             // Read
 
             // Do
-            caseDtoModelA.setName("pippo");
 
             // Write
-            BaseStep_DataSupplier.GetActionRepositoryA.CreateValue(caseDtoModelA.GetDTOModel());
-
             return caseDtoModelA;
         }
     }

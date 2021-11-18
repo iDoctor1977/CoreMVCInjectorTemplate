@@ -40,9 +40,7 @@ namespace Injector.Core.Features
 
             #endregion
 
-            BaseFeature_DataSupplier.GetActionRepositoryA.CreateValue(dtoModelA);
-
-            if (dtoModelA.Id != 0)
+            if (BaseFeature_DataSupplier.GetActionRepositoryA.CreateValue(caseDTOModelA.GetDTOModel()))
             {
                 return true;
             }
@@ -52,7 +50,7 @@ namespace Injector.Core.Features
 
         public DTOModelA DeleteGet(DTOModelA dtoModelA)
         {
-            return dtoModelA;
+            throw new System.NotImplementedException();
         }
 
         public bool DeletePost(DTOModelA dtoModelA)

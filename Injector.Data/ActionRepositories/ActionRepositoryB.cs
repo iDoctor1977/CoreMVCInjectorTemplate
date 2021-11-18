@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Injector.Common.DTOModels;
 using Injector.Common.IActionRepositories;
+using Injector.Data.ADOModels;
 
 namespace Injector.Common.ActionRepositories
 {
@@ -14,6 +15,7 @@ namespace Injector.Common.ActionRepositories
             // qui va fatto il mapping
             // qui vengono create le Entity
             // qui viene chiamato il repository
+            EntityB entityB = BaseActionRepository_Mapper.Map<EntityB>(dtoModelB);
 
             throw new NotImplementedException();
         }

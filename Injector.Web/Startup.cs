@@ -66,13 +66,11 @@ namespace Injector.Web
 
             #endregion
 
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
+            #region AUTOMAPPER
 
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
+            services.AddAutoMapper(typeof(MappingProfile));
+
+            #endregion
 
             services.AddControllersWithViews();
         }

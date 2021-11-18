@@ -15,14 +15,14 @@ namespace Injector.Common.ActionRepositories
             // qui vengono create le Entity
             // qui va fatto il mapping
             // qui viene chiamato il repository
+            EntityA entityA = BaseActionRepository_Mapper.Map<EntityA>(dtoModelA);
 
-            EntityA entityA = new EntityA();
-            entityA.Name = dtoModelA.Name;
+            if(GetRepositoryA.CreateEntity(entityA) > 0)
+            {
+                return true;
+            }
 
-            GetRepositoryA.CreateEntity(entityA);
-            GetRepositoryA.ReadEntityById(entityA.Id);
-
-            return true;
+            return false ;
         }
 
         public bool DeleteValue(DTOModelA dtoModelA)

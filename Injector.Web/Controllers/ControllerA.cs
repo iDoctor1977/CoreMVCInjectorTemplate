@@ -25,14 +25,16 @@ namespace Injector.Frontend.Controllers
             if (ModelState.IsValid)
             {
                 // mapping visual model to DTO
-                DTOModelA dtoModelA = new DTOModelA();
-                dtoModelA.Name = vmCreateA.Name;
+                DTOModelA dtoModelA = BaseController_Mapper.Map<DTOModelA>(vmCreateA);
 
                 // ex. with FEATURE
-                BaseController_CoreSupplier.GetFeatureA.CreatePost(dtoModelA);
+                if (BaseController_CoreSupplier.GetFeatureA.CreatePost(dtoModelA))
+                {
+                    return RedirectToAction("List");
+                }
             }
 
-            return RedirectToAction("List");
+            return RedirectToAction("Home");
         }
 
         [HttpGet]

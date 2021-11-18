@@ -1,4 +1,5 @@
-﻿using Injector.Common.ISuppliers;
+﻿using AutoMapper;
+using Injector.Common.ISuppliers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -7,6 +8,8 @@ namespace Injector.Web.Controllers
 {
     public class BaseController : Controller
     {
+        private readonly IMapper _mapper;
+
         private readonly ICoreSupplier _coreSupplier;
         private const int DefaultEntryKey = -1;
 
@@ -14,9 +17,12 @@ namespace Injector.Web.Controllers
 
         public BaseController(IServiceProvider service)
         {
+            _mapper = service.GetRequiredService<IMapper>();
             _coreSupplier = service.GetRequiredService<ICoreSupplier>();
             //FillRedirectDictionary();
         }
+
+        public IMapper BaseController_Mapper => _mapper;
 
         public ICoreSupplier BaseController_CoreSupplier => _coreSupplier;
 
