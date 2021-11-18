@@ -14,10 +14,10 @@ namespace Injector.Common.Repositories
 
         public ProjectDbContext BaseRepository_DbContext => _projectDbContext;
 
-        public void Commit()
+        public int Commit()
         {
             ProjectDbContext dbContext = BaseRepository_DbContext;
-            dbContext.SaveChanges();
+            return dbContext.SaveChanges();
         }
     }
 }

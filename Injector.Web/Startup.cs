@@ -1,6 +1,5 @@
 using AutoMapper;
 using Injector.Common.ActionRepositories;
-using Injector.Common.DTOModels;
 using Injector.Common.IActionRepositories;
 using Injector.Common.IFeatures;
 using Injector.Common.ISteps.A;
@@ -14,8 +13,8 @@ using Injector.Core.Steps.A;
 using Injector.Core.Steps.B;
 using Injector.Data;
 using Injector.Data.ADOModels;
+using Injector.Data.IRepositories;
 using Injector.Web.MapperProfiles;
-using Injector.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -59,8 +58,8 @@ namespace Injector.Web
             services.AddTransient<IActionRepositoryA, ActionRepositoryA>();
             services.AddTransient<IActionRepositoryB, ActionRepositoryB>();
 
-            services.AddTransient<RepositoryA, RepositoryA>();
-            services.AddTransient<RepositoryB, RepositoryB>();
+            services.AddTransient<IRepositoryA, RepositoryA>();
+            services.AddTransient<IRepositoryB, RepositoryB>();
 
             //services.AddTransient<ProjectDbContext, ProjectDbContext>();
             services.AddDbContext<ProjectDbContext>();

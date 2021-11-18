@@ -4,10 +4,11 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Injector.Data.ADOModels;
+using Injector.Data.IRepositories;
 
 namespace Injector.Common.Repositories
 {
-    public class RepositoryB : BaseRepository
+    public class RepositoryB : BaseRepository, IRepositoryB
     {
         public RepositoryB(IServiceProvider service) : base(service) { }
 
@@ -17,11 +18,10 @@ namespace Injector.Common.Repositories
             {
                 if (entityB != null)
                 {
-                    entityB.Id = new Random().Next(); ;
-
+                    entityB.Id = new Random().Next();
                     BaseRepository_DbContext.EntitiesB.Add(entityB);
 
-                    return entityB.Id;
+                    return Commit();
                 }
             }
             catch (Exception exception)
@@ -32,7 +32,7 @@ namespace Injector.Common.Repositories
             return 0;
         }
 
-        public bool UpdateEntity(EntityB entityB)
+        public int UpdateEntity(EntityB entityB)
         {
             EntityB original = BaseRepository_DbContext.EntitiesB.Find(entityB.Id);
 
@@ -43,7 +43,7 @@ namespace Injector.Common.Repositories
                     original.Username = entityB.Username;
                     original.Email = entityB.Email;
 
-                    return true;
+                    return Commit();
                 }
             }
             catch (Exception exception)
@@ -51,7 +51,7 @@ namespace Injector.Common.Repositories
                 throw new DbUpdateException(GetType().FullName + " - " + MethodBase.GetCurrentMethod().Name, exception);
             }
 
-            return false;
+            return 0;
         }
 
         public EntityB ReadEntityById(int id)
@@ -92,6 +92,27 @@ namespace Injector.Common.Repositories
             return null;
         }
 
+        public int DeleteEntity(EntityB entityB)
+        {
+            try
+            {
+                EntityB original = BaseRepository_DbContext.EntitiesB.Find(entityB.Id);
+
+                if (original != null)
+                {
+                    BaseRepository_DbContext.EntitiesB.Remove(original);
+
+                    return Commit();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new DbUpdateException(GetType().FullName + " - " + MethodBase.GetCurrentMethod().Name, exception);
+            }
+
+            return 0;
+        }
+
         public IEnumerable<EntityB> ReadEntities()
         {
             try
@@ -109,27 +130,6 @@ namespace Injector.Common.Repositories
             }
 
             return Enumerable.Empty<EntityB>();
-        }
-
-        public bool DeleteEntity(EntityB entityB)
-        {
-            try
-            {
-                EntityB original = BaseRepository_DbContext.EntitiesB.Find(entityB.Id);
-
-                if (original != null)
-                {
-                    BaseRepository_DbContext.EntitiesB.Remove(original);
-
-                    return true;
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new DbUpdateException(GetType().FullName + " - " + MethodBase.GetCurrentMethod().Name, exception);
-            }
-
-            return false;
         }
     }
 }

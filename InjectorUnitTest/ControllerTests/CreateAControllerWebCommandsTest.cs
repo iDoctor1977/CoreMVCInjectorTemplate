@@ -1,8 +1,10 @@
 ﻿using NUnit.Framework;
 using InjectorUnitTest.Common;
 using Injector.Web.Models;
-using Injector.Frontend.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Injector.Frontend.Controllers;
+using Injector.Data.ADOModels;
 
 namespace InjectorUnitTest.ControllerTests
 {
@@ -17,7 +19,7 @@ namespace InjectorUnitTest.ControllerTests
             base.Setup();
         }
 
-        [Test(Description = "Verifica del funzionamnebto del comand CREATE della Feature")]
+        [Test(Description = "Verifica del funzionamnebto del comand CREATE")]
         public void CreateCommandWithValidInput()
         {
             // ARRANGE
@@ -29,7 +31,16 @@ namespace InjectorUnitTest.ControllerTests
                 TelNumber = "+39 331 578 7943"
             };
 
-            ControllerA controllerATest = new ControllerA(services);
+            var entityATest = new EntityA()
+            {
+                Id = 1,
+                Name = "Pippo",
+                Surname = "iDoctor"
+            };
+
+            MokRepositoryA.Setup(m => m.CreateEntity(entityATest)).Returns(1);
+            var controllerATest = new ControllerA(ServiceProvider);
+            //var controllerATest = ServiceProvider.GetRequiredService<ControllerA>();
 
             // ACT
             ActionResult result = controllerATest.Create(vmCreateA);

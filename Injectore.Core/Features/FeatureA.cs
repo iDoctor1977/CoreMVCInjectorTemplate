@@ -13,7 +13,7 @@ namespace Injector.Core.Features
 
         public bool CreatePost(DTOModelA dtoModelA)
         {
-            CaseDTOModelA caseDTOModelsA = new CaseDTOModelA(dtoModelA);
+            CaseDTOModelA caseDTOModelA = new CaseDTOModelA(dtoModelA);
 
             #region STEPS PIPELINE WITH TPL LIBRARY
 
@@ -36,7 +36,7 @@ namespace Injector.Core.Features
             step2.LinkTo(step3);
 
             //start execution
-            step1.Post(caseDTOModelsA);
+            step1.Post(caseDTOModelA);
 
             #endregion
 

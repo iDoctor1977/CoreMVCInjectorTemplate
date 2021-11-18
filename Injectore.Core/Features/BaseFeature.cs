@@ -1,4 +1,3 @@
-using Injector.Common.DTOModels;
 using Injector.Common.ISteps.A;
 using Injector.Common.ISteps.B;
 using Injector.Common.ISuppliers;

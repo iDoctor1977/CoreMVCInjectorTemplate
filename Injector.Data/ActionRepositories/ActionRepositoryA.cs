@@ -22,7 +22,7 @@ namespace Injector.Common.ActionRepositories
             GetRepositoryA.CreateEntity(entityA);
             GetRepositoryA.ReadEntityById(entityA.Id);
 
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool DeleteValue(DTOModelA dtoModelA)

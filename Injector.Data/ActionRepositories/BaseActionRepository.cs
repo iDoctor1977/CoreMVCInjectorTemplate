@@ -1,4 +1,4 @@
-﻿using Injector.Common.Repositories;
+﻿using Injector.Data.IRepositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -6,19 +6,19 @@ namespace Injector.Common.ActionRepositories
 {
     public class BaseActionRepository
     {
-        private readonly RepositoryA _repositoryA;
-        private readonly RepositoryB _repositoryB;
+        private readonly IRepositoryA _repositoryA;
+        private readonly IRepositoryB _repositoryB;
 
         public BaseActionRepository(IServiceProvider service) {
-            _repositoryA = service.GetRequiredService<RepositoryA>();
-            _repositoryB = service.GetRequiredService<RepositoryB>();
+            _repositoryA = service.GetRequiredService<IRepositoryA>();
+            _repositoryB = service.GetRequiredService<IRepositoryB>();
         }
 
         #region REPOSITORIES
 
-        public RepositoryA GetRepositoryA => _repositoryA;
+        public IRepositoryA GetRepositoryA => _repositoryA;
 
-        public RepositoryB GetRepositoryB => _repositoryB;
+        public IRepositoryB GetRepositoryB => _repositoryB;
 
         #endregion
     }
