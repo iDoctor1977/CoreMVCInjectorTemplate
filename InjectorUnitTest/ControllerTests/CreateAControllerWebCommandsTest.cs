@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Injector.Frontend.Controllers;
 using Injector.Data.ADOModels;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace InjectorUnitTest.ControllerTests
 {
@@ -25,7 +27,6 @@ namespace InjectorUnitTest.ControllerTests
             // ARRANGE
             var vmCreateA = new VMCreateA()
             {
-                Id = 1,
                 Name = "Pippo",
                 Surname = "iDoctor",
                 TelNumber = "+39 331 578 7943"
@@ -33,14 +34,12 @@ namespace InjectorUnitTest.ControllerTests
 
             var entityATest = new EntityA()
             {
-                Id = 1,
                 Name = "Pippo",
                 Surname = "iDoctor"
             };
 
             MokRepositoryA.Setup(m => m.CreateEntity(entityATest)).Returns(1);
             var controllerATest = new ControllerA(ServiceProvider);
-            //var controllerATest = ServiceProvider.GetRequiredService<ControllerA>();
 
             // ACT
             ActionResult result = controllerATest.Create(vmCreateA);
