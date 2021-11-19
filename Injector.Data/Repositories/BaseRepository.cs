@@ -1,6 +1,5 @@
 ﻿using Injector.Data.ADOModels;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Injector.Common.Repositories
 {
@@ -8,8 +7,18 @@ namespace Injector.Common.Repositories
     {
         private readonly ProjectDbContext _projectDbContext;
 
-        public BaseRepository(IServiceProvider service) {
-            _projectDbContext = service.GetRequiredService<ProjectDbContext>();
+        public BaseRepository () {
+            _projectDbContext = new ProjectDbContext();
+        }
+
+        public BaseRepository(string dbName)
+        {
+            _projectDbContext = new ProjectDbContext(dbName);
+        }
+
+        public BaseRepository(DbContextOptions<ProjectDbContext> options)
+        {
+            _projectDbContext = new ProjectDbContext(options);
         }
 
         public ProjectDbContext BaseRepository_DbContext => _projectDbContext;

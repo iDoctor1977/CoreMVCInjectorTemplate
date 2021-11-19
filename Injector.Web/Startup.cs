@@ -61,9 +61,6 @@ namespace Injector.Web
             services.AddTransient<IRepositoryA, RepositoryA>();
             services.AddTransient<IRepositoryB, RepositoryB>();
 
-            //services.AddTransient<ProjectDbContext, ProjectDbContext>();
-            services.AddDbContext<ProjectDbContext>();
-
             #endregion
 
             #region AUTOMAPPER

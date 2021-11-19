@@ -1,31 +1,40 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Injector.Data.ADOModels
 {
     public class ProjectDbContext : DbContext
     {
+        private readonly string _dbName;
         private readonly string _connectionStringName;
-        public ProjectDbContext(DbContextOptions options) : base(options) { }
 
-        public ProjectDbContext(string connectionStringName)
+        public ProjectDbContext()
         {
-            _connectionStringName = connectionStringName;
+            _dbName = "ProjectDB";
+            _connectionStringName = CreateConnectionStringPath();
         }
 
-        //public ProjectDbContext(string dbName)
-        //{
-        //    var folder = Environment.SpecialFolder.LocalApplicationData;
-        //    var path = Environment.GetFolderPath(folder);
-        //    _connectionStringName = $"Data Source={path}{System.IO.Path.DirectorySeparatorChar}" + dbName;
-        //}
+        public ProjectDbContext(string dbName)
+        {
+            _dbName = dbName;
+            _connectionStringName = CreateConnectionStringPath();
+        }
+
+        public ProjectDbContext(DbContextOptions<ProjectDbContext> options) : base(options) { }
 
         public DbSet<EntityA> EntitiesA { get; set; }
         public DbSet<EntityB> EntitiesB { get; set; }
         public DbSet<EntityC> EntitiesC { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_connectionStringName);
+        private string CreateConnectionStringPath() {
+            var folder = Environment.SpecialFolder.LocalApplicationData;
+            var path = Environment.GetFolderPath(folder);
+            return $"Data Source={path}{System.IO.Path.DirectorySeparatorChar}" + _dbName;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+            //optionsBuilder.UseInMemoryDatabase(_dbName);
+            optionsBuilder.UseSqlServer(_connectionStringName); 
         }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
