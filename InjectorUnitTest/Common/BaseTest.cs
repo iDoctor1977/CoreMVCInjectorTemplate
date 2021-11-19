@@ -16,12 +16,12 @@ namespace InjectorUnitTest.Common
     public class BaseTest
     {
         protected IServiceProvider ServiceProvider { get; set; }
-        protected Mock<IRepositoryA> MokRepositoryA { get; set; }
+        protected Mock<IRepositoryA> MockRepositoryA { get; set; }
 
         [OneTimeSetUp]
         public void TestRunSetup()
         {
-            MokRepositoryA = new Mock<IRepositoryA>();
+            MockRepositoryA = new Mock<IRepositoryA>();
 
             var host = Host.CreateDefaultBuilder().ConfigureWebHostDefaults(hostBuilder =>
             {
@@ -30,7 +30,7 @@ namespace InjectorUnitTest.Common
             {
                 var descriptor = services.FirstOrDefault(descriptor => descriptor.ServiceType == typeof(IRepositoryA));
                 services.Remove(descriptor);
-                services.Replace(new ServiceDescriptor(typeof(IRepositoryA), MokRepositoryA.Object));
+                services.Replace(new ServiceDescriptor(typeof(IRepositoryA), MockRepositoryA.Object));
 
                 // in memory Database
                 //var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<ProjectDbContext>));
@@ -43,11 +43,6 @@ namespace InjectorUnitTest.Common
 
             IServiceScope serviceScope = host.Services.CreateScope();
             ServiceProvider = serviceScope.ServiceProvider;
-        }
-
-        [SetUp]
-        public virtual void Setup()
-        {
         }
     }
 }

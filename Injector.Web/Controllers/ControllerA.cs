@@ -38,13 +38,15 @@ namespace Injector.Frontend.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(Guid idA)
+        public ActionResult Delete(int idA)
         {
             // mapping visual model to DTO
-            VMDeleteA vmDeleteA = new VMDeleteA();
-            DTOModelA dtoModelA = new DTOModelA();
+            VMDeleteA vmDeleteA = new VMDeleteA{ Id = idA };
+            DTOModelA dtoModelA = BaseController_Mapper.Map<DTOModelA>(vmDeleteA);
 
-            //vmDeleteA = ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.DeleteGet(vmDeleteA) as VMDeleteA;
+            var deleteGet = BaseController_CoreSupplier.GetFeatureA.DeleteGet(dtoModelA);
+
+            vmDeleteA = BaseController_Mapper.Map<VMDeleteA>(deleteGet);
 
             return View(vmDeleteA);
         }

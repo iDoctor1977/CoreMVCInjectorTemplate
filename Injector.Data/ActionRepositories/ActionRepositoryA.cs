@@ -17,7 +17,9 @@ namespace Injector.Common.ActionRepositories
             // qui viene chiamato il repository
             EntityA entityA = BaseActionRepository_Mapper.Map<EntityA>(dtoModelA);
 
-            if(GetRepositoryA.CreateEntity(entityA) > 0)
+            var result = GetRepositoryA.CreateEntity(entityA);
+
+            if (result > 0)
             {
                 return true;
             }
