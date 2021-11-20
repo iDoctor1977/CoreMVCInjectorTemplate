@@ -5,10 +5,10 @@ namespace Injector.Common.IActionRepositories
 {
     public interface IActionRepositoryA
     {
-        bool CreateValue(DTOModelA dtoModelA);
-        bool UpdateValue(DTOModelA dtoModelA);
-        DTOModelA ReadValue(DTOModelA dtoModelA);
-        bool DeleteValue(DTOModelA dtoModelA);
-        IEnumerable<DTOModelA> ReadValues();
+        OperationResult<bool> CreateValue(DTOModelA dtoModelA);
+        OperationResult<bool> UpdateValue(DTOModelA dtoModelA);
+        OperationResult<DTOModelA> ReadValue(DTOModelA dtoModelA);
+        OperationResult<bool> DeleteValue(DTOModelA dtoModelA);
+        OperationResult<IEnumerable<DTOModelA>> ReadValues();
     }
 }

@@ -10,39 +10,40 @@ namespace Injector.Common.ActionRepositories
     {
         public ActionRepositoryA(IServiceProvider service) : base(service) { }
 
-        public bool CreateValue(DTOModelA dtoModelA)
+        public OperationResult<bool> CreateValue(DTOModelA dtoModelA)
         {
-            // qui vengono create le Entity
-            // qui va fatto il mapping
-            // qui viene chiamato il repository
             EntityA entityA = BaseActionRepository_Mapper.Map<EntityA>(dtoModelA);
 
-            var result = GetRepositoryA.CreateEntity(entityA);
-
-            if (result > 0)
+            if (GetRepositoryA.CreateEntity(entityA) > 0)
             {
-                return true;
+                return new OperationResult<bool> {
+                    Value = true,
+                    Message = "OK"
+                };
             }
 
-            return false ;
+            return new OperationResult<bool> { 
+                Value = false,
+                Message = "Operation Fail"
+            };
         }
 
-        public bool DeleteValue(DTOModelA dtoModelA)
+        public OperationResult<bool> DeleteValue(DTOModelA dtoModelA)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<DTOModelA> ReadValues()
+        public OperationResult<IEnumerable<DTOModelA>> ReadValues()
         {
             throw new NotImplementedException();
         }
 
-        public DTOModelA ReadValue(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> ReadValue(DTOModelA dtoModelA)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateValue(DTOModelA dtoModelA)
+        public OperationResult<bool> UpdateValue(DTOModelA dtoModelA)
         {
             throw new NotImplementedException();
         }

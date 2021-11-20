@@ -9,7 +9,7 @@ namespace Injector.Core.Steps.A
     {
         public CreateStep1A(IServiceProvider service) : base(service) { }
 
-        public OperationResult<CaseDTOModelA> Execute(CaseDTOModelA caseDtoModelA)
+        public CaseDTOModelA Execute(CaseDTOModelA caseDtoModelA)
         {
             // Read
 
