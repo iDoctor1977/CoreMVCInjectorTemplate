@@ -11,13 +11,11 @@ namespace Injector.Core.Steps.B
         public CaseDTOModelB Execute(CaseDTOModelB caseDtoModelB)
         {
             // Read
-            BaseStep_DataSupplier.GetActionRepositoryB.ReadValue(caseDtoModelB.GetDTOModel());
 
             // Do
 
             // Write
-            BaseStep_DataSupplier.GetActionRepositoryB.CreateValue(caseDtoModelB.GetDTOModel());
-
+            
             return caseDtoModelB;
         }
     }

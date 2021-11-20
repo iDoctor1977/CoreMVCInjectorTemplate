@@ -10,7 +10,11 @@ namespace Injector.Common.Repositories
 {
     public class RepositoryB : BaseRepository, IRepositoryB
     {
-        public RepositoryB(IServiceProvider service) : base(service) { }
+        public RepositoryB() : base() { }
+
+        public RepositoryB(string dbName) : base(dbName) { }
+
+        public RepositoryB(DbContextOptions<ProjectDbContext> options) : base(options) { }
 
         public int CreateEntity(EntityB entityB)
         {
