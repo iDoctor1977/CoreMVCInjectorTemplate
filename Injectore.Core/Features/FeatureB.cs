@@ -9,43 +9,43 @@ namespace Injector.Core.Features
     {
         public FeatureB(IServiceProvider service) : base(service) { }
 
-        public OperetionResult<bool> CreatePost(DTOModelB dtoModelB)
+        public OperationResult<bool> CreatePost(DTOModelB dtoModelB)
         {
-            return new OperetionResult<bool>
+            return new OperationResult<bool>
             {
 
             };
         }
 
-        public OperetionResult<DTOModelB> DeleteGet(DTOModelB dtoModelB)
+        public OperationResult<DTOModelB> DeleteGet(DTOModelB dtoModelB)
         {
-            return new OperetionResult<DTOModelB>
+            return new OperationResult<DTOModelB>
             {
 
             };
         }
 
-        public OperetionResult<bool> DeletePost(DTOModelB dtoModelB)
+        public OperationResult<bool> DeletePost(DTOModelB dtoModelB)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperetionResult<DTOModelB> EditGet(DTOModelB dtoModelB)
+        public OperationResult<DTOModelB> EditGet(DTOModelB dtoModelB)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperetionResult<bool> EditPost(DTOModelB dtoModelB)
+        public OperationResult<bool> EditPost(DTOModelB dtoModelB)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperetionResult<DTOModelB> DetailsGet(DTOModelB dtoModelB)
+        public OperationResult<DTOModelB> DetailsGet(DTOModelB dtoModelB)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperetionResult<DTOModelB> ListGet(DTOModelB dtoModelB)
+        public OperationResult<DTOModelB> ListGet(DTOModelB dtoModelB)
         {
             throw new System.NotImplementedException();
         }

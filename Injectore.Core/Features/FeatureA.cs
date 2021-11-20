@@ -12,7 +12,7 @@ namespace Injector.Core.Features
     { 
         public FeatureA(IServiceProvider service) : base(service) { }
 
-        public OperetionResult<bool> CreatePost(DTOModelA dtoModelA)
+        public OperationResult<bool> CreatePost(DTOModelA dtoModelA)
         {
             CaseDTOModelA caseDTOModelA = new CaseDTOModelA(dtoModelA);
 
@@ -41,39 +41,39 @@ namespace Injector.Core.Features
 
             #endregion
 
-            return new OperetionResult<bool> {
+            return new OperationResult<bool> {
                 Value = BaseFeature_DataSupplier.GetActionRepositoryA.CreateValue(caseDTOModelA.GetDTOModel()),
                 Status = true,
                 Message = "Ok"
             };
         }
 
-        public OperetionResult<DTOModelA> DeleteGet(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> DeleteGet(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperetionResult<bool> DeletePost(DTOModelA dtoModelA)
+        public OperationResult<bool> DeletePost(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperetionResult<DTOModelA> EditGet(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> EditGet(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperetionResult<bool> EditPost(DTOModelA dtoModelA)
+        public OperationResult<bool> EditPost(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperetionResult<DTOModelA> DetailsGet(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> DetailsGet(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperetionResult<DTOModelA> ListGet(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> ListGet(DTOModelA dtoModelA)
         {
             throw new NotImplementedException();
         }

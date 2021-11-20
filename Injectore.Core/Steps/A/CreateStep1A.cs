@@ -1,3 +1,4 @@
+using Injector.Common;
 using Injector.Common.ISteps.A;
 using Injector.Core.CaseDTOModels;
 using System;
@@ -8,7 +9,7 @@ namespace Injector.Core.Steps.A
     {
         public CreateStep1A(IServiceProvider service) : base(service) { }
 
-        public CaseDTOModelA Execute(CaseDTOModelA caseDtoModelA)
+        public OperationResult<CaseDTOModelA> Execute(CaseDTOModelA caseDtoModelA)
         {
             // Read
 
@@ -16,12 +17,11 @@ namespace Injector.Core.Steps.A
 
             // Write
 
-            if (BaseStep_DataSupplier.GetActionRepositoryA.CreateValue(caseDtoModelA.GetDTOModel()))
-            {
-                return caseDtoModelA;
-            }
+            var result = BaseStep_DataSupplier.GetActionRepositoryA.CreateValue(caseDtoModelA.GetDTOModel());
 
-            throw new System.NotImplementedException();
+            return new OperationResult<CaseDTOModelA> { 
+                Value = result
+            };
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Injector.Common
 {
-    public class OperetionResult<T>
+    public class OperationResult<T>
     {
         public T Value { get; set; }
         public bool Status { get; set; }

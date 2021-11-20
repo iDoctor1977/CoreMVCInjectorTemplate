@@ -4,12 +4,12 @@ namespace Injector.Common.IFeatures
 {
     public interface IFeatureB
     {
-        OperetionResult<bool> CreatePost(DTOModelB dtoModelB);
-        OperetionResult<DTOModelB> DeleteGet(DTOModelB dtoModelB);
-        OperetionResult<bool> DeletePost(DTOModelB dtoModelB);
-        OperetionResult<DTOModelB> EditGet(DTOModelB dtoModelB);
-        OperetionResult<bool> EditPost(DTOModelB dtoModelB);
-        OperetionResult<DTOModelB> DetailsGet(DTOModelB dtoModelB);
-        OperetionResult<DTOModelB> ListGet(DTOModelB dtoModelB);
+        OperationResult<bool> CreatePost(DTOModelB dtoModelB);
+        OperationResult<DTOModelB> DeleteGet(DTOModelB dtoModelB);
+        OperationResult<bool> DeletePost(DTOModelB dtoModelB);
+        OperationResult<DTOModelB> EditGet(DTOModelB dtoModelB);
+        OperationResult<bool> EditPost(DTOModelB dtoModelB);
+        OperationResult<DTOModelB> DetailsGet(DTOModelB dtoModelB);
+        OperationResult<DTOModelB> ListGet(DTOModelB dtoModelB);
     }
 }
