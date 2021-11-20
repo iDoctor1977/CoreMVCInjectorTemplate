@@ -1,4 +1,5 @@
 using Injector.Common;
+using Injector.Common.Enums;
 using Injector.Common.ISteps.A;
 using Injector.Core.CaseDTOModels;
 using System;
@@ -9,19 +10,29 @@ namespace Injector.Core.Steps.A
     {
         public CreateStep1A(IServiceProvider service) : base(service) { }
 
-        public CaseDTOModelA Execute(CaseDTOModelA caseDtoModelA)
+        public OperationResult<CaseDTOModelA> Execute(OperationResult<CaseDTOModelA> caseDtoModel_IN)
         {
-            // Read
+            if (caseDtoModel_IN.Status == OperationOutcomes.Success)
+            {
+                // Read
 
-            // Do
+                // Do
+                var operationResult = BaseStep_DataSupplier.GetActionRepositoryA.CreateValue(caseDtoModel_IN.Value.GetDTOModel());
 
-            // Write
+                // Write
+                if (operationResult.Status == OperationOutcomes.Success)
+                {
+                    // caseDtoModel_OUT
+                    return new OperationResult<CaseDTOModelA>
+                    {
+                        Value = caseDtoModel_IN.Value,
+                        Message = OperationOutcomes.Success.ToString(),
+                        Status = OperationOutcomes.Success
+                    };
+                }
+            }
 
-            var result = BaseStep_DataSupplier.GetActionRepositoryA.CreateValue(caseDtoModelA.GetDTOModel());
-
-            return new OperationResult<CaseDTOModelA> { 
-                Value = result
-            };
+            return caseDtoModel_IN;
         }
     }
 }

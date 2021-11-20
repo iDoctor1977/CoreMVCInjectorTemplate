@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks.Dataflow;
-using Injector.Common;
 using Injector.Common.DTOModels;
 using Injector.Common.IFeatures;
 using Injector.Common.ISteps.A;
 using Injector.Core.CaseDTOModels;
+using Injector.Common;
+using Injector.Common.Enums;
 
 namespace Injector.Core.Features
 {
@@ -14,21 +15,26 @@ namespace Injector.Core.Features
 
         public OperationResult<bool> CreatePost(DTOModelA dtoModelA)
         {
-            CaseDTOModelA caseDTOModelA = new CaseDTOModelA(dtoModelA);
+            var operationResult_caseDTOModel_IN = new OperationResult<CaseDTOModelA>
+            {
+                Value = new CaseDTOModelA(dtoModelA),
+                Status = OperationOutcomes.Success,
+                Message = OperationOutcomes.Success.ToString()
+            };
 
             #region STEPS PIPELINE WITH TPL LIBRARY
 
-            TransformBlock<CaseDTOModelA, CaseDTOModelA> step1 = new TransformBlock<CaseDTOModelA, CaseDTOModelA>(caseDtoModel => {
+            TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>> step1 = new TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>(caseDtoModel => {
                 ICreateStep1A<CaseDTOModelA> createStep1A = BaseFeature_CreateStep1A;
                 return createStep1A.Execute(caseDtoModel);
             });
 
-            TransformBlock<CaseDTOModelA, CaseDTOModelA> step2 = new TransformBlock<CaseDTOModelA, CaseDTOModelA>(caseDtoModel => {
+            TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>> step2 = new TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>(caseDtoModel => {
                 ICreateStep2A<CaseDTOModelA> createStep2A = BaseFeature_CreateStep2A;
                 return createStep2A.Execute(caseDtoModel);
             });
 
-            TransformBlock<CaseDTOModelA, CaseDTOModelA> step3 = new TransformBlock<CaseDTOModelA, CaseDTOModelA>(caseDtoModel => {
+            TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>> step3 = new TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>(caseDtoModel => {
                 ICreateStep3A<CaseDTOModelA> createStep3A = BaseFeature_CreateStep3A;
                 return createStep3A.Execute(caseDtoModel);
             });
@@ -37,15 +43,18 @@ namespace Injector.Core.Features
             step2.LinkTo(step3);
 
             //start execution
-            step1.Post(caseDTOModelA);
+            step1.Post(operationResult_caseDTOModel_IN);
 
             #endregion
-
-            return new OperationResult<bool> {
-                Value = BaseFeature_DataSupplier.GetActionRepositoryA.CreateValue(caseDTOModelA.GetDTOModel()),
-                Status = true,
-                Message = "Ok"
+            
+            var operationResult_caseDTOModel_OUT = new OperationResult<bool>
+            {
+                Value = Convert.ToBoolean(operationResult_caseDTOModel_IN.Status),
+                Message = operationResult_caseDTOModel_IN.Message,
+                Status = operationResult_caseDTOModel_IN.Status
             };
+
+            return operationResult_caseDTOModel_OUT;
         }
 
         public OperationResult<DTOModelA> DeleteGet(DTOModelA dtoModelA)

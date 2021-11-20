@@ -1,4 +1,6 @@
-﻿using Injector.Common.ISteps.B;
+﻿using Injector.Common;
+using Injector.Common.Enums;
+using Injector.Common.ISteps.B;
 using Injector.Core.CaseDTOModels;
 using System;
 
@@ -8,15 +10,18 @@ namespace Injector.Core.Steps.B
     {
         public CreateStep2B(IServiceProvider service) : base(service) { }
 
-        public CaseDTOModelB Execute(CaseDTOModelB dtoModelB)
+        public OperationResult<CaseDTOModelB> Execute(OperationResult<CaseDTOModelB> caseDtoModel_IN)
         {
-            // Read
+            if (caseDtoModel_IN.Status == OperationOutcomes.Success)
+            {
+                // Read
 
-            // Do
+                // Do
 
-            // Write
+                // Write
+            }
 
-            return dtoModelB;
+            return caseDtoModel_IN;
         }
     }
 }

@@ -11,18 +11,12 @@ namespace Injector.Core.Features
 
         public OperationResult<bool> CreatePost(DTOModelB dtoModelB)
         {
-            return new OperationResult<bool>
-            {
-
-            };
+            throw new System.NotImplementedException();
         }
 
         public OperationResult<DTOModelB> DeleteGet(DTOModelB dtoModelB)
         {
-            return new OperationResult<DTOModelB>
-            {
-
-            };
+            throw new System.NotImplementedException();
         }
 
         public OperationResult<bool> DeletePost(DTOModelB dtoModelB)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Injector.Common.DTOModels;
+using Injector.Common.Enums;
 using Injector.Common.IActionRepositories;
 using Injector.Data.ADOModels;
 
@@ -18,13 +19,15 @@ namespace Injector.Common.ActionRepositories
             {
                 return new OperationResult<bool> {
                     Value = true,
-                    Message = "OK"
+                    Message = OperationOutcomes.Success.ToString(),
+                    Status = OperationOutcomes.Success
                 };
             }
 
             return new OperationResult<bool> { 
                 Value = false,
-                Message = "Operation Fail"
+                Message = OperationOutcomes.Error.ToString(),
+                Status = OperationOutcomes.Error
             };
         }
 

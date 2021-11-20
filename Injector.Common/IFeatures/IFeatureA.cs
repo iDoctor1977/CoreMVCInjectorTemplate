@@ -1,4 +1,5 @@
 ﻿using Injector.Common.DTOModels;
+using Injector.Common.Enums;
 
 namespace Injector.Common.IFeatures
 {

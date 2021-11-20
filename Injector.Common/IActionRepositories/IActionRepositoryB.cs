@@ -1,4 +1,5 @@
 ﻿using Injector.Common.DTOModels;
+using Injector.Common.Enums;
 using System.Collections.Generic;
 
 namespace Injector.Common.IActionRepositories
