@@ -1,4 +1,5 @@
-﻿using Injector.Common.DTOModels;
+﻿using Injector.Common;
+using Injector.Common.DTOModels;
 using Injector.Common.IFeatures;
 using System;
 
@@ -8,46 +9,43 @@ namespace Injector.Core.Features
     {
         public FeatureB(IServiceProvider service) : base(service) { }
 
-        public bool CreatePost(DTOModelB dtoModelB)
+        public OperetionResult<bool> CreatePost(DTOModelB dtoModelB)
         {
-            // chain definition
-
-            if (dtoModelB.Id != 0)
+            return new OperetionResult<bool>
             {
-                return true;
-            }
 
-            return false;
+            };
         }
 
-        public DTOModelB DeleteGet(DTOModelB dtoModelB)
+        public OperetionResult<DTOModelB> DeleteGet(DTOModelB dtoModelB)
         {
-            // chain definition
+            return new OperetionResult<DTOModelB>
+            {
 
-            return dtoModelB;
+            };
         }
 
-        public bool DeletePost(DTOModelB dtoModelB)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public DTOModelB EditGet(DTOModelB dtoModelB)
+        public OperetionResult<bool> DeletePost(DTOModelB dtoModelB)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool EditPost(DTOModelB dtoModelB)
+        public OperetionResult<DTOModelB> EditGet(DTOModelB dtoModelB)
         {
             throw new System.NotImplementedException();
         }
 
-        public DTOModelB DetailsGet(DTOModelB dtoModelB)
+        public OperetionResult<bool> EditPost(DTOModelB dtoModelB)
         {
             throw new System.NotImplementedException();
         }
 
-        public DTOModelB ListGet(DTOModelB dtoModelB)
+        public OperetionResult<DTOModelB> DetailsGet(DTOModelB dtoModelB)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public OperetionResult<DTOModelB> ListGet(DTOModelB dtoModelB)
         {
             throw new System.NotImplementedException();
         }
