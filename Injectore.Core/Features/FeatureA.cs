@@ -8,7 +8,7 @@ using Injector.Core.CaseDTOModels;
 namespace Injector.Core.Features
 {
     public class FeatureA : BaseFeature, IFeatureA
-    {
+    { 
         public FeatureA(IServiceProvider service) : base(service) { }
 
         public bool CreatePost(DTOModelA dtoModelA)

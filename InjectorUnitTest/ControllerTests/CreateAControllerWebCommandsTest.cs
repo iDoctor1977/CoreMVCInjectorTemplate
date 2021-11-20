@@ -13,12 +13,6 @@ namespace InjectorUnitTest.ControllerTests
     [TestFixture]
     public class CreateAControllerWebCommandsTest : BaseTest
     {
-        [SetUp]
-        public void SetUp()
-        {
-            base.Setup();
-        }
-
         [Test(Description = "Verifica del funzionamnebto del comand CREATE")]
         public void CreateCommandWithValidInput()
         {
@@ -40,7 +34,6 @@ namespace InjectorUnitTest.ControllerTests
 
             MokRepositoryA.Setup(m => m.CreateEntity(entityATest)).Returns(1);
             var controllerATest = new ControllerA(ServiceProvider);
-            //var controllerATest = ServiceProvider.GetRequiredService<ControllerA>();
 
             // ACT
             ActionResult result = controllerATest.Create(vmCreateA);
