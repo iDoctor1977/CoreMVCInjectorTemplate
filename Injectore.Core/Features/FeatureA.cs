@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks.Dataflow;
+using Injector.Common;
 using Injector.Common.DTOModels;
 using Injector.Common.IFeatures;
 using Injector.Common.ISteps.A;
@@ -11,7 +12,7 @@ namespace Injector.Core.Features
     { 
         public FeatureA(IServiceProvider service) : base(service) { }
 
-        public bool CreatePost(DTOModelA dtoModelA)
+        public OperetionResult<bool> CreatePost(DTOModelA dtoModelA)
         {
             CaseDTOModelA caseDTOModelA = new CaseDTOModelA(dtoModelA);
 
@@ -40,40 +41,39 @@ namespace Injector.Core.Features
 
             #endregion
 
-            if (BaseFeature_DataSupplier.GetActionRepositoryA.CreateValue(caseDTOModelA.GetDTOModel()))
-            {
-                return true;
-            }
-
-            return false;
+            return new OperetionResult<bool> {
+                Value = BaseFeature_DataSupplier.GetActionRepositoryA.CreateValue(caseDTOModelA.GetDTOModel()),
+                Status = true,
+                Message = "Ok"
+            };
         }
 
-        public DTOModelA DeleteGet(DTOModelA dtoModelA)
+        public OperetionResult<DTOModelA> DeleteGet(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool DeletePost(DTOModelA dtoModelA)
+        public OperetionResult<bool> DeletePost(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public DTOModelA EditGet(DTOModelA dtoModelA)
+        public OperetionResult<DTOModelA> EditGet(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool EditPost(DTOModelA dtoModelA)
+        public OperetionResult<bool> EditPost(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public DTOModelA DetailsGet(DTOModelA dtoModelA)
+        public OperetionResult<DTOModelA> DetailsGet(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
 
-        public DTOModelA ListGet(DTOModelA dtoModelA)
+        public OperetionResult<DTOModelA> ListGet(DTOModelA dtoModelA)
         {
             throw new NotImplementedException();
         }
