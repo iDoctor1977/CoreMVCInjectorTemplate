@@ -1,18 +1,12 @@
-using AutoMapper;
 using Injector.Common.ActionRepositories;
 using Injector.Common.IActionRepositories;
 using Injector.Common.IFeatures;
-using Injector.Common.ISteps.A;
-using Injector.Common.ISteps.B;
 using Injector.Common.ISuppliers;
 using Injector.Common.Repositories;
 using Injector.Core;
-using Injector.Core.CaseDTOModels;
 using Injector.Core.Features;
 using Injector.Core.Steps.A;
-using Injector.Core.Steps.B;
 using Injector.Data;
-using Injector.Data.ADOModels;
 using Injector.Data.IRepositories;
 using Injector.Web.MapperProfiles;
 using Microsoft.AspNetCore.Builder;
@@ -43,17 +37,9 @@ namespace Injector.Web
             services.AddTransient<IFeatureA, FeatureA>();
             services.AddTransient<IFeatureB, FeatureB>();
 
-            // pipeline dependency injection
-            services.AddTransient<ICreateStep1A<CaseDTOModelA>, CreateStep1A>();
-            services.AddTransient<ICreateStep2A<CaseDTOModelA>, CreateStep2A>();
-            services.AddTransient<ICreateStep3A<CaseDTOModelA>, CreateStep3A>();
-            services.AddTransient<IDeleteStep1A<CaseDTOModelA>, DeleteStep1A>();
-            services.AddTransient<IDeleteStep2A<CaseDTOModelA>, DeleteStep2A>();
-
-            services.AddTransient<ICreateStep1B<CaseDTOModelB>, CreateStep1B>();
-            services.AddTransient<ICreateStep2B<CaseDTOModelB>, CreateStep2B>();
-            services.AddTransient<ICreateStep3B<CaseDTOModelB>, CreateStep3B>();
-            // pipeline dependency injection
+            services.AddTransient<CreateStep1A, CreateStep1A>();
+            services.AddTransient<CreateStep1A_SubStep1, CreateStep1A_SubStep1>();
+            services.AddTransient<CreateStep1A_SubStep2, CreateStep1A_SubStep2>();
 
             services.AddTransient<IActionRepositoryA, ActionRepositoryA>();
             services.AddTransient<IActionRepositoryB, ActionRepositoryB>();

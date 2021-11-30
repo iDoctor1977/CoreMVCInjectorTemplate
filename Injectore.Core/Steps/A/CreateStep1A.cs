@@ -1,4 +1,4 @@
-using Injector.Common;
+using Injector.Core.Attributes;
 using Injector.Common.Enums;
 using Injector.Common.ISteps.A;
 using Injector.Core.CaseDTOModels;
@@ -6,11 +6,12 @@ using System;
 
 namespace Injector.Core.Steps.A
 {
-    public class CreateStep1A : BaseStep, ICreateStep1A<CaseDTOModelA>
+    [Root]
+    public class CreateStep1A : RootPipelineBuilder<CaseDTOModelA, CaseDTOModelA>
     {
         public CreateStep1A(IServiceProvider service) : base(service) { }
 
-        public OperationResult<CaseDTOModelA> Execute(OperationResult<CaseDTOModelA> caseDtoModel_IN)
+        protected override OperationResult<CaseDTOModelA> ExecuteRootStep(CaseDTOModelA value)
         {
             if (caseDtoModel_IN.Status == OperationOutcomes.Success)
             {

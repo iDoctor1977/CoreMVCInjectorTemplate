@@ -1,14 +1,13 @@
-using Injector.Common;
-using Injector.Common.Enums;
-using Injector.Common.ISteps.A;
+﻿using Injector.Core.Attributes;
 using Injector.Core.CaseDTOModels;
 using System;
 
 namespace Injector.Core.Steps.A
 {
-    public class DeleteStep2A : BaseStep, IDeleteStep2A<CaseDTOModelA>
+    [Leaf(nameof(CreateStep1A))]
+    public class CreateStep1A_SubStep1 : BaseStep, ISubStep<CaseDTOModelA, CaseDTOModelA>
     {
-        public DeleteStep2A(IServiceProvider service) : base(service) { }
+        public CreateStep1A_SubStep1(IServiceProvider service) : base(service) { }
 
         public OperationResult<CaseDTOModelA> Execute(OperationResult<CaseDTOModelA> caseDtoModel_IN)
         {

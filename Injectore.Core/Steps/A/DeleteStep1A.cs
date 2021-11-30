@@ -1,16 +1,15 @@
-﻿using Injector.Common;
-using Injector.Common.Enums;
-using Injector.Common.ISteps.A;
+﻿using Injector.Core.Attributes;
 using Injector.Core.CaseDTOModels;
 using System;
 
 namespace Injector.Core.Steps.A
 {
-    public class DeleteStep1A : BaseStep, IDeleteStep1A<CaseDTOModelA>
+    [Root]
+    public class DeleteStep1A : RootPipelineBuilder<CaseDTOModelA, CaseDTOModelA>
     {
         public DeleteStep1A(IServiceProvider service) : base(service) { }
 
-        public OperationResult<CaseDTOModelA> Execute(OperationResult<CaseDTOModelA> caseDtoModel_IN)
+        protected override OperationResult<CaseDTOModelA> ExecuteRootStep(CaseDTOModelA value)
         {
             if (caseDtoModel_IN.Status == OperationOutcomes.Success)
             {

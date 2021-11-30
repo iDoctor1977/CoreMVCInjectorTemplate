@@ -1,16 +1,15 @@
-using Injector.Common;
-using Injector.Common.Enums;
-using Injector.Common.ISteps.B;
+using Injector.Core.Attributes;
 using Injector.Core.CaseDTOModels;
 using System;
 
 namespace Injector.Core.Steps.B
 {
-    public class CreateStep1B : BaseStep, ICreateStep1B<CaseDTOModelB>
+    [Root]
+    public class CreateStep1B : RootPipelineBuilder<CaseDTOModelB, CaseDTOModelB>
     {
         public CreateStep1B(IServiceProvider service) : base(service) { }
 
-        public OperationResult<CaseDTOModelB> Execute(OperationResult<CaseDTOModelB> caseDtoModel_IN)
+        protected override OperationResult<CaseDTOModelB> ExecuteRootStep(CaseDTOModelB value)
         {
             if (caseDtoModel_IN.Status == OperationOutcomes.Success)
             {

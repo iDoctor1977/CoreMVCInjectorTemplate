@@ -1,14 +1,11 @@
-﻿using Injector.Common;
-using Injector.Common.Enums;
-using Injector.Common.ISteps.B;
-using Injector.Core.CaseDTOModels;
+﻿using Injector.Core.CaseDTOModels;
 using System;
 
 namespace Injector.Core.Steps.B
 {
-    public class CreateStep2B : BaseStep, ICreateStep2B<CaseDTOModelB>
+    public class CreateStep1B_SubStep2 : BaseStep, ISubStep<CaseDTOModelB, CaseDTOModelB>
     {
-        public CreateStep2B(IServiceProvider service) : base(service) { }
+        public CreateStep1B_SubStep2(IServiceProvider service) : base(service) { }
 
         public OperationResult<CaseDTOModelB> Execute(OperationResult<CaseDTOModelB> caseDtoModel_IN)
         {
