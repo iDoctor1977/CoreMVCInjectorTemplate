@@ -1,22 +1,23 @@
-using Injector.Common.ISteps.B;
+using Injector.Core.Attributes;
 using Injector.Core.CaseDTOModels;
 using System;
 
 namespace Injector.Core.Steps.B
 {
-    public class CreateStep1B : BaseStep, ICreateStep1B<CaseDTOModelB>
+    [Root]
+    public class CreateStep1B : RootPipelineBuilder<CaseDTOModelB, CaseDTOModelB>
     {
         public CreateStep1B(IServiceProvider service) : base(service) { }
 
-        public CaseDTOModelB Execute(CaseDTOModelB caseDtoModelB)
+        protected override CaseDTOModelB ExecuteRootStep(CaseDTOModelB value)
         {
             // Read
 
             // Do
 
             // Write
-            
-            return caseDtoModelB;
+
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,27 +1,22 @@
-using Injector.Common.ISteps.A;
+using Injector.Core.Attributes;
 using Injector.Core.CaseDTOModels;
 using System;
 
 namespace Injector.Core.Steps.A
 {
-    public class CreateStep1A : BaseStep, ICreateStep1A<CaseDTOModelA>
+    [Root]
+    public class CreateStep1A : RootPipelineBuilder<CaseDTOModelA, CaseDTOModelA>
     {
         public CreateStep1A(IServiceProvider service) : base(service) { }
 
-        public CaseDTOModelA Execute(CaseDTOModelA caseDtoModelA)
+        protected override CaseDTOModelA ExecuteRootStep(CaseDTOModelA value)
         {
-            // Read
-
-            // Do
-
-            // Write
-
-            if (BaseStep_DataSupplier.GetActionRepositoryA.CreateValue(caseDtoModelA.GetDTOModel()))
+            if (BaseStep_DataSupplier.GetActionRepositoryA.CreateValue(value.GetDTOModel()))
             {
-                return caseDtoModelA;
+                return value;
             }
 
-            throw new System.NotImplementedException();
+            return value;
         }
     }
 }

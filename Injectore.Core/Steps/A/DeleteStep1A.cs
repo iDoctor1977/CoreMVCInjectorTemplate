@@ -1,14 +1,15 @@
-﻿using Injector.Common.ISteps.A;
+﻿using Injector.Core.Attributes;
 using Injector.Core.CaseDTOModels;
 using System;
 
 namespace Injector.Core.Steps.A
 {
-    public class DeleteStep1A : BaseStep, IDeleteStep1A<CaseDTOModelA>
+    [Root]
+    public class DeleteStep1A : RootPipelineBuilder<CaseDTOModelA, CaseDTOModelA>
     {
         public DeleteStep1A(IServiceProvider service) : base(service) { }
 
-        public CaseDTOModelA Execute(CaseDTOModelA dtoModelA)
+        protected override CaseDTOModelA ExecuteRootStep(CaseDTOModelA value)
         {
             // Read
 
@@ -16,7 +17,7 @@ namespace Injector.Core.Steps.A
 
             // Write
 
-            return dtoModelA;
+            return value;
         }
     }
 }
