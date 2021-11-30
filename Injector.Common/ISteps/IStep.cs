@@ -1,6 +1,4 @@
-﻿using Injector.Common.Enums;
-
-namespace Injector.Common.ISteps
+﻿namespace Injector.Common.ISteps
 {
     public interface IStep<T>
     {

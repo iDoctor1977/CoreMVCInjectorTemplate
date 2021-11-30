@@ -24,17 +24,20 @@ namespace Injector.Core.Features
 
             #region STEPS PIPELINE WITH TPL LIBRARY
 
-            TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>> step1 = new TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>(caseDtoModel => {
+            var step1 = new TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>(caseDtoModel =>
+            {
                 ICreateStep1A<CaseDTOModelA> createStep1A = BaseFeature_CreateStep1A;
                 return createStep1A.Execute(caseDtoModel);
             });
 
-            TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>> step2 = new TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>(caseDtoModel => {
+            var step2 = new TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>(caseDtoModel =>
+            {
                 ICreateStep2A<CaseDTOModelA> createStep2A = BaseFeature_CreateStep2A;
                 return createStep2A.Execute(caseDtoModel);
             });
 
-            TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>> step3 = new TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>(caseDtoModel => {
+            var step3 = new TransformBlock<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>(caseDtoModel =>
+            {
                 ICreateStep3A<CaseDTOModelA> createStep3A = BaseFeature_CreateStep3A;
                 return createStep3A.Execute(caseDtoModel);
             });
@@ -42,19 +45,23 @@ namespace Injector.Core.Features
             step1.LinkTo(step2);
             step2.LinkTo(step3);
 
-            //start execution
+            //tart execution
             step1.Post(operationResult_caseDTOModel_IN);
 
+            // Wait for the last block in the pipeline to process all values.
+            step3.Completion.Wait();
+
             #endregion
-            
-            var operationResult_caseDTOModel_OUT = new OperationResult<bool>
+
+            var operationResult__OUT = new OperationResult<bool>
             {
                 Value = Convert.ToBoolean(operationResult_caseDTOModel_IN.Status),
                 Message = operationResult_caseDTOModel_IN.Message,
-                Status = operationResult_caseDTOModel_IN.Status
+                Status = operationResult_caseDTOModel_IN
+                .Status
             };
 
-            return operationResult_caseDTOModel_OUT;
+            return operationResult__OUT;
         }
 
         public OperationResult<DTOModelA> DeleteGet(DTOModelA dtoModelA)

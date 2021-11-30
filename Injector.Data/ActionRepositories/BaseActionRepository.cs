@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Injector.Common.Enums;
 using Injector.Data.IRepositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
