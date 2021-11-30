@@ -1,13 +1,16 @@
-﻿using Injector.Core.CaseDTOModels;
+﻿using Injector.Common;
+using Injector.Core.Attributes;
+using Injector.Core.CaseDTOModels;
 using System;
 
 namespace Injector.Core.Steps.B
 {
-    public class CreateStep1B_SubStep1 : BaseStep, ISubStep<CaseDTOModelB, CaseDTOModelB>
+    [Leaf(nameof(CreateStep1B))]
+    public class CreateStep1B_SubStep1 : BaseStep, ISubStep<OperationResult<CaseDTOModelB>, OperationResult<CaseDTOModelB>>
     {
         public CreateStep1B_SubStep1(IServiceProvider service) : base(service) { }
 
-        public CaseDTOModelB Execute(CaseDTOModelB value)
+        public OperationResult<CaseDTOModelB> Execute(OperationResult<CaseDTOModelB> value)
         {
             // Read
 

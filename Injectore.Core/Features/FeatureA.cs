@@ -1,5 +1,7 @@
 ﻿using System;
+using Injector.Common;
 using Injector.Common.DTOModels;
+using Injector.Common.Enums;
 using Injector.Common.IFeatures;
 using Injector.Core.CaseDTOModels;
 using Injector.Core.Steps.A;
@@ -29,14 +31,13 @@ namespace Injector.Core.Features
             };
 
             // pipeline
-            caseDTOModelA = _createStep1A.AddStep(_createStep1A_SubStep2).AddStep(_createStep1A_SubStep2).Execute(caseDTOModelA);
+            operationResult_caseDTOModel_IN = _createStep1A.AddStep(_createStep1A_SubStep2).AddStep(_createStep1A_SubStep2).Execute(operationResult_caseDTOModel_IN);
 
             var operationResult__OUT = new OperationResult<bool>
             {
                 Value = Convert.ToBoolean(operationResult_caseDTOModel_IN.Status),
                 Message = operationResult_caseDTOModel_IN.Message,
-                Status = operationResult_caseDTOModel_IN
-                .Status
+                Status = operationResult_caseDTOModel_IN.Status
             };
 
             return operationResult__OUT;
