@@ -5,7 +5,9 @@ using Injector.Common.ISuppliers;
 using Injector.Common.Repositories;
 using Injector.Core;
 using Injector.Core.Features;
-using Injector.Core.Steps.A;
+using Injector.Core.Functions;
+using Injector.Core.Operations;
+using Injector.Core.Operations.Steps.A;
 using Injector.Data;
 using Injector.Data.IRepositories;
 using Injector.Web.MapperProfiles;
@@ -33,6 +35,8 @@ namespace Injector.Web
 
             services.AddTransient<ICoreSupplier, CoreSupplier>();
             services.AddTransient<IDataSupplier, DataSupplier>();
+            services.AddTransient<IFunctionSupplier, AFunctionsSupplier>();
+            services.AddTransient<IOperationsSupplier, AOperationsSupplier>();
 
             services.AddTransient<IFeatureA, FeatureA>();
             services.AddTransient<IFeatureB, FeatureB>();
