@@ -1,8 +1,7 @@
-﻿using Injector.Core.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Injector.Core.Operations
+namespace Injector.Core.Operator
 {
     public abstract class RootPipelineBuilder<I, O> : BaseStep, IRootStep<I, O>, IBuildStep<I, O>
     {

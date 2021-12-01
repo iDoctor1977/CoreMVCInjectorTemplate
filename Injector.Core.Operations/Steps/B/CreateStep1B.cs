@@ -1,10 +1,9 @@
 using Injector.Common;
 using Injector.Common.Enums;
-using Injector.Core.Attributes;
 using Injector.Core.CaseDTOModels;
 using System;
 
-namespace Injector.Core.Operations.Steps.B
+namespace Injector.Core.Operator.Steps.B
 {
     [Root]
     public class CreateStep1B : RootPipelineBuilder<OperationResult<CaseDTOModelB>, OperationResult<CaseDTOModelB>>

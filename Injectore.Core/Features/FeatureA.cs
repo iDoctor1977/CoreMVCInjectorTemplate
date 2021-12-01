@@ -15,11 +15,10 @@ namespace Injector.Core.Features
         {
             var caseModel = new CaseDTOModelA(dtoModelA);
 
-            caseModel = (CaseDTOModelA)BaseFeature_FunctionsSupplier.CalculatePercentualValueA(caseModel);
-
-            caseModel = (CaseDTOModelA)BaseFeature_FunctionsSupplier.CalculateStocasticValueA(caseModel);
-
-            BaseFeature_FunctionsSupplier.SplitValueA(caseModel);
+            caseModel = (CaseDTOModelA)BaseFeature_OperatorSupplier.CalculatePercentualValueA(caseModel);
+            caseModel = (CaseDTOModelA)BaseFeature_OperatorSupplier.CalculateStocasticValueA(caseModel);
+            BaseFeature_OperatorSupplier.SplitValueA(caseModel);
+            BaseFeature_OperatorSupplier.CreateValueA(caseModel);
 
             var operationResult__OUT = new OperationResult<bool>
             {

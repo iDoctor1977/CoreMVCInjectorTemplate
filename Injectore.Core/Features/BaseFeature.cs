@@ -7,18 +7,15 @@ namespace Injector.Core.Features
     public class BaseFeature
     {
         private readonly IDataSupplier _dataSupplier;
-        private readonly IOperationsSupplier _operationsSupplier;
-        private readonly IFunctionSupplier _functionSupplier;
+        private readonly IOperatorSupplier _operatorSupplier;
 
         public BaseFeature(IServiceProvider service)
         {
             _dataSupplier = service.GetRequiredService<IDataSupplier>();
-            _operationsSupplier = service.GetRequiredService<IOperationsSupplier>();
-            _functionSupplier = service.GetRequiredService<IFunctionSupplier>();
+            _operatorSupplier = service.GetRequiredService<IOperatorSupplier>();
         }
 
         public IDataSupplier BaseFeature_DataSupplier => _dataSupplier;
-        public IOperationsSupplier BaseFeature_OperationsSupplier => _operationsSupplier;
-        public IFunctionSupplier BaseFeature_FunctionsSupplier => _functionSupplier;
+        public IOperatorSupplier BaseFeature_OperatorSupplier => _operatorSupplier;
     }
 }

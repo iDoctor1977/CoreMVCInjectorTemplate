@@ -3,7 +3,7 @@ using Injector.Common.Enums;
 using Injector.Core.CaseDTOModels;
 using System;
 
-namespace Injector.Core.Operations.Steps.B
+namespace Injector.Core.Operator.Steps.B
 {
     public class CreateStep1B_SubStep2 : BaseStep, ISubStep<OperationResult<CaseDTOModelB>, OperationResult<CaseDTOModelB>>
     {

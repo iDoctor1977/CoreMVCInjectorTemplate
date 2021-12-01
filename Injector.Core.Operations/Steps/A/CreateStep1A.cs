@@ -1,8 +1,7 @@
-using Injector.Core.Attributes;
 using Injector.Core.CaseDTOModels;
 using System;
 
-namespace Injector.Core.Operations.Steps.A
+namespace Injector.Core.Operator.Steps.A
 {
     [Root]
     public class CreateStep1A : RootPipelineBuilder<CaseDTOModelA, CaseDTOModelA>

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Injector.Core.Operations
+namespace Injector.Core.Operator
 {
     public class BaseStep
     {

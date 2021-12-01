@@ -10,9 +10,7 @@ namespace Injector.Core.Functions
         public AFunctionsSupplier(IServiceProvider service) { }
 
         public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> SplitValueA => FuncSplitValueA;
-
         public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> CalculateStocasticValueA => FuncStocasticValueA;
-
         public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> CalculatePercentualValueA => FuncPercentualValueA;
 
         protected abstract ICaseDTOModel<DTOModelA> FuncSplitValueA(ICaseDTOModel<DTOModelA> caseDTOModelA);

@@ -15,8 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Injector.Common\Injector.Common.csproj" />
-    <ProjectReference Include="..\Injector.Core.Functions\Injector.Core.Functions.csproj" />
-    <ProjectReference Include="..\Injector.Core.Operations\Injector.Core.Operations.csproj" />
+    <ProjectReference Include="..\Injector.Core.Operations\Injector.Core.Operator.csproj" />
     <ProjectReference Include="..\Injectore.Core\Injectore.Core.csproj" />
   </ItemGroup>
 

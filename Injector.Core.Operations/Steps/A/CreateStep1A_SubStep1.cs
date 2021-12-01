@@ -1,10 +1,9 @@
 ﻿using Injector.Common;
 using Injector.Common.Enums;
-using Injector.Core.Attributes;
 using Injector.Core.CaseDTOModels;
 using System;
 
-namespace Injector.Core.Operations.Steps.A
+namespace Injector.Core.Operator.Steps.A
 {
     [Leaf(nameof(CreateStep1A))]
     public class CreateStep1A_SubStep1 : BaseStep, ISubStep<CaseDTOModelA, CaseDTOModelA>
