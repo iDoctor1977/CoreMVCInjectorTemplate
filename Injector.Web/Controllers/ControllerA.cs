@@ -36,7 +36,7 @@ namespace Injector.Frontend.Controllers
 
                 var operatioResult = BaseController_CoreSupplier.GetFeatureA.CreatePost(dtoModelA);
 
-                if (operatioResult.Status == OperationOutcomes.Success)
+                if (operatioResult.Status == OperationsStatus.Success)
                 {
                     return RedirectToAction("CreateA");
                 }

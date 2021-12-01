@@ -20,14 +20,14 @@ namespace Injector.Core.Features
             BaseFeature_OperatorSupplier.SplitValueA(caseModel);
             BaseFeature_OperatorSupplier.CreateValueA(caseModel);
 
-            var operationResult__OUT = new OperationResult<bool>
+            var operationResult = new OperationResult<bool>
             {
                 Value = true,
-                Message = OperationOutcomes.Success.ToString(),
-                Status = OperationOutcomes.Success
+                Message = OperationsStatus.Success.ToString(),
+                Status = OperationsStatus.Success
             };
 
-            return operationResult__OUT;
+            return operationResult;
         }
 
         public OperationResult<DTOModelA> DeleteGet(DTOModelA dtoModelA)

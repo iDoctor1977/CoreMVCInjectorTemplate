@@ -1,6 +1,6 @@
 ﻿namespace Injector.Common.Enums
 {
-    public enum OperationOutcomes
+    public enum OperationsStatus
     {
         Error = 0,
         Success = 1,

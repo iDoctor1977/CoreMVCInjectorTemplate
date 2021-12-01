@@ -12,7 +12,7 @@ namespace Injector.Core.Operator.Steps.A
 
         public OperationResult<CaseDTOModelA> Execute(OperationResult<CaseDTOModelA> caseDtoModel_IN)
         {
-            if (caseDtoModel_IN.Status == OperationOutcomes.Success)
+            if (caseDtoModel_IN.Status == OperationsStatus.Success)
             {
                 // Read
 

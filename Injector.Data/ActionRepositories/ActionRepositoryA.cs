@@ -19,15 +19,15 @@ namespace Injector.Common.ActionRepositories
             {
                 return new OperationResult<bool> {
                     Value = true,
-                    Message = OperationOutcomes.Success.ToString(),
-                    Status = OperationOutcomes.Success
+                    Message = OperationsStatus.Success.ToString(),
+                    Status = OperationsStatus.Success
                 };
             }
 
             return new OperationResult<bool> { 
                 Value = false,
-                Message = OperationOutcomes.Error.ToString(),
-                Status = OperationOutcomes.Error
+                Message = OperationsStatus.Error.ToString(),
+                Status = OperationsStatus.Error
             };
         }
 

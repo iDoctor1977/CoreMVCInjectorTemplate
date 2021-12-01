@@ -12,7 +12,7 @@ namespace Injector.Core.Operator.Steps.A
 
         protected override OperationResult<CaseDTOModelA> ExecuteRootStep(OperationResult<CaseDTOModelA> caseDtoModel_IN)
         {
-            if (caseDtoModel_IN.Status == OperationOutcomes.Success)
+            if (caseDtoModel_IN.Status == OperationsStatus.Success)
             {
                 // Read
 
