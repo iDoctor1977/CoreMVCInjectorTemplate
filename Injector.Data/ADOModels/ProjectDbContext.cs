@@ -33,8 +33,8 @@ namespace Injector.Data.ADOModels
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            //optionsBuilder.UseInMemoryDatabase(_dbName);
-            optionsBuilder.UseSqlServer(_connectionStringName); 
+            optionsBuilder.UseInMemoryDatabase(_dbName);
+            //optionsBuilder.UseSqlServer(_connectionStringName); 
         }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)

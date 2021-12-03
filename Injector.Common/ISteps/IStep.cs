@@ -2,6 +2,6 @@
 {
     public interface IStep<T>
     {
-        T Execute(T caseDtoModel);
+        OperationResult<T> Execute(OperationResult<T> caseDtoModel);
     }
 }

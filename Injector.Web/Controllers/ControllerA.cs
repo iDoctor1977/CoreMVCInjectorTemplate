@@ -1,21 +1,37 @@
 ﻿using System;
 using Injector.Common.DTOModels;
 using Injector.Web.Models;
-using Injector.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Injector.Common.Enums;
+using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
+using Injector.Common.IFeatures;
 
 namespace Injector.Frontend.Controllers
 {
-    public class ControllerA : BaseController
+    public class ControllerA : Controller
     {
-        public ControllerA(IServiceProvider service) : base(service) { }
+        private readonly IMapper _mapper;
+        private readonly IFeatureA _featureA;
+
+        public ControllerA(IServiceProvider service) {
+            _mapper = service.GetRequiredService<IMapper>();
+            _featureA = service.GetRequiredService<IFeatureA>();
+        }
 
         #region HTTP OPERATIONS
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            VMCreateA vmCreateA = new VMCreateA
+            {
+                Name = "iDoctor",
+                Surname = "filippo.foglia@gmail.com",
+                TelNumber = "+39 331 578 7943"
+            };
+
+            return View(vmCreateA);
         }
 
         [HttpPost]
@@ -24,13 +40,13 @@ namespace Injector.Frontend.Controllers
         {
             if (ModelState.IsValid)
             {
-                // mapping visual model to DTO
-                DTOModelA dtoModelA = BaseController_Mapper.Map<DTOModelA>(vmCreateA);
+                DTOModelA dtoModelA = _mapper.Map<DTOModelA>(vmCreateA);
 
-                // ex. with FEATURE
-                if (BaseController_CoreSupplier.GetFeatureA.CreatePost(dtoModelA))
+                var operatioResult = _featureA.CreatePost(dtoModelA);
+
+                if (operatioResult.Status == OperationsStatus.Success)
                 {
-                    return RedirectToAction("List");
+                    return RedirectToAction("CreateA");
                 }
             }
 
@@ -38,84 +54,41 @@ namespace Injector.Frontend.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int idA)
+        public ActionResult Delete(Guid idA)
         {
-            // mapping visual model to DTO
-            VMDeleteA vmDeleteA = new VMDeleteA{ Id = idA };
-            DTOModelA dtoModelA = BaseController_Mapper.Map<DTOModelA>(vmDeleteA);
-
-            var deleteGet = BaseController_CoreSupplier.GetFeatureA.DeleteGet(dtoModelA);
-
-            vmDeleteA = BaseController_Mapper.Map<VMDeleteA>(deleteGet);
-
-            return View(vmDeleteA);
+            return RedirectToAction("Home");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(VMDeleteA vmDeleteA)
         {
-            if (ModelState.IsValid)
-            {
-                // mapping visual model to DTO
-                DTOModelA dtoModelA = new DTOModelA();
-
-                BaseController_CoreSupplier.GetFeatureA.DeletePost(dtoModelA);
-            }
-
-            return RedirectToAction("List");
+            return RedirectToAction("Home");
         }
 
         [HttpGet]
         public ActionResult Edit(Guid idA)
         {
-            VMEditA vmEditA = new VMEditA();
-
-            // mapping visual model to DTO
-            DTOModelA dtoModelA = new DTOModelA();
-
-            // ex. with FEATURE
-            //vmEditA = ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.EditGet(vmEditA) as VMEditA;
-
-            return View(vmEditA);
+            return RedirectToAction("Home");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(VMEditA vmEditA)
         {
-            if (ModelState.IsValid)
-            {
-                // ex. with FEATURE
-                //ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.EditPost(vmEditA);
-            }
-
-            return RedirectToAction("List");
+            return RedirectToAction("Home");
         }
 
         [HttpGet]
         public ActionResult Details(Guid idA)
         {
-            VMDetailsA vmDetailsA = new VMDetailsA();
-
-            // mapping visual model to DTO
-            DTOModelA dtoModelA = new DTOModelA();
-
-            // ex. with FEATURE
-            //vmDetailsA = ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.DetailsGet(vmDetailsA) as VMDetailsA;
-
-            return View(vmDetailsA);
+            return RedirectToAction("Home");
         }
 
         [HttpGet]
         public ActionResult List()
         {
-            VMListA vmListA = new VMListA();
-
-            // ex. with FEATURE
-            //vmListA = ABaseController_WebStoreInstance.WebStore_CoreSupplierInstance.GetFeatureA.ListGet(vmListA) as VMListA;
-
-            return View(vmListA);
+            return RedirectToAction("Home");
         }
 
         #endregion

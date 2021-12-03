@@ -32,7 +32,7 @@ namespace InjectorUnitTest.ControllerTests
             RedirectToActionResult result = (RedirectToActionResult)controllerATest.Create(vmCreateA);
 
             // ASSERT
-            result.ActionName.Should().Be("List");
+            result.ActionName.Should().Be("CreateA");
 
             // Verify that DoesSomething was called only once
             MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<EntityA>())), Times.Once());

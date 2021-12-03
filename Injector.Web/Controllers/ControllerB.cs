@@ -1,14 +1,21 @@
 ﻿using System;
-using Injector.Common.DTOModels;
-using Injector.Web.Controllers;
+using AutoMapper;
+using Injector.Common.IFeatures;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Frontend.Controllers
 {
-    public class ControllerB : BaseController
+    public class ControllerB : Controller
     {
-        public ControllerB(IServiceProvider service) : base(service) { }
+        private readonly IMapper _mapper;
+        private readonly IFeatureB _featureB;
+
+        public ControllerB(IServiceProvider service) {
+            _mapper = service.GetRequiredService<IMapper>();
+            _featureB = service.GetRequiredService<IFeatureB>();
+        }
 
         #region HTTP OPERATIONS
 
@@ -29,26 +36,16 @@ namespace Injector.Frontend.Controllers
         {
             if (ModelState.IsValid)
             {
-                // mapping visual model to DTO
-                DTOModelB dtoModelB = new DTOModelB();
-
-                BaseController_CoreSupplier.GetFeatureB.CreatePost(dtoModelB);
+                return RedirectToAction("Home");
             }
 
-            return RedirectToAction("List");
+            return RedirectToAction("Home");
         }
 
         [HttpGet]
         public ActionResult Delete(Guid idB)
         {
-            VMDeleteB vmDeleteB = new VMDeleteB();
-
-            // mapping visual model to DTO
-            DTOModelB dtoModelB = new DTOModelB();
-
-            BaseController_CoreSupplier.GetFeatureB.DeleteGet(dtoModelB);
-
-            return View(vmDeleteB);
+            return RedirectToAction("Home");
         }
 
         [HttpPost]
@@ -57,26 +54,16 @@ namespace Injector.Frontend.Controllers
         {
             if (ModelState.IsValid)
             {
-                // mapping visual model to DTO
-                DTOModelB dtoModelB = new DTOModelB();
-
-                BaseController_CoreSupplier.GetFeatureB.DeletePost(dtoModelB);
+                return RedirectToAction("Home");
             }
 
-            return RedirectToAction("List");
+            return RedirectToAction("Home");
         }
 
         [HttpGet]
         public ActionResult Edit(Guid idB)
         {
-            VMEditB vmEditB = new VMEditB();
-
-            // mapping visual model to DTO
-            DTOModelB dtoModelB = new DTOModelB();
-
-            dtoModelB = BaseController_CoreSupplier.GetFeatureB.EditGet(dtoModelB);
-
-            return View(vmEditB);
+            return RedirectToAction("Home");
         }
 
         [HttpPost]
@@ -85,10 +72,7 @@ namespace Injector.Frontend.Controllers
         {
             if (ModelState.IsValid)
             {
-                // mapping visual model to DTO
-                DTOModelB dtoModelB = new DTOModelB();
-
-                BaseController_CoreSupplier.GetFeatureB.EditPost(dtoModelB);
+                return RedirectToAction("Home");
             }
 
             return RedirectToAction("List");
@@ -97,27 +81,13 @@ namespace Injector.Frontend.Controllers
         [HttpGet]
         public ActionResult Details(Guid idB)
         {
-            VMDetailsB vmDetailsB = new VMDetailsB();
-
-            // mapping visual model to DTO
-            DTOModelB dtoModelB = new DTOModelB();
-
-            dtoModelB = BaseController_CoreSupplier.GetFeatureB.DetailsGet(dtoModelB);
-
-            return View(vmDetailsB);
+            return RedirectToAction("Home");
         }
 
         [HttpGet]
         public ActionResult List()
         {
-            VMListB vmListB = new VMListB();
-
-            // mapping visual model to DTO
-            DTOModelB dtoModelB = new DTOModelB();
-
-            dtoModelB = BaseController_CoreSupplier.GetFeatureB.ListGet(dtoModelB);
-
-            return View(vmListB);
+            return RedirectToAction("Home");
         }
 
         #endregion

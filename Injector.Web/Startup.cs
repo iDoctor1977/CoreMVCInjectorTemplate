@@ -4,9 +4,8 @@ using Injector.Common.IFeatures;
 using Injector.Common.ISuppliers;
 using Injector.Common.Repositories;
 using Injector.Core;
-using Injector.Core.Features;
-using Injector.Core.Steps.A;
-using Injector.Data;
+using Injector.Core.Operator;
+using Injector.Core.Operator.Steps.A;
 using Injector.Data.IRepositories;
 using Injector.Web.MapperProfiles;
 using Microsoft.AspNetCore.Builder;
@@ -31,8 +30,7 @@ namespace Injector.Web
         {
             #region Dependency Injection with Service Locator
 
-            services.AddTransient<ICoreSupplier, CoreSupplier>();
-            services.AddTransient<IDataSupplier, DataSupplier>();
+            services.AddTransient<IOperatorSupplier, OperatorSupplier>();
 
             services.AddTransient<IFeatureA, FeatureA>();
             services.AddTransient<IFeatureB, FeatureB>();

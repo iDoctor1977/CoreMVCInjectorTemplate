@@ -1,15 +1,16 @@
 ﻿using Injector.Common.DTOModels;
+using Injector.Common.Enums;
 
 namespace Injector.Common.IFeatures
 {
     public interface IFeatureA
     {
-        bool CreatePost(DTOModelA dtoModelA);
-        DTOModelA DeleteGet(DTOModelA dtoModelA);
-        bool DeletePost(DTOModelA dtoModelA);
-        DTOModelA EditGet(DTOModelA dtoModelA);
-        bool EditPost(DTOModelA dtoModelA);
-        DTOModelA DetailsGet(DTOModelA dtoModelA);
-        DTOModelA ListGet(DTOModelA dtoModelA);
+        OperationResult<bool> CreatePost(DTOModelA dtoModelA);
+        OperationResult<DTOModelA> DeleteGet(DTOModelA dtoModelA);
+        OperationResult<bool> DeletePost(DTOModelA dtoModelA);
+        OperationResult<DTOModelA> EditGet(DTOModelA dtoModelA);
+        OperationResult<bool> EditPost(DTOModelA dtoModelA);
+        OperationResult<DTOModelA> DetailsGet(DTOModelA dtoModelA);
+        OperationResult<DTOModelA> ListGet(DTOModelA dtoModelA);
     }
 }
