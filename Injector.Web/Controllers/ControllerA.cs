@@ -1,15 +1,23 @@
 ﻿using System;
 using Injector.Common.DTOModels;
 using Injector.Web.Models;
-using Injector.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Injector.Common.Enums;
+using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
+using Injector.Common.IFeatures;
 
 namespace Injector.Frontend.Controllers
 {
-    public class ControllerA : BaseController
+    public class ControllerA : Controller
     {
-        public ControllerA(IServiceProvider service) : base(service) { }
+        private readonly IMapper _mapper;
+        private readonly IFeatureA _featureA;
+
+        public ControllerA(IServiceProvider service) {
+            _mapper = service.GetRequiredService<IMapper>();
+            _featureA = service.GetRequiredService<IFeatureA>();
+        }
 
         #region HTTP OPERATIONS
 
@@ -32,9 +40,9 @@ namespace Injector.Frontend.Controllers
         {
             if (ModelState.IsValid)
             {
-                DTOModelA dtoModelA = BaseController_Mapper.Map<DTOModelA>(vmCreateA);
+                DTOModelA dtoModelA = _mapper.Map<DTOModelA>(vmCreateA);
 
-                var operatioResult = BaseController_CoreSupplier.GetFeatureA.CreatePost(dtoModelA);
+                var operatioResult = _featureA.CreatePost(dtoModelA);
 
                 if (operatioResult.Status == OperationsStatus.Success)
                 {

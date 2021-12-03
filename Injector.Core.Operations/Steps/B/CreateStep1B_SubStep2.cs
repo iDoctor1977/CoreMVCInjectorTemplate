@@ -5,9 +5,9 @@ using System;
 
 namespace Injector.Core.Operator.Steps.B
 {
-    public class CreateStep1B_SubStep2 : BaseStep, ISubStep<OperationResult<CaseDTOModelB>, OperationResult<CaseDTOModelB>>
+    public class CreateStep1B_SubStep2 : ISubStep<OperationResult<CaseDTOModelB>, OperationResult<CaseDTOModelB>>
     {
-        public CreateStep1B_SubStep2(IServiceProvider service) : base(service) { }
+        public CreateStep1B_SubStep2(IServiceProvider service) { }
 
         public OperationResult<CaseDTOModelB> Execute(OperationResult<CaseDTOModelB> caseDtoModel_IN)
         {

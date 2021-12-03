@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Injector.Core.Operator
 {
-    public abstract class RootPipelineBuilder<I, O> : BaseStep, IRootStep<I, O>, IBuildStep<I, O>
+    public abstract class RootPipelineBuilder<I, O> : IRootStep<I, O>, IBuildStep<I, O>
     {
         private RootAttribute _localAttribute;
         private List<ISubStep<I, O>> _root;
         private object _stepInput;
 
-        public RootPipelineBuilder(IServiceProvider service) : base(service)
+        public RootPipelineBuilder()
         {
             _localAttribute = (RootAttribute)Attribute.GetCustomAttribute(GetType(), typeof(RootAttribute));
             _root = new List<ISubStep<I, O>>();

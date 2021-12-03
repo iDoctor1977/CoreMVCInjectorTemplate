@@ -1,13 +1,21 @@
 ﻿using System;
-using Injector.Web.Controllers;
+using AutoMapper;
+using Injector.Common.IFeatures;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Frontend.Controllers
 {
-    public class ControllerB : BaseController
+    public class ControllerB : Controller
     {
-        public ControllerB(IServiceProvider service) : base(service) { }
+        private readonly IMapper _mapper;
+        private readonly IFeatureB _featureB;
+
+        public ControllerB(IServiceProvider service) {
+            _mapper = service.GetRequiredService<IMapper>();
+            _featureB = service.GetRequiredService<IFeatureB>();
+        }
 
         #region HTTP OPERATIONS
 

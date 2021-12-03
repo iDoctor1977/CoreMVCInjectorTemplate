@@ -6,9 +6,9 @@ using System;
 namespace Injector.Core.Operator.Steps.A
 {
     [Leaf(nameof(DeleteStep1A))]
-    public class DeleteStep1A_SubStep1 : BaseStep, ISubStep<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>
+    public class DeleteStep1A_SubStep1 : ISubStep<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>
     {
-        public DeleteStep1A_SubStep1(IServiceProvider service) : base(service) { }
+        public DeleteStep1A_SubStep1(IServiceProvider service) { }
 
         public OperationResult<CaseDTOModelA> Execute(OperationResult<CaseDTOModelA> caseDtoModel_IN)
         {

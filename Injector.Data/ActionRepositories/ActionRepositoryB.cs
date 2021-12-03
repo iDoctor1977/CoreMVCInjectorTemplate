@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using Injector.Common.DTOModels;
-using Injector.Common.Enums;
 using Injector.Common.IActionRepositories;
-using Injector.Data.ADOModels;
 
 namespace Injector.Common.ActionRepositories
 {
-    public class ActionRepositoryB : BaseActionRepository, IActionRepositoryB
+    public class ActionRepositoryB : IActionRepositoryB
     {
-        public ActionRepositoryB(IServiceProvider service) : base(service) { }
+        public ActionRepositoryB(IServiceProvider service){ }
 
         public OperationResult<bool> CreateValue(DTOModelB dtoModelB)
         {
             // qui va fatto il mapping
             // qui vengono create le Entity
             // qui viene chiamato il repository
-            EntityB entityB = BaseActionRepository_Mapper.Map<EntityB>(dtoModelB);
 
             throw new NotImplementedException();
         }

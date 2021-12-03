@@ -8,7 +8,7 @@ namespace Injector.Core.Operator.Steps.B
     [Root]
     public class CreateStep1B : RootPipelineBuilder<OperationResult<CaseDTOModelB>, OperationResult<CaseDTOModelB>>
     {
-        public CreateStep1B(IServiceProvider service) : base(service) { }
+        public CreateStep1B(IServiceProvider service) { }
 
         protected override OperationResult<CaseDTOModelB> ExecuteRootStep(OperationResult<CaseDTOModelB> caseDtoModel_IN)
         {

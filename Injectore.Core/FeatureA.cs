@@ -3,22 +3,30 @@ using Injector.Common;
 using Injector.Common.DTOModels;
 using Injector.Common.Enums;
 using Injector.Common.IFeatures;
+using Injector.Common.ISuppliers;
 using Injector.Core.CaseDTOModels;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Injector.Core.Features
+namespace Injector.Core
 {
-    public class FeatureA : BaseFeature, IFeatureA
+    public class FeatureA : IFeatureA
     {
-        public FeatureA(IServiceProvider service) : base(service) { }
+        private readonly IOperatorSupplier _operatorSupplier;
+
+        public FeatureA(IServiceProvider service) {
+            _operatorSupplier = service.GetRequiredService<IOperatorSupplier>();
+        }
 
         public OperationResult<bool> CreatePost(DTOModelA dtoModelA)
         {
             var caseModel = new CaseDTOModelA(dtoModelA);
 
-            caseModel = (CaseDTOModelA)BaseFeature_OperatorSupplier.CalculatePercentualValueA(caseModel);
-            caseModel = (CaseDTOModelA)BaseFeature_OperatorSupplier.CalculateStocasticValueA(caseModel);
-            BaseFeature_OperatorSupplier.SplitValueA(caseModel);
-            BaseFeature_OperatorSupplier.CreateValueA(caseModel);
+            // esempio di chiamata a funzione
+            //caseModel = (CaseDTOModelA)_operatorSupplier.CalculatePercentualValueA(caseModel);
+            //caseModel = (CaseDTOModelA)_operatorSupplier.CalculateStocasticValueA(caseModel);
+            //_operatorSupplier.SplitValueA(caseModel);
+
+            _operatorSupplier.CreateValueA(caseModel);
 
             var operationResult = new OperationResult<bool>
             {

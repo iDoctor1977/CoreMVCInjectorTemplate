@@ -1,21 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 using Injector.Common.DTOModels;
 using Injector.Common.Enums;
 using Injector.Common.IActionRepositories;
 using Injector.Data.ADOModels;
+using Injector.Data.IRepositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Common.ActionRepositories
 {
-    public class ActionRepositoryA : BaseActionRepository, IActionRepositoryA
+    public class ActionRepositoryA : IActionRepositoryA
     {
-        public ActionRepositoryA(IServiceProvider service) : base(service) { }
+        private readonly IMapper _mapper;
+        private readonly IRepositoryA _repositoryA;
+
+        public ActionRepositoryA(IServiceProvider service) {
+            _mapper = service.GetRequiredService<IMapper>();
+            _repositoryA = service.GetRequiredService<IRepositoryA>();
+        }
 
         public OperationResult<bool> CreateValue(DTOModelA dtoModelA)
         {
-            EntityA entityA = BaseActionRepository_Mapper.Map<EntityA>(dtoModelA);
+            EntityA entityA = _mapper.Map<EntityA>(dtoModelA);
 
-            if (GetRepositoryA.CreateEntity(entityA) > 0)
+            if (_repositoryA.CreateEntity(entityA) > 0)
             {
                 return new OperationResult<bool> {
                     Value = true,

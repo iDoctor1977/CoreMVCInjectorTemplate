@@ -3,11 +3,11 @@ using Injector.Common.DTOModels;
 using Injector.Common.IFeatures;
 using System;
 
-namespace Injector.Core.Features
+namespace Injector.Core
 {
-    public class FeatureB : BaseFeature, IFeatureB
+    public class FeatureB : IFeatureB
     {
-        public FeatureB(IServiceProvider service) : base(service) { }
+        public FeatureB(IServiceProvider service) { }
 
         public OperationResult<bool> CreatePost(DTOModelB dtoModelB)
         {

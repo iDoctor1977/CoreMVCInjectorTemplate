@@ -8,7 +8,7 @@ namespace Injector.Core.Operator.Steps.A
     [Root]
     public class DeleteStep1A : RootPipelineBuilder<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>
     {
-        public DeleteStep1A(IServiceProvider service) : base(service) { }
+        public DeleteStep1A(IServiceProvider service) { }
 
         protected override OperationResult<CaseDTOModelA> ExecuteRootStep(OperationResult<CaseDTOModelA> caseDtoModel_IN)
         {
