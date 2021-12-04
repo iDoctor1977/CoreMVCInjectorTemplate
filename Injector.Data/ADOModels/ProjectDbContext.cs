@@ -23,8 +23,6 @@ namespace Injector.Data.ADOModels
         public ProjectDbContext(DbContextOptions<ProjectDbContext> options) : base(options) { }
 
         public DbSet<EntityA> EntitiesA { get; set; }
-        public DbSet<EntityB> EntitiesB { get; set; }
-        public DbSet<EntityC> EntitiesC { get; set; }
 
         private string CreateConnectionStringPath() {
             var folder = Environment.SpecialFolder.LocalApplicationData;
@@ -40,8 +38,6 @@ namespace Injector.Data.ADOModels
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EntityA>().ToTable("EntityA");
-            modelBuilder.Entity<EntityB>().ToTable("EntityB");
-            modelBuilder.Entity<EntityC>().ToTable("EntityC");
         }
     }
 }

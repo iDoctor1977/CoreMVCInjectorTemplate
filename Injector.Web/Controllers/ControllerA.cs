@@ -53,44 +53,6 @@ namespace Injector.Frontend.Controllers
             return RedirectToAction("Home");
         }
 
-        [HttpGet]
-        public ActionResult Delete(Guid idA)
-        {
-            return RedirectToAction("Home");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(VMDeleteA vmDeleteA)
-        {
-            return RedirectToAction("Home");
-        }
-
-        [HttpGet]
-        public ActionResult Edit(Guid idA)
-        {
-            return RedirectToAction("Home");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(VMEditA vmEditA)
-        {
-            return RedirectToAction("Home");
-        }
-
-        [HttpGet]
-        public ActionResult Details(Guid idA)
-        {
-            return RedirectToAction("Home");
-        }
-
-        [HttpGet]
-        public ActionResult List()
-        {
-            return RedirectToAction("Home");
-        }
-
         #endregion
     }
 }

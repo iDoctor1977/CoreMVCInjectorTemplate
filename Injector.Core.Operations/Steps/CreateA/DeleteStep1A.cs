@@ -3,7 +3,7 @@ using Injector.Common.Enums;
 using Injector.Core.CaseDTOModels;
 using System;
 
-namespace Injector.Core.Operator.Steps.A
+namespace Injector.Core.Operator.Steps.CreateA
 {
     [Root]
     public class DeleteStep1A : RootPipelineBuilder<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>

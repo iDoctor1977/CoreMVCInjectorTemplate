@@ -3,7 +3,7 @@ using Injector.Core.CaseDTOModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Injector.Core.Operator.Steps.A
+namespace Injector.Core.Operator.Steps.CreateA
 {
     [Root]
     public class CreateStep1A : RootPipelineBuilder<CaseDTOModelA, CaseDTOModelA>
