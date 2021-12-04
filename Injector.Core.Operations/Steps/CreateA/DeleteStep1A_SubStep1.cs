@@ -3,7 +3,7 @@ using Injector.Common.Enums;
 using Injector.Core.CaseDTOModels;
 using System;
 
-namespace Injector.Core.Operator.Steps.A
+namespace Injector.Core.Operator.Steps.CreateA
 {
     [Leaf(nameof(DeleteStep1A))]
     public class DeleteStep1A_SubStep1 : ISubStep<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>

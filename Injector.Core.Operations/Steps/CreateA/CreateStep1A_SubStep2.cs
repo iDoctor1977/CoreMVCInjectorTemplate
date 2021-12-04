@@ -1,7 +1,7 @@
 ﻿using Injector.Core.CaseDTOModels;
 using System;
 
-namespace Injector.Core.Operator.Steps.A
+namespace Injector.Core.Operator.Steps.CreateA
 {
     [Leaf(nameof(CreateStep1A))]
     public class CreateStep1A_SubStep2 : ISubStep<CaseDTOModelA, CaseDTOModelA>

@@ -5,8 +5,9 @@ using Injector.Common.ISuppliers;
 using Injector.Common.Repositories;
 using Injector.Core;
 using Injector.Core.Operator;
-using Injector.Core.Operator.Steps.A;
+using Injector.Core.Operator.Steps.CreateA;
 using Injector.Data.IRepositories;
+using Injector.Data.MapperProfiles;
 using Injector.Web.MapperProfiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,23 +34,21 @@ namespace Injector.Web
             services.AddTransient<IOperatorSupplier, OperatorSupplier>();
 
             services.AddTransient<IFeatureA, FeatureA>();
-            services.AddTransient<IFeatureB, FeatureB>();
 
             services.AddTransient<CreateStep1A, CreateStep1A>();
             services.AddTransient<CreateStep1A_SubStep1, CreateStep1A_SubStep1>();
             services.AddTransient<CreateStep1A_SubStep2, CreateStep1A_SubStep2>();
 
             services.AddTransient<IActionRepositoryA, ActionRepositoryA>();
-            services.AddTransient<IActionRepositoryB, ActionRepositoryB>();
 
             services.AddTransient<IRepositoryA, RepositoryA>();
-            services.AddTransient<IRepositoryB, RepositoryB>();
 
             #endregion
 
             #region AUTOMAPPER
 
-            services.AddAutoMapper(typeof(MappingProfile));
+            services.AddAutoMapper(typeof(WebMappingProfile));
+            services.AddAutoMapper(typeof(DataMappingProfile));
 
             #endregion
 
