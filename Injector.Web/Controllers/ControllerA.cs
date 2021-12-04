@@ -19,8 +19,6 @@ namespace Injector.Frontend.Controllers
             _featureA = service.GetRequiredService<IFeatureA>();
         }
 
-        #region HTTP OPERATIONS
-
         [HttpGet]
         public ActionResult Create()
         {
@@ -40,7 +38,7 @@ namespace Injector.Frontend.Controllers
         {
             if (ModelState.IsValid)
             {
-                DTOModelA dtoModelA = _mapper.Map<DTOModelA>(vmCreateA);
+                var dtoModelA = _mapper.Map<DTOModelA>(vmCreateA);
 
                 var operatioResult = _featureA.CreatePost(dtoModelA);
 
@@ -52,7 +50,5 @@ namespace Injector.Frontend.Controllers
 
             return RedirectToAction("Home");
         }
-
-        #endregion
     }
 }
