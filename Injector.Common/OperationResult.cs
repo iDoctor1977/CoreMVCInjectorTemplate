@@ -6,7 +6,7 @@ namespace Injector.Common
     {
         public OperationResult() { }
 
-        public T Value { get; set; }
+        public T Object { get; set; }
         public OperationsStatus Status { get; set; }
         public string Message { get; set; }
     }

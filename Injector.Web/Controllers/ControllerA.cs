@@ -41,7 +41,7 @@ namespace Injector.Frontend.Controllers
                 var dtoModelA = _mapper.Map<DTOModelA>(vmCreateA);
 
                 var operatioResult = _featureA.CreatePost(dtoModelA);
-                if (operatioResult.Value)
+                if (operatioResult.Object)
                 {
                     return RedirectToAction("CreateA");
                 }

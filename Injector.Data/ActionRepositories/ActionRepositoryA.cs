@@ -27,14 +27,14 @@ namespace Injector.Common.ActionRepositories
             if (_repositoryA.CreateEntity(entityA) > 0)
             {
                 return new OperationResult<bool> {
-                    Value = true,
+                    Object = true,
                     Message = OperationsStatus.Success.ToString(),
                     Status = OperationsStatus.Success
                 };
             }
 
             return new OperationResult<bool> { 
-                Value = false,
+                Object = false,
                 Message = OperationsStatus.Error.ToString(),
                 Status = OperationsStatus.Error
             };

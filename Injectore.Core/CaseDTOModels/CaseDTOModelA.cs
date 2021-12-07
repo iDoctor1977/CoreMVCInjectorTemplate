@@ -14,7 +14,7 @@ namespace Injector.Core.CaseDTOModels
 
         public DTOModelA GetDTOModel()
         {
-            consolidate();
+            Consolidate();
 
             return dtoModelA;
         }
@@ -24,7 +24,7 @@ namespace Injector.Core.CaseDTOModels
             dtoModelA.Name = name;
         }
 
-        public void consolidate()
+        public void Consolidate()
         {
 
         }

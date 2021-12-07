@@ -30,7 +30,7 @@ namespace Injector.Core
 
             var operationResult = new OperationResult<bool>
             {
-                Value = true,
+                Object = true,
                 Message = OperationsStatus.Success.ToString(),
                 Status = OperationsStatus.Success
             };
