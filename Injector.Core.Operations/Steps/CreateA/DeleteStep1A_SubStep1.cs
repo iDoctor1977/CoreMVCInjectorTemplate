@@ -1,16 +1,17 @@
 using Injector.Common;
+using Injector.Common.DTOModels;
 using Injector.Common.Enums;
-using Injector.Core.CaseDTOModels;
+using Injector.Common.ICaseDTOModels;
 using System;
 
 namespace Injector.Core.Operator.Steps.CreateA
 {
     [Leaf(nameof(DeleteStep1A))]
-    public class DeleteStep1A_SubStep1 : ISubStep<OperationResult<CaseDTOModelA>, OperationResult<CaseDTOModelA>>
+    public class DeleteStep1A_SubStep1 : ISubStep<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>>
     {
         public DeleteStep1A_SubStep1(IServiceProvider service) { }
 
-        public OperationResult<CaseDTOModelA> Execute(OperationResult<CaseDTOModelA> caseDtoModel_IN)
+        public OperationResult<ICaseDTOModel<DTOModelA>> Execute(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModel_IN)
         {
             if (caseDtoModel_IN.Status == OperationsStatus.Success)
             {

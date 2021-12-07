@@ -11,7 +11,7 @@ namespace Injector.Core.Operator
 
         protected override ICaseDTOModel<DTOModelA> CreateValueA_Pipeline(ICaseDTOModel<DTOModelA> caseDTOModelA)
         {
-            caseDTOModelA = _createStep1A.AddStep(_createStep1A_SubStep1).AddStep(_createStep1A_SubStep2).Execute((CaseDTOModelA)caseDTOModelA);
+            caseDTOModelA = _createStep1A.AddStep(_createStep1A_SubStep1).AddStep(_createStep1A_SubStep2).Execute(caseDTOModelA);
 
             return caseDTOModelA;
         }

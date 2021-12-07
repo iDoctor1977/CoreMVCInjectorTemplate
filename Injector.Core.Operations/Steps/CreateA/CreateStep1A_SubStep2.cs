@@ -1,14 +1,15 @@
-﻿using Injector.Core.CaseDTOModels;
+﻿using Injector.Common.DTOModels;
+using Injector.Common.ICaseDTOModels;
 using System;
 
 namespace Injector.Core.Operator.Steps.CreateA
 {
     [Leaf(nameof(CreateStep1A))]
-    public class CreateStep1A_SubStep2 : ISubStep<CaseDTOModelA, CaseDTOModelA>
+    public class CreateStep1A_SubStep2 : ISubStep<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>>
     {
         public CreateStep1A_SubStep2(IServiceProvider service) { }
 
-        public CaseDTOModelA Execute(CaseDTOModelA caseDtoModel_IN)
+        public ICaseDTOModel<DTOModelA> Execute(ICaseDTOModel<DTOModelA> caseDtoModel_IN)
         {
             // Read
 
