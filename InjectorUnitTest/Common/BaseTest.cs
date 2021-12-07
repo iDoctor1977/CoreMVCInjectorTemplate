@@ -1,8 +1,6 @@
-﻿using Injector.Data.ADOModels;
-using Injector.Data.IRepositories;
+﻿using Injector.Data.IRepositories;
 using Injector.Web;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;

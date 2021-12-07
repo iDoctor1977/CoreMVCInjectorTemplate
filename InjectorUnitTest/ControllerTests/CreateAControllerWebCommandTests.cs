@@ -12,7 +12,7 @@ namespace InjectorUnitTest.ControllerTests
     #region TEST AREA
 
     [TestFixture]
-    public class CreateAControllerWebCommandsTest : BaseTest
+    public class CreateAControllerWebCommandTests : BaseTest
     {
         [Test(Description = "Verifica del funzionamnebto del comand CREATE")]
         public void CreateCommandWithValidInput()
