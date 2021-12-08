@@ -5,23 +5,28 @@ namespace Injector.Core.CaseDTOModels
 {
     public class CaseDTOModelA : ABaseCaseDTOModel<ABaseDTOModel>, ICaseDTOModel<DTOModelA>
     {
-        protected DTOModelA dtoModelA;
+        protected DTOModelA _dtoModelA;
 
         public CaseDTOModelA(DTOModelA dtoModelA)
         {
-            this.dtoModelA = dtoModelA;
+            this._dtoModelA = dtoModelA;
         }
 
         public DTOModelA GetDTOModel()
         {
             Consolidate();
 
-            return dtoModelA;
+            return _dtoModelA;
+        }
+
+        public void SetDTOModel(DTOModelA dtoModel)
+        {
+            _dtoModelA = dtoModel;
         }
 
         public void setName (string name)
         {
-            dtoModelA.Name = name;
+            _dtoModelA.Name = name;
         }
 
         public void Consolidate()
@@ -31,7 +36,7 @@ namespace Injector.Core.CaseDTOModels
 
         public bool IsModelValid()
         {
-            bool value = !string.IsNullOrWhiteSpace(dtoModelA.Name);
+            bool value = !string.IsNullOrWhiteSpace(_dtoModelA.Name);
 
             return value;
         }
