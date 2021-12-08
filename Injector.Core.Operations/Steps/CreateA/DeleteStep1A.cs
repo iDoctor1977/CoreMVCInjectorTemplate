@@ -1,7 +1,9 @@
 ﻿using Injector.Common;
 using Injector.Common.DTOModels;
 using Injector.Common.Enums;
+using Injector.Common.IActionRepositories;
 using Injector.Common.ICaseDTOModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Injector.Core.Operator.Steps.CreateA
@@ -9,18 +11,23 @@ namespace Injector.Core.Operator.Steps.CreateA
     [Root]
     public class DeleteStep1A : RootPipelineBuilder<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>>
     {
-        public DeleteStep1A(IServiceProvider service) { }
+        private readonly IActionRepositoryA _actionRepositoryA;
+        public DeleteStep1A(IServiceProvider service)
+        {
+            _actionRepositoryA = service.GetRequiredService<IActionRepositoryA>();
+        }
 
         protected override OperationResult<ICaseDTOModel<DTOModelA>> ExecuteRootStep(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModel_IN)
         {
-            if (caseDtoModel_IN.Status == OperationsStatus.Success)
-            {
-                // Read
+            // Read
 
-                // Do
+            // Do
+            var operationResult = _actionRepositoryA.DeleteValue(caseDtoModel_IN.Value.GetDTOModel());
 
-                // Write
-            }
+            // Write
+            caseDtoModel_IN.Value.SetDTOModel(operationResult.Value);
+            caseDtoModel_IN.Status = operationResult.Status;
+            caseDtoModel_IN.Message = operationResult.Message;
 
             return caseDtoModel_IN;
         }

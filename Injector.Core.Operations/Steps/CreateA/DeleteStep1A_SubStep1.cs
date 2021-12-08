@@ -20,7 +20,12 @@ namespace Injector.Core.Operator.Steps.CreateA
                 // Do
 
                 // Write
+                return caseDtoModel_IN;
             }
+
+            caseDtoModel_IN.Value.SetDTOModel(null);
+            caseDtoModel_IN.Status = OperationsStatus.Error;
+            caseDtoModel_IN.Message = OperationsStatus.Error.ToString();
 
             return caseDtoModel_IN;
         }

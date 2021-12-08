@@ -20,32 +20,29 @@ namespace Injector.Common.ActionRepositories
             _repositoryA = service.GetRequiredService<IRepositoryA>();
         }
 
-        public OperationResult<bool> CreateValue(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> CreateValue(DTOModelA dtoModelA)
         {
             EntityA entityA = _mapper.Map<EntityA>(dtoModelA);
 
             if (_repositoryA.CreateEntity(entityA) > 0)
             {
-                return new OperationResult<bool> {
-                    Object = true,
+                dtoModelA = _mapper.Map<DTOModelA>(entityA);
+
+                return new OperationResult<DTOModelA> {
+                    Value = dtoModelA,
                     Message = OperationsStatus.Success.ToString(),
                     Status = OperationsStatus.Success
                 };
             }
 
-            return new OperationResult<bool> { 
-                Object = false,
+            return new OperationResult<DTOModelA> {
+                Value = null,
                 Message = OperationsStatus.Error.ToString(),
                 Status = OperationsStatus.Error
             };
         }
 
-        public OperationResult<bool> DeleteValue(DTOModelA dtoModelA)
-        {
-            throw new NotImplementedException();
-        }
-
-        public OperationResult<IEnumerable<DTOModelA>> ReadValues()
+        public OperationResult<DTOModelA> DeleteValue(DTOModelA dtoModelA)
         {
             throw new NotImplementedException();
         }
@@ -55,7 +52,12 @@ namespace Injector.Common.ActionRepositories
             throw new NotImplementedException();
         }
 
-        public OperationResult<bool> UpdateValue(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> UpdateValue(DTOModelA dtoModelA)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OperationResult<IEnumerable<DTOModelA>> ReadValues()
         {
             throw new NotImplementedException();
         }
