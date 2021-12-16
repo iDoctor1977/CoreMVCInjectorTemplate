@@ -32,7 +32,9 @@ namespace InjectorUnitTest.ControllerTests
             var result = controllerATest.Create(vmCreateA);
 
             // ASSERT
-            result.Should().Be("Create");
+            result.Should().BeOfType<ViewResult>();
+            result.Model.Should().BeOfType<VMCreateA>();
+            result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
             MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<EntityA>())), Times.Once());

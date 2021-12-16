@@ -34,7 +34,7 @@ namespace Injector.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(VMCreateA vmCreateA)
+        public ViewResult Create(VMCreateA vmCreateA)
         {
             if (ModelState.IsValid)
             {
@@ -43,11 +43,13 @@ namespace Injector.Web.Controllers
                 var operatioResult = _featureA.CreatePost(dtoModelA);
                 if (operatioResult.Status == OperationsStatus.Success)
                 {
-                    return RedirectToAction("Create");
+                    var vmModelA = _mapper.Map<VMCreateA>(operatioResult.Value);
+
+                    return View(vmModelA);
                 }
             }
 
-            return RedirectToAction("Home");
+            return View();
         }
     }
 }

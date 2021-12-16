@@ -48,7 +48,10 @@ namespace Injector.Web
             {
                 services.AddTransient<IRepositoryA, RepositoryAMock>();
             }
-            services.AddTransient<IRepositoryA, RepositoryA>();
+            else
+            {
+                services.AddTransient<IRepositoryA, RepositoryA>();
+            }
 
             #endregion
 
