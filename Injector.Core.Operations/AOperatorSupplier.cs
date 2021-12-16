@@ -14,7 +14,7 @@ namespace Injector.Core.Operator
         protected readonly CreateStep1A_SubStep1 _createStep1A_SubStep1;
         protected readonly CreateStep1A_SubStep2 _createStep1A_SubStep2;
 
-        public AOperatorSupplier(IServiceProvider service)
+        protected AOperatorSupplier(IServiceProvider service)
         {
             _createStep1A = service.GetRequiredService<CreateStep1A>();
             _createStep1A_SubStep1 = service.GetRequiredService<CreateStep1A_SubStep1>();

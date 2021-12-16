@@ -1,3 +1,4 @@
+using System;
 using Injector.Common.IActionRepositories;
 using Injector.Common.IFeatures;
 using Injector.Common.ISuppliers;
@@ -7,6 +8,7 @@ using Injector.Core.Operator.Steps.CreateA;
 using Injector.Data.Depots;
 using Injector.Data.IRepositories;
 using Injector.Data.MapperProfiles;
+using Injector.Data.Mocks;
 using Injector.Data.Repositories;
 using Injector.Web.MapperProfiles;
 using Injectore.Core;
@@ -42,6 +44,10 @@ namespace Injector.Web
 
             services.AddTransient<IDepotA, DepotA>();
 
+            if (Configuration["mocked"].Equals("true", StringComparison.OrdinalIgnoreCase))
+            {
+                services.AddTransient<IRepositoryA, RepositoryAMock>();
+            }
             services.AddTransient<IRepositoryA, RepositoryA>();
 
             #endregion
