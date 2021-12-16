@@ -4,10 +4,10 @@ using Injector.Common.DTOModels;
 using Injector.Common.ICaseDTOModels;
 using Injector.Common.IFeatures;
 using Injector.Common.ISuppliers;
-using Injector.Core.CaseDTOModels;
+using Injectore.Core.CaseDTOModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Injector.Core
+namespace Injectore.Core
 {
     public class FeatureA : IFeatureA
     {

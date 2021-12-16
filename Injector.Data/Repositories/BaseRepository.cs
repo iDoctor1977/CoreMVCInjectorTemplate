@@ -1,7 +1,7 @@
-﻿using Injector.Data.ADOModels;
+﻿using Injector.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Injector.Common.Repositories
+namespace Injector.Data.Repositories
 {
     public class BaseRepository
     {

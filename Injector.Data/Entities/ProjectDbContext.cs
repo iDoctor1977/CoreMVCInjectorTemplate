@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 
-namespace Injector.Data.ADOModels
+namespace Injector.Data.Entities
 {
     public class ProjectDbContext : DbContext
     {

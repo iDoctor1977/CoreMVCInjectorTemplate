@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Injector.Data.ADOModels;
+using Injector.Data.Entities;
 using Injector.Data.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Injector.Common.Repositories
+namespace Injector.Data.Repositories
 {
     public class RepositoryA : BaseRepository, IRepositoryA
     {

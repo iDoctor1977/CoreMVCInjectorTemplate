@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Injector.Data.ADOModels
+namespace Injector.Data.Entities
 {
     public class SoftDelete
     {

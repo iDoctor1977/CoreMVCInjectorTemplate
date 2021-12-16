@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Injector.Common;
 using Injector.Common.DTOModels;
 using Injector.Common.Enums;
 using Injector.Common.IActionRepositories;
-using Injector.Data.ADOModels;
+using Injector.Data.Entities;
 using Injector.Data.IRepositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Injector.Common.ActionRepositories
+namespace Injector.Data.Depots
 {
-    public class ActionRepositoryA : IActionRepositoryA
+    public class DepotA : IDepotA
     {
         private readonly IMapper _mapper;
         private readonly IRepositoryA _repositoryA;
 
-        public ActionRepositoryA(IServiceProvider service) {
+        public DepotA(IServiceProvider service) {
             _mapper = service.GetRequiredService<IMapper>();
             _repositoryA = service.GetRequiredService<IRepositoryA>();
         }

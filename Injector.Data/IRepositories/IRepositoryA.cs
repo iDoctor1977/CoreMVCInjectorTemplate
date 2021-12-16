@@ -1,5 +1,5 @@
-﻿using Injector.Data.ADOModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Injector.Data.Entities;
 
 namespace Injector.Data.IRepositories
 {

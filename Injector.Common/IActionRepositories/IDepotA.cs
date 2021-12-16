@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Injector.Common.IActionRepositories
 {
-    public interface IActionRepositoryA
+    public interface IDepotA
     {
         OperationResult<DTOModelA> CreateValue(DTOModelA dtoModelA);
         OperationResult<DTOModelA> UpdateValue(DTOModelA dtoModelA);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Injector.Core.Operator
+namespace Injector.Core.Operator.Attributes
 {
     public class RootAttribute : Attribute
     {

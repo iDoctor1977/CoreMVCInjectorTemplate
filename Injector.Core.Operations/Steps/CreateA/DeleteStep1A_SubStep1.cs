@@ -3,6 +3,7 @@ using Injector.Common.DTOModels;
 using Injector.Common.Enums;
 using Injector.Common.ICaseDTOModels;
 using System;
+using Injector.Core.Operator.Attributes;
 
 namespace Injector.Core.Operator.Steps.CreateA
 {

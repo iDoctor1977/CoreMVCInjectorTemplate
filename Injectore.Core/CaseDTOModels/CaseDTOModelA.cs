@@ -1,7 +1,7 @@
 ﻿using Injector.Common.DTOModels;
 using Injector.Common.ICaseDTOModels;
 
-namespace Injector.Core.CaseDTOModels
+namespace Injectore.Core.CaseDTOModels
 {
     public class CaseDTOModelA : ABaseCaseDTOModel<ABaseDTOModel>, ICaseDTOModel<DTOModelA>
     {

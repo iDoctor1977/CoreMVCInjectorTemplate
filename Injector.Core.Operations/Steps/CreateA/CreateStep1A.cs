@@ -4,15 +4,16 @@ using Injector.Common.IActionRepositories;
 using Injector.Common.ICaseDTOModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Injector.Core.Operator.Attributes;
 
 namespace Injector.Core.Operator.Steps.CreateA
 {
     [Root]
     public class CreateStep1A : RootPipelineBuilder<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>>
     {
-        private readonly IActionRepositoryA _actionRepositoryA;
+        private readonly IDepotA _ia;
         public CreateStep1A(IServiceProvider service) {
-            _actionRepositoryA = service.GetRequiredService<IActionRepositoryA>();
+            _ia = service.GetRequiredService<IDepotA>();
         }
 
         protected override OperationResult<ICaseDTOModel<DTOModelA>> ExecuteRootStep(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModel_IN)
@@ -20,7 +21,7 @@ namespace Injector.Core.Operator.Steps.CreateA
             // Read
 
             // Do
-            var operationResult = _actionRepositoryA.CreateValue(caseDtoModel_IN.Value.GetDTOModel());
+            var operationResult = _ia.CreateValue(caseDtoModel_IN.Value.GetDTOModel());
 
             // Write
             caseDtoModel_IN.Value.SetDTOModel(operationResult.Value);
