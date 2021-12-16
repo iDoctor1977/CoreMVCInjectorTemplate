@@ -43,7 +43,7 @@ namespace Injector.Web.Controllers
                 var operatioResult = _featureA.CreatePost(dtoModelA);
                 if (operatioResult.Status == OperationsStatus.Success)
                 {
-                    return RedirectToAction("A");
+                    return RedirectToAction("Create");
                 }
             }
 

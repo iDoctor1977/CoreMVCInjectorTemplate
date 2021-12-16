@@ -29,10 +29,10 @@ namespace InjectorUnitTest.ControllerTests
             var controllerATest = new AController(ServiceProvider);
 
             // ACT
-            RedirectToActionResult result = (RedirectToActionResult)controllerATest.Create(vmCreateA);
+            var result = controllerATest.Create(vmCreateA);
 
             // ASSERT
-            result.ActionName.Should().Be("CreateA");
+            result.Should().Be("Create");
 
             // Verify that DoesSomething was called only once
             MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<EntityA>())), Times.Once());

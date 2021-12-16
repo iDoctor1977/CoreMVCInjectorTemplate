@@ -11,24 +11,24 @@ namespace Injector.Core.Operator.Steps.CreateA
     [Root]
     public class CreateStep1A : RootPipelineBuilder<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>>
     {
-        private readonly IDepotA _ia;
+        private readonly IDepotA _depotA;
         public CreateStep1A(IServiceProvider service) {
-            _ia = service.GetRequiredService<IDepotA>();
+            _depotA = service.GetRequiredService<IDepotA>();
         }
 
-        protected override OperationResult<ICaseDTOModel<DTOModelA>> ExecuteRootStep(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModel_IN)
+        protected override OperationResult<ICaseDTOModel<DTOModelA>> ExecuteRootStep(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModelIn)
         {
             // Read
 
             // Do
-            var operationResult = _ia.CreateValue(caseDtoModel_IN.Value.GetDTOModel());
+            var operationResult = _depotA.CreateValue(caseDtoModelIn.Value.GetDTOModel());
 
             // Write
-            caseDtoModel_IN.Value.SetDTOModel(operationResult.Value);
-            caseDtoModel_IN.Status = operationResult.Status;
-            caseDtoModel_IN.Message = operationResult.Message;
+            caseDtoModelIn.Value.SetDTOModel(operationResult.Value);
+            caseDtoModelIn.Status = operationResult.Status;
+            caseDtoModelIn.Message = operationResult.Message;
 
-            return caseDtoModel_IN;
+            return caseDtoModelIn;
         }
     }
 }

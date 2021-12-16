@@ -6,8 +6,8 @@ namespace Injector.Core.Operator.Steps
 {
     public abstract class RootPipelineBuilder<I, O> : IRootStep<I, O>, IBuildStep<I, O>
     {
-        private RootAttribute _localAttribute;
-        private List<ISubStep<I, O>> _root;
+        private readonly RootAttribute _localAttribute;
+        private readonly List<ISubStep<I, O>> _root;
         private object _stepInput;
 
         public RootPipelineBuilder()

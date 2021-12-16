@@ -18,19 +18,19 @@ namespace Injector.Core.Operator.Steps.CreateA
             _ia = service.GetRequiredService<IDepotA>();
         }
 
-        protected override OperationResult<ICaseDTOModel<DTOModelA>> ExecuteRootStep(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModel_IN)
+        protected override OperationResult<ICaseDTOModel<DTOModelA>> ExecuteRootStep(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModelIn)
         {
             // Read
 
             // Do
-            var operationResult = _ia.DeleteValue(caseDtoModel_IN.Value.GetDTOModel());
+            var operationResult = _ia.DeleteValue(caseDtoModelIn.Value.GetDTOModel());
 
             // Write
-            caseDtoModel_IN.Value.SetDTOModel(operationResult.Value);
-            caseDtoModel_IN.Status = operationResult.Status;
-            caseDtoModel_IN.Message = operationResult.Message;
+            caseDtoModelIn.Value.SetDTOModel(operationResult.Value);
+            caseDtoModelIn.Status = operationResult.Status;
+            caseDtoModelIn.Message = operationResult.Message;
 
-            return caseDtoModel_IN;
+            return caseDtoModelIn;
         }
     }
 }

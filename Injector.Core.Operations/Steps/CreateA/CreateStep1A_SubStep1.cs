@@ -12,23 +12,23 @@ namespace Injector.Core.Operator.Steps.CreateA
     {
         public CreateStep1A_SubStep1(IServiceProvider service) { }
 
-        public OperationResult<ICaseDTOModel<DTOModelA>> Execute(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModel_IN)
+        public OperationResult<ICaseDTOModel<DTOModelA>> Execute(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModelIn)
         {
-            if (caseDtoModel_IN.Status == OperationsStatus.Success)
+            if (caseDtoModelIn.Status == OperationsStatus.Success)
             {
                 // Read
 
                 // Do
 
                 // Write
-                return caseDtoModel_IN;
+                return caseDtoModelIn;
             }
 
-            caseDtoModel_IN.Value.SetDTOModel(null);
-            caseDtoModel_IN.Status = OperationsStatus.Error;
-            caseDtoModel_IN.Message = OperationsStatus.Error.ToString();
+            caseDtoModelIn.Value.SetDTOModel(null);
+            caseDtoModelIn.Status = OperationsStatus.Error;
+            caseDtoModelIn.Message = OperationsStatus.Error.ToString();
 
-            return caseDtoModel_IN;
+            return caseDtoModelIn;
         }
     }
 }
