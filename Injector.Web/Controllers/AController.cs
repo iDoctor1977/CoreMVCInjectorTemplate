@@ -1,20 +1,20 @@
 ﻿using System;
+using AutoMapper;
 using Injector.Common.DTOModels;
+using Injector.Common.Enums;
+using Injector.Common.IFeatures;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Injector.Common.Enums;
 using Microsoft.Extensions.DependencyInjection;
-using AutoMapper;
-using Injector.Common.IFeatures;
 
-namespace Injector.Frontend.Controllers
+namespace Injector.Web.Controllers
 {
-    public class ControllerA : Controller
+    public class AController : Controller
     {
         private readonly IMapper _mapper;
         private readonly IFeatureA _featureA;
 
-        public ControllerA(IServiceProvider service) {
+        public AController(IServiceProvider service) {
             _mapper = service.GetRequiredService<IMapper>();
             _featureA = service.GetRequiredService<IFeatureA>();
         }
@@ -41,9 +41,9 @@ namespace Injector.Frontend.Controllers
                 var dtoModelA = _mapper.Map<DTOModelA>(vmCreateA);
 
                 var operatioResult = _featureA.CreatePost(dtoModelA);
-                if (operatioResult.Value)
+                if (operatioResult.Status == OperationsStatus.Success)
                 {
-                    return RedirectToAction("CreateA");
+                    return RedirectToAction("Create");
                 }
             }
 

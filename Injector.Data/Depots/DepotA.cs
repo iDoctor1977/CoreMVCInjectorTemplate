@@ -1,51 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Injector.Common;
 using Injector.Common.DTOModels;
 using Injector.Common.Enums;
 using Injector.Common.IActionRepositories;
-using Injector.Data.ADOModels;
+using Injector.Data.Entities;
 using Injector.Data.IRepositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Injector.Common.ActionRepositories
+namespace Injector.Data.Depots
 {
-    public class ActionRepositoryA : IActionRepositoryA
+    public class DepotA : IDepotA
     {
         private readonly IMapper _mapper;
         private readonly IRepositoryA _repositoryA;
 
-        public ActionRepositoryA(IServiceProvider service) {
+        public DepotA(IServiceProvider service) {
             _mapper = service.GetRequiredService<IMapper>();
             _repositoryA = service.GetRequiredService<IRepositoryA>();
         }
 
-        public OperationResult<bool> CreateValue(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> CreateValue(DTOModelA dtoModelA)
         {
             EntityA entityA = _mapper.Map<EntityA>(dtoModelA);
 
             if (_repositoryA.CreateEntity(entityA) > 0)
             {
-                return new OperationResult<bool> {
-                    Value = true,
+                dtoModelA = _mapper.Map<DTOModelA>(entityA);
+
+                return new OperationResult<DTOModelA> {
+                    Value = dtoModelA,
                     Message = OperationsStatus.Success.ToString(),
                     Status = OperationsStatus.Success
                 };
             }
 
-            return new OperationResult<bool> { 
-                Value = false,
+            return new OperationResult<DTOModelA> {
+                Value = null,
                 Message = OperationsStatus.Error.ToString(),
                 Status = OperationsStatus.Error
             };
         }
 
-        public OperationResult<bool> DeleteValue(DTOModelA dtoModelA)
-        {
-            throw new NotImplementedException();
-        }
-
-        public OperationResult<IEnumerable<DTOModelA>> ReadValues()
+        public OperationResult<DTOModelA> DeleteValue(DTOModelA dtoModelA)
         {
             throw new NotImplementedException();
         }
@@ -55,7 +53,12 @@ namespace Injector.Common.ActionRepositories
             throw new NotImplementedException();
         }
 
-        public OperationResult<bool> UpdateValue(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> UpdateValue(DTOModelA dtoModelA)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OperationResult<IEnumerable<DTOModelA>> ReadValues()
         {
             throw new NotImplementedException();
         }

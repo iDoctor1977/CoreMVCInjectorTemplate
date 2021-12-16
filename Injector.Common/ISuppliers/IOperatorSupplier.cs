@@ -8,15 +8,13 @@ namespace Injector.Common.ISuppliers
     {
         #region OPERATIONS
 
-        public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> CreateValueA { get; }
+        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CreateValueA { get; }
 
         #endregion
 
         #region FUNCTIONS
 
-        public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> SplitValueA { get; }
-        public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> CalculateStocasticValueA { get; }
-        public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> CalculatePercentualValueA { get; }
+        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CalculateStocasticValueA { get; }
 
         #endregion
     }

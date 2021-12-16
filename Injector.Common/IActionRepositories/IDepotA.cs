@@ -1,15 +1,14 @@
 ﻿using Injector.Common.DTOModels;
-using Injector.Common.Enums;
 using System.Collections.Generic;
 
 namespace Injector.Common.IActionRepositories
 {
-    public interface IActionRepositoryA
+    public interface IDepotA
     {
-        OperationResult<bool> CreateValue(DTOModelA dtoModelA);
-        OperationResult<bool> UpdateValue(DTOModelA dtoModelA);
+        OperationResult<DTOModelA> CreateValue(DTOModelA dtoModelA);
+        OperationResult<DTOModelA> UpdateValue(DTOModelA dtoModelA);
         OperationResult<DTOModelA> ReadValue(DTOModelA dtoModelA);
-        OperationResult<bool> DeleteValue(DTOModelA dtoModelA);
+        OperationResult<DTOModelA> DeleteValue(DTOModelA dtoModelA);
         OperationResult<IEnumerable<DTOModelA>> ReadValues();
     }
 }

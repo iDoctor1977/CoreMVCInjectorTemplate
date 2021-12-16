@@ -1,4 +1,4 @@
-﻿namespace Injector.Core.CaseDTOModels
+﻿namespace Injectore.Core.CaseDTOModels
 {
     public abstract class ABaseCaseDTOModel<T>
     {

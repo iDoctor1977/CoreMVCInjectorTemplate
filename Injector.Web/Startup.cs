@@ -1,14 +1,15 @@
-using Injector.Common.ActionRepositories;
 using Injector.Common.IActionRepositories;
 using Injector.Common.IFeatures;
 using Injector.Common.ISuppliers;
-using Injector.Common.Repositories;
 using Injector.Core;
 using Injector.Core.Operator;
 using Injector.Core.Operator.Steps.CreateA;
+using Injector.Data.Depots;
 using Injector.Data.IRepositories;
 using Injector.Data.MapperProfiles;
+using Injector.Data.Repositories;
 using Injector.Web.MapperProfiles;
+using Injectore.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -39,7 +40,7 @@ namespace Injector.Web
             services.AddTransient<CreateStep1A_SubStep1, CreateStep1A_SubStep1>();
             services.AddTransient<CreateStep1A_SubStep2, CreateStep1A_SubStep2>();
 
-            services.AddTransient<IActionRepositoryA, ActionRepositoryA>();
+            services.AddTransient<IDepotA, DepotA>();
 
             services.AddTransient<IRepositoryA, RepositoryA>();
 

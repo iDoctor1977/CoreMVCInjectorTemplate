@@ -1,23 +1,34 @@
-﻿using Injector.Common.DTOModels;
+﻿using Injector.Common;
+using Injector.Common.DTOModels;
+using Injector.Common.Enums;
 using Injector.Common.ICaseDTOModels;
 using System;
+using Injector.Core.Operator.Attributes;
 
 namespace Injector.Core.Operator.Steps.CreateA
 {
     [Leaf(nameof(CreateStep1A))]
-    public class CreateStep1A_SubStep2 : ISubStep<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>>
+    public class CreateStep1A_SubStep2 : ISubStep<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>>
     {
         public CreateStep1A_SubStep2(IServiceProvider service) { }
 
-        public ICaseDTOModel<DTOModelA> Execute(ICaseDTOModel<DTOModelA> caseDtoModel_IN)
+        public OperationResult<ICaseDTOModel<DTOModelA>> Execute(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModelIn)
         {
-            // Read
+            if (caseDtoModelIn.Status == OperationsStatus.Success)
+            {
+                // Read
 
-            // Do
+                // Do
 
-            // Write
+                // Write
+                return caseDtoModelIn;
+            }
 
-            return caseDtoModel_IN;
+            caseDtoModelIn.Value.SetDTOModel(null);
+            caseDtoModelIn.Status = OperationsStatus.Error;
+            caseDtoModelIn.Message = OperationsStatus.Error.ToString();
+
+            return caseDtoModelIn;
         }
     }
 }

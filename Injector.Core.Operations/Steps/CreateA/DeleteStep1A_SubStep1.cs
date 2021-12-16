@@ -3,6 +3,7 @@ using Injector.Common.DTOModels;
 using Injector.Common.Enums;
 using Injector.Common.ICaseDTOModels;
 using System;
+using Injector.Core.Operator.Attributes;
 
 namespace Injector.Core.Operator.Steps.CreateA
 {
@@ -11,18 +12,23 @@ namespace Injector.Core.Operator.Steps.CreateA
     {
         public DeleteStep1A_SubStep1(IServiceProvider service) { }
 
-        public OperationResult<ICaseDTOModel<DTOModelA>> Execute(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModel_IN)
+        public OperationResult<ICaseDTOModel<DTOModelA>> Execute(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModelIn)
         {
-            if (caseDtoModel_IN.Status == OperationsStatus.Success)
+            if (caseDtoModelIn.Status == OperationsStatus.Success)
             {
                 // Read
 
                 // Do
 
                 // Write
+                return caseDtoModelIn;
             }
 
-            return caseDtoModel_IN;
+            caseDtoModelIn.Value.SetDTOModel(null);
+            caseDtoModelIn.Status = OperationsStatus.Error;
+            caseDtoModelIn.Message = OperationsStatus.Error.ToString();
+
+            return caseDtoModelIn;
         }
     }
 }

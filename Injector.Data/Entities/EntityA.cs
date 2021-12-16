@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Injector.Data.ADOModels
+namespace Injector.Data.Entities
 {
     public class EntityA : SoftDelete
     {

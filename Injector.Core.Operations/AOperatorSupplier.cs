@@ -1,4 +1,5 @@
-﻿using Injector.Common.DTOModels;
+﻿using Injector.Common;
+using Injector.Common.DTOModels;
 using Injector.Common.ICaseDTOModels;
 using Injector.Common.ISuppliers;
 using Injector.Core.Operator.Steps.CreateA;
@@ -20,23 +21,19 @@ namespace Injector.Core.Operator
             _createStep1A_SubStep2 = service.GetRequiredService<CreateStep1A_SubStep2>();
         }
 
-        #region OPERATIONS
+        #region PIPELINE PROCEDURES
 
-        public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> CreateValueA => CreateValueA_Pipeline;
+        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CreateValueA => CreateValueA_Pipeline;
 
-        protected abstract ICaseDTOModel<DTOModelA> CreateValueA_Pipeline(ICaseDTOModel<DTOModelA> caseDTOModelA);
+        protected abstract OperationResult<ICaseDTOModel<DTOModelA>> CreateValueA_Pipeline(OperationResult<ICaseDTOModel<DTOModelA>> caseDTOModelA);
 
         #endregion
 
         #region FUNCTIONS
 
-        public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> SplitValueA => FuncSplitValueA;
-        public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> CalculateStocasticValueA => FuncStocasticValueA;
-        public Func<ICaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>> CalculatePercentualValueA => FuncPercentualValueA;
+        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CalculateStocasticValueA => FuncStocasticValueA;
 
-        protected abstract ICaseDTOModel<DTOModelA> FuncSplitValueA(ICaseDTOModel<DTOModelA> caseDTOModelA);
-        protected abstract ICaseDTOModel<DTOModelA> FuncStocasticValueA(ICaseDTOModel<DTOModelA> caseDTOModelA);
-        protected abstract ICaseDTOModel<DTOModelA> FuncPercentualValueA(ICaseDTOModel<DTOModelA> caseDTOModelA);
+        protected abstract OperationResult<ICaseDTOModel<DTOModelA>> FuncStocasticValueA(OperationResult<ICaseDTOModel<DTOModelA>> caseDTOModelA);
 
         #endregion
     }

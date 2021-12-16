@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Injector.Common.DTOModels;
-using Injector.Data.ADOModels;
+using Injector.Data.Entities;
 
 namespace Injector.Data.MapperProfiles
 {

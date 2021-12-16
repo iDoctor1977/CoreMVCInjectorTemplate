@@ -3,7 +3,8 @@
     public interface ICaseDTOModel<T>
     {
         T GetDTOModel();
-        void consolidate();
+        void SetDTOModel(T dtoModel);
+        void Consolidate();
         bool IsModelValid();
     }
 }

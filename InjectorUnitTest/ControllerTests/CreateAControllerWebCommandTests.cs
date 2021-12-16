@@ -2,10 +2,10 @@
 using InjectorUnitTest.Common;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Injector.Frontend.Controllers;
-using Injector.Data.ADOModels;
 using Moq;
 using FluentAssertions;
+using Injector.Data.Entities;
+using Injector.Web.Controllers;
 
 namespace InjectorUnitTest.ControllerTests
 {
@@ -26,13 +26,13 @@ namespace InjectorUnitTest.ControllerTests
             };
 
             MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<EntityA>())).Returns(1);
-            var controllerATest = new ControllerA(ServiceProvider);
+            var controllerATest = new AController(ServiceProvider);
 
             // ACT
-            RedirectToActionResult result = (RedirectToActionResult)controllerATest.Create(vmCreateA);
+            var result = controllerATest.Create(vmCreateA);
 
             // ASSERT
-            result.ActionName.Should().Be("CreateA");
+            result.Should().Be("Create");
 
             // Verify that DoesSomething was called only once
             MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<EntityA>())), Times.Once());

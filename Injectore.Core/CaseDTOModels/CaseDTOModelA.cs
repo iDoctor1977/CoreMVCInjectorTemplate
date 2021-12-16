@@ -1,37 +1,42 @@
 ﻿using Injector.Common.DTOModels;
 using Injector.Common.ICaseDTOModels;
 
-namespace Injector.Core.CaseDTOModels
+namespace Injectore.Core.CaseDTOModels
 {
     public class CaseDTOModelA : ABaseCaseDTOModel<ABaseDTOModel>, ICaseDTOModel<DTOModelA>
     {
-        protected DTOModelA dtoModelA;
+        protected DTOModelA _dtoModelA;
 
         public CaseDTOModelA(DTOModelA dtoModelA)
         {
-            this.dtoModelA = dtoModelA;
+            this._dtoModelA = dtoModelA;
         }
 
         public DTOModelA GetDTOModel()
         {
-            consolidate();
+            Consolidate();
 
-            return dtoModelA;
+            return _dtoModelA;
+        }
+
+        public void SetDTOModel(DTOModelA dtoModel)
+        {
+            _dtoModelA = dtoModel;
         }
 
         public void setName (string name)
         {
-            dtoModelA.Name = name;
+            _dtoModelA.Name = name;
         }
 
-        public void consolidate()
+        public void Consolidate()
         {
 
         }
 
         public bool IsModelValid()
         {
-            bool value = !string.IsNullOrWhiteSpace(dtoModelA.Name);
+            bool value = !string.IsNullOrWhiteSpace(_dtoModelA.Name);
 
             return value;
         }

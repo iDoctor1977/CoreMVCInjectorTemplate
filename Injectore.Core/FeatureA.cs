@@ -1,13 +1,13 @@
 ﻿using System;
 using Injector.Common;
 using Injector.Common.DTOModels;
-using Injector.Common.Enums;
+using Injector.Common.ICaseDTOModels;
 using Injector.Common.IFeatures;
 using Injector.Common.ISuppliers;
-using Injector.Core.CaseDTOModels;
+using Injectore.Core.CaseDTOModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Injector.Core
+namespace Injectore.Core
 {
     public class FeatureA : IFeatureA
     {
@@ -17,25 +17,26 @@ namespace Injector.Core
             _operatorSupplier = service.GetRequiredService<IOperatorSupplier>();
         }
 
-        public OperationResult<bool> CreatePost(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> CreatePost(DTOModelA dtoModelA)
         {
-            var caseModel = new CaseDTOModelA(dtoModelA);
+            var caseModelA = new CaseDTOModelA(dtoModelA);
+            var operationResult = new OperationResult<ICaseDTOModel<DTOModelA>>(caseModelA);
 
             // esempio di chiamata a funzione
             //caseModel = (CaseDTOModelA)_operatorSupplier.CalculatePercentualValueA(caseModel);
             //caseModel = (CaseDTOModelA)_operatorSupplier.CalculateStocasticValueA(caseModel);
             //_operatorSupplier.SplitValueA(caseModel);
 
-            _operatorSupplier.CreateValueA(caseModel);
+            operationResult = _operatorSupplier.CreateValueA(operationResult);
 
-            var operationResult = new OperationResult<bool>
+            var createPostResult = new OperationResult<DTOModelA>
             {
-                Value = true,
-                Message = OperationsStatus.Success.ToString(),
-                Status = OperationsStatus.Success
+                Value = operationResult.Value.GetDTOModel(),
+                Message = operationResult.Message,
+                Status = operationResult.Status
             };
 
-            return operationResult;
+            return createPostResult;
         }
 
         public OperationResult<DTOModelA> DeleteGet(DTOModelA dtoModelA)
@@ -43,7 +44,7 @@ namespace Injector.Core
             throw new System.NotImplementedException();
         }
 
-        public OperationResult<bool> DeletePost(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> DeletePost(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }
@@ -53,7 +54,7 @@ namespace Injector.Core
             throw new System.NotImplementedException();
         }
 
-        public OperationResult<bool> EditPost(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> EditPost(DTOModelA dtoModelA)
         {
             throw new System.NotImplementedException();
         }

@@ -1,6 +1,6 @@
-﻿using Injector.Common.DTOModels;
+﻿using Injector.Common;
+using Injector.Common.DTOModels;
 using Injector.Common.ICaseDTOModels;
-using Injector.Core.CaseDTOModels;
 using System;
 
 namespace Injector.Core.Operator
@@ -9,24 +9,14 @@ namespace Injector.Core.Operator
     {
         public OperatorSupplier(IServiceProvider service) : base(service) { }
 
-        protected override ICaseDTOModel<DTOModelA> CreateValueA_Pipeline(ICaseDTOModel<DTOModelA> caseDTOModelA)
+        protected override OperationResult<ICaseDTOModel<DTOModelA>> CreateValueA_Pipeline(OperationResult<ICaseDTOModel<DTOModelA>> operationResult)
         {
-            caseDTOModelA = _createStep1A.AddStep(_createStep1A_SubStep1).AddStep(_createStep1A_SubStep2).Execute(caseDTOModelA);
+            operationResult = _createStep1A.AddStep(_createStep1A_SubStep1).AddStep(_createStep1A_SubStep2).Execute(operationResult);
 
-            return caseDTOModelA;
+            return operationResult;
         }
 
-        protected override ICaseDTOModel<DTOModelA> FuncPercentualValueA(ICaseDTOModel<DTOModelA> caseDTOModelA)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override ICaseDTOModel<DTOModelA> FuncSplitValueA(ICaseDTOModel<DTOModelA> caseDTOModelA)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override ICaseDTOModel<DTOModelA> FuncStocasticValueA(ICaseDTOModel<DTOModelA> caseDTOModelA)
+        protected override OperationResult<ICaseDTOModel<DTOModelA>> FuncStocasticValueA(OperationResult<ICaseDTOModel<DTOModelA>> operationResult)
         {
             throw new NotImplementedException();
         }
