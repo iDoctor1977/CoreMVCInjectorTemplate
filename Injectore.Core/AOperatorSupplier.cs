@@ -1,14 +1,14 @@
-﻿using Injector.Common;
+﻿using System;
+using Injector.Common;
 using Injector.Common.DTOModels;
 using Injector.Common.ICaseDTOModels;
-using Injector.Common.ISuppliers;
-using Injector.Core.Operator.Steps.CreateA;
+using Injectore.Core.Interfaces;
+using Injectore.Core.Steps.CreateA;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
-namespace Injector.Core.Operator
+namespace Injectore.Core
 {
-    public abstract class AOperatorSupplier : IOperatorSupplier
+    internal abstract class AOperatorSupplier : IOperatorSupplier
     {
         protected readonly CreateStep1A _createStep1A;
         protected readonly CreateStep1A_SubStep1 _createStep1A_SubStep1;

@@ -1,14 +1,15 @@
-﻿using Injector.Common.DTOModels;
+﻿using System;
+using Injector.Common;
+using Injector.Common.DTOModels;
 using Injector.Common.ICaseDTOModels;
-using System;
 
-namespace Injector.Common.ISuppliers
+namespace Injectore.Core.Interfaces
 {
     public interface IOperatorSupplier
     {
         #region OPERATIONS
 
-        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CreateValueA { get; }
+        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CreateValueAPipeline { get; }
 
         #endregion
 

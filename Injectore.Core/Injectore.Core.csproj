@@ -11,6 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Steps\CreateA\CreateStep1A.cs" />
+    <Compile Include="Steps\CreateA\CreateStep1A_SubStep1.cs" />
+    <Compile Include="Steps\CreateA\CreateStep1A_SubStep2.cs" />
+    <Compile Include="Steps\CreateA\DeleteStep1A.cs" />
+    <Compile Include="Steps\CreateA\DeleteStep1A_SubStep1.cs" />
+    <Compile Include="Steps\RootPipelineBuilder.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
   </ItemGroup>

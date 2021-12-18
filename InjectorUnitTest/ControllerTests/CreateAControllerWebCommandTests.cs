@@ -26,7 +26,7 @@ namespace InjectorUnitTest.ControllerTests
             };
 
             MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<EntityA>())).Returns(1);
-            var controllerATest = new AController(ServiceProvider);
+            var controllerATest = new ModelAController(ServiceProvider);
 
             // ACT
             var result = controllerATest.Create(vmCreateA);

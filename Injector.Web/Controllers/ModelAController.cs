@@ -9,12 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Web.Controllers
 {
-    public class AController : Controller
+    public class ModelAController : Controller
     {
         private readonly IMapper _mapper;
         private readonly IFeatureA _featureA;
 
-        public AController(IServiceProvider service) {
+        public ModelAController(IServiceProvider service) {
             _mapper = service.GetRequiredService<IMapper>();
             _featureA = service.GetRequiredService<IFeatureA>();
         }
@@ -39,13 +39,13 @@ namespace Injector.Web.Controllers
             if (ModelState.IsValid)
             {
                 var dtoModelA = _mapper.Map<DTOModelA>(vmCreateA);
+                var operatioResult = _featureA.CreateAndAddNewValueA(dtoModelA);
 
-                var operatioResult = _featureA.CreatePost(dtoModelA);
                 if (operatioResult.Status == OperationsStatus.Success)
                 {
-                    var vmModelA = _mapper.Map<VMCreateA>(operatioResult.Value);
+                    var vmModel = _mapper.Map<VMCreateA>(operatioResult.Value);
 
-                    return View(vmModelA);
+                    return View(vmModel);
                 }
             }
 

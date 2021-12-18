@@ -3,11 +3,11 @@ using Injector.Common;
 using Injector.Common.DTOModels;
 using Injector.Common.ICaseDTOModels;
 using Injector.Common.IFeatures;
-using Injector.Common.ISuppliers;
 using Injectore.Core.CaseDTOModels;
+using Injectore.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Injectore.Core
+namespace Injectore.Core.Features
 {
     public class FeatureA : IFeatureA
     {
@@ -17,7 +17,7 @@ namespace Injectore.Core
             _operatorSupplier = service.GetRequiredService<IOperatorSupplier>();
         }
 
-        public OperationResult<DTOModelA> CreatePost(DTOModelA dtoModelA)
+        public OperationResult<DTOModelA> CreateAndAddNewValueA(DTOModelA dtoModelA)
         {
             var caseModelA = new CaseDTOModelA(dtoModelA);
             var operationResult = new OperationResult<ICaseDTOModel<DTOModelA>>(caseModelA);
@@ -27,7 +27,7 @@ namespace Injectore.Core
             //caseModel = (CaseDTOModelA)_operatorSupplier.CalculateStocasticValueA(caseModel);
             //_operatorSupplier.SplitValueA(caseModel);
 
-            operationResult = _operatorSupplier.CreateValueA(operationResult);
+            operationResult = _operatorSupplier.CreateValueAPipeline(operationResult);
 
             var createPostResult = new OperationResult<DTOModelA>
             {
@@ -37,36 +37,6 @@ namespace Injectore.Core
             };
 
             return createPostResult;
-        }
-
-        public OperationResult<DTOModelA> DeleteGet(DTOModelA dtoModelA)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public OperationResult<DTOModelA> DeletePost(DTOModelA dtoModelA)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public OperationResult<DTOModelA> EditGet(DTOModelA dtoModelA)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public OperationResult<DTOModelA> EditPost(DTOModelA dtoModelA)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public OperationResult<DTOModelA> DetailsGet(DTOModelA dtoModelA)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public OperationResult<DTOModelA> ListGet(DTOModelA dtoModelA)
-        {
-            throw new NotImplementedException();
         }
     }
 }
