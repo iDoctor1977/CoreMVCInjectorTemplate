@@ -5,7 +5,7 @@ using Injector.Common.ICaseDTOModels;
 
 namespace Injectore.Core.Interfaces
 {
-    public interface IOperatorSupplier
+    public interface IOperationsSupplier
     {
         #region OPERATIONS
 

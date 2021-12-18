@@ -1,4 +1,6 @@
-﻿using Injector.Data.IRepositories;
+﻿using System;
+using System.Linq;
+using Injector.Data.IRepositories;
 using Injector.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,10 +8,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Linq;
 
-namespace InjectorUnitTest.Common
+namespace InjectorUnitTest
 {
     public class BaseTest
     {

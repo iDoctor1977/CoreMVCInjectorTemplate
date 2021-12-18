@@ -11,10 +11,10 @@ namespace Injectore.Core.Steps.CreateA
     [Root]
     public class DeleteStep1A : RootPipelineBuilder<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>>
     {
-        private readonly IDepotA _ia;
+        private readonly IDepotA _depotA;
         public DeleteStep1A(IServiceProvider service)
         {
-            _ia = service.GetRequiredService<IDepotA>();
+            _depotA = service.GetRequiredService<IDepotA>();
         }
 
         protected override OperationResult<ICaseDTOModel<DTOModelA>> ExecuteRootStep(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModelIn)
@@ -22,12 +22,8 @@ namespace Injectore.Core.Steps.CreateA
             // Read
 
             // Do
-            var operationResult = _ia.DeleteValue(caseDtoModelIn.Value.GetDTOModel());
 
             // Write
-            caseDtoModelIn.Value.SetDTOModel(operationResult.Value);
-            caseDtoModelIn.Status = operationResult.Status;
-            caseDtoModelIn.Message = operationResult.Message;
 
             return caseDtoModelIn;
         }

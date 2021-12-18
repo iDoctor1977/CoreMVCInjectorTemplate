@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using AutoMapper;
 using Injector.Common;
 using Injector.Common.DTOModels;
@@ -41,26 +40,6 @@ namespace Injector.Data.Depots
                 Message = OperationsStatus.Error.ToString(),
                 Status = OperationsStatus.Error
             };
-        }
-
-        public OperationResult<DTOModelA> DeleteValue(DTOModelA dtoModelA)
-        {
-            throw new NotImplementedException();
-        }
-
-        public OperationResult<DTOModelA> ReadValue(DTOModelA dtoModelA)
-        {
-            throw new NotImplementedException();
-        }
-
-        public OperationResult<DTOModelA> UpdateValue(DTOModelA dtoModelA)
-        {
-            throw new NotImplementedException();
-        }
-
-        public OperationResult<IEnumerable<DTOModelA>> ReadValues()
-        {
-            throw new NotImplementedException();
         }
     }
 }

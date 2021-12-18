@@ -8,13 +8,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injectore.Core
 {
-    internal abstract class AOperatorSupplier : IOperatorSupplier
+    public abstract class AOperationsSupplier : IOperationsSupplier
     {
         protected readonly CreateStep1A _createStep1A;
         protected readonly CreateStep1A_SubStep1 _createStep1A_SubStep1;
         protected readonly CreateStep1A_SubStep2 _createStep1A_SubStep2;
 
-        protected AOperatorSupplier(IServiceProvider service)
+        protected AOperationsSupplier(IServiceProvider service)
         {
             _createStep1A = service.GetRequiredService<CreateStep1A>();
             _createStep1A_SubStep1 = service.GetRequiredService<CreateStep1A_SubStep1>();

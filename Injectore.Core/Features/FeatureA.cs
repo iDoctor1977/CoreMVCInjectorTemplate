@@ -11,10 +11,10 @@ namespace Injectore.Core.Features
 {
     public class FeatureA : IFeatureA
     {
-        private readonly IOperatorSupplier _operatorSupplier;
+        private readonly IOperationsSupplier _operationsSupplier;
 
         public FeatureA(IServiceProvider service) {
-            _operatorSupplier = service.GetRequiredService<IOperatorSupplier>();
+            _operationsSupplier = service.GetRequiredService<IOperationsSupplier>();
         }
 
         public OperationResult<DTOModelA> CreateAndAddNewValueA(DTOModelA dtoModelA)
@@ -23,11 +23,11 @@ namespace Injectore.Core.Features
             var operationResult = new OperationResult<ICaseDTOModel<DTOModelA>>(caseModelA);
 
             // esempio di chiamata a funzione
-            //caseModel = (CaseDTOModelA)_operatorSupplier.CalculatePercentualValueA(caseModel);
-            //caseModel = (CaseDTOModelA)_operatorSupplier.CalculateStocasticValueA(caseModel);
-            //_operatorSupplier.SplitValueA(caseModel);
+            //caseModel = (CaseDTOModelA)_operationsSupplier.CalculatePercentualValueA(caseModel);
+            //caseModel = (CaseDTOModelA)_operationsSupplier.CalculateStocasticValueA(caseModel);
+            //_operationsSupplier.SplitValueA(caseModel);
 
-            operationResult = _operatorSupplier.CreateValueAPipeline(operationResult);
+            operationResult = _operationsSupplier.CreateValueAPipeline(operationResult);
 
             var createPostResult = new OperationResult<DTOModelA>
             {

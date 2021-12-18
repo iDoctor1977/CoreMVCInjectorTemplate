@@ -5,9 +5,11 @@ using Injector.Common.ICaseDTOModels;
 
 namespace Injectore.Core
 {
-    internal class OperatorSupplier : AOperatorSupplier
+    public class OperationsSupplier : AOperationsSupplier
     {
-        public OperatorSupplier(IServiceProvider service) : base(service) { }
+        public OperationsSupplier(IServiceProvider service) : base(service) { }
+
+        #region PIPELINE PROCEDURES
 
         protected override OperationResult<ICaseDTOModel<DTOModelA>> CreateValueA_Pipeline(OperationResult<ICaseDTOModel<DTOModelA>> operationResult)
         {
@@ -16,9 +18,15 @@ namespace Injectore.Core
             return operationResult;
         }
 
+        #endregion
+
+        #region FUNCTIONS
+
         protected override OperationResult<ICaseDTOModel<DTOModelA>> FuncStocasticValueA(OperationResult<ICaseDTOModel<DTOModelA>> operationResult)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

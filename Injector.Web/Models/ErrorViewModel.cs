@@ -1,5 +1,3 @@
-using System;
-
 namespace Injector.Web.Models
 {
     public class ErrorViewModel

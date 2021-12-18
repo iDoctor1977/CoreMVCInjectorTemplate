@@ -3,7 +3,7 @@ using Injector.Common.ICaseDTOModels;
 
 namespace Injectore.Core.CaseDTOModels
 {
-    public class CaseDTOModelA : ABaseCaseDTOModel<ABaseDTOModel>, ICaseDTOModel<DTOModelA>
+    public class CaseDTOModelA : ABaseCaseDTOModel<DTOModelA>, ICaseDTOModel<DTOModelA>
     {
         protected DTOModelA _dtoModelA;
 

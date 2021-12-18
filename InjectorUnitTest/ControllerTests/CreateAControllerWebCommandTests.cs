@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using InjectorUnitTest.Common;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -9,8 +8,6 @@ using Injector.Web.Controllers;
 
 namespace InjectorUnitTest.ControllerTests
 {
-    #region TEST AREA
-
     [TestFixture]
     public class CreateAControllerWebCommandTests : BaseTest
     {
@@ -40,6 +37,4 @@ namespace InjectorUnitTest.ControllerTests
             MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<EntityA>())), Times.Once());
         }
     }
-
-    #endregion
 }
