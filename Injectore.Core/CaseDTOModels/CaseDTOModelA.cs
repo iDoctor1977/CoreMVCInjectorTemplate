@@ -24,14 +24,24 @@ namespace Injectore.Core.CaseDTOModels
             _dtoModelA = dtoModel;
         }
 
+        public void setId(int id)
+        {
+            _dtoModelA.Id = id;
+            Consolidate();
+        }
+
         public void setName (string name)
         {
             _dtoModelA.Name = name;
+            Consolidate();
         }
 
         public void Consolidate()
         {
-
+            if (IsModelValid())
+            {
+                
+            }
         }
 
         public bool IsModelValid()

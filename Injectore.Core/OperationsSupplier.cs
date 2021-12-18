@@ -1,7 +1,9 @@
 ﻿using System;
 using Injector.Common;
 using Injector.Common.DTOModels;
+using Injector.Common.Enums;
 using Injector.Common.ICaseDTOModels;
+using Injectore.Core.CaseDTOModels;
 
 namespace Injectore.Core
 {
@@ -24,7 +26,23 @@ namespace Injectore.Core
 
         protected override OperationResult<ICaseDTOModel<DTOModelA>> FuncStocasticValueA(OperationResult<ICaseDTOModel<DTOModelA>> operationResult)
         {
-            throw new NotImplementedException();
+            if (operationResult.Value is CaseDTOModelA caseModel)
+            {
+                var a = 1 + 2 + 3;
+
+                caseModel.setId(a);
+
+                operationResult.Value = caseModel;
+                operationResult.Message = OperationsStatus.Success.ToString();
+                operationResult.Status = OperationsStatus.Success;
+            }
+            else
+            {
+                operationResult.Message = OperationsStatus.Error.ToString();
+                operationResult.Status = OperationsStatus.Error;
+            }
+
+            return operationResult;
         }
 
         #endregion

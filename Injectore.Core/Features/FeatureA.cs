@@ -23,10 +23,9 @@ namespace Injectore.Core.Features
             var operationResult = new OperationResult<ICaseDTOModel<DTOModelA>>(caseModelA);
 
             // esempio di chiamata a funzione
-            //caseModel = (CaseDTOModelA)_operationsSupplier.CalculatePercentualValueA(caseModel);
-            //caseModel = (CaseDTOModelA)_operationsSupplier.CalculateStocasticValueA(caseModel);
-            //_operationsSupplier.SplitValueA(caseModel);
+            operationResult = _operationsSupplier.CalculateStocasticValueA(operationResult);
 
+            // esempio di chiamata a funzione procedurale
             operationResult = _operationsSupplier.CreateValueAPipeline(operationResult);
 
             var createPostResult = new OperationResult<DTOModelA>
