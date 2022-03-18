@@ -1,6 +1,6 @@
 using System;
-using Injector.Common.IActionRepositories;
-using Injector.Common.IFeatures;
+using Injector.Common.Interfaces.IActionRepositories;
+using Injector.Common.Interfaces.IFeatures;
 using Injector.Data.Depots;
 using Injector.Data.IRepositories;
 using Injector.Data.MapperProfiles;
@@ -10,6 +10,7 @@ using Injector.Web.MapperProfiles;
 using Injectore.Core;
 using Injectore.Core.Features;
 using Injectore.Core.Interfaces;
+using Injectore.Core.MapperProfiles;
 using Injectore.Core.Steps.CreateA;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,13 +36,13 @@ namespace Injector.Web
 
             services.AddTransient<IOperationsSupplier, OperationsSupplier>();
 
-            services.AddTransient<IFeatureA, FeatureA>();
+            services.AddTransient<ICreateFeature, CreateFeature>();
 
             services.AddTransient<CreateStep1A, CreateStep1A>();
             services.AddTransient<CreateStep1A_SubStep1, CreateStep1A_SubStep1>();
             services.AddTransient<CreateStep1A_SubStep2, CreateStep1A_SubStep2>();
 
-            services.AddTransient<IDepotA, DepotA>();
+            services.AddTransient<ICreateDepot, CreateDepot>();
 
             if (Configuration["mocked"].Equals("true", StringComparison.OrdinalIgnoreCase))
             {
@@ -57,6 +58,7 @@ namespace Injector.Web
             #region AUTOMAPPER
 
             services.AddAutoMapper(typeof(WebMappingProfile));
+            services.AddAutoMapper(typeof(CoreMappingProfile));
             services.AddAutoMapper(typeof(DataMappingProfile));
 
             #endregion

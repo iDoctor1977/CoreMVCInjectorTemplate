@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Injector.Common.DTOModels;
+using Injector.Common.Models;
 using Injector.Data.Entities;
 
 namespace Injector.Data.MapperProfiles
@@ -8,7 +8,7 @@ namespace Injector.Data.MapperProfiles
     {
         public DataMappingProfile()
         {
-            CreateMap<EntityA, DTOModelA>().ReverseMap();
+            CreateMap<AEntity, CreateRequestTransfertModel>().ReverseMap();
         }
     }
 }

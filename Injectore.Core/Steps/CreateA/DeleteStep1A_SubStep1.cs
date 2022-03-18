@@ -1,34 +1,25 @@
 using System;
-using Injector.Common;
-using Injector.Common.DTOModels;
-using Injector.Common.Enums;
-using Injector.Common.ICaseDTOModels;
+using Injector.Common.Interfaces.IAggregates;
 using Injectore.Core.Attributes;
+using Injectore.Core.Models;
 
 namespace Injectore.Core.Steps.CreateA
 {
     [Leaf(nameof(DeleteStep1A))]
-    public class DeleteStep1A_SubStep1 : ISubStep<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>>
+    public class DeleteStep1A_SubStep1 : ISubStep<IAggregate<DeleteModel>, IAggregate<DeleteModel>>
     {
         public DeleteStep1A_SubStep1(IServiceProvider service) { }
 
-        public OperationResult<ICaseDTOModel<DTOModelA>> Execute(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModelIn)
+        public IAggregate<DeleteModel> Execute(IAggregate<DeleteModel> aggregate)
         {
-            if (caseDtoModelIn.Status == OperationsStatus.Success)
-            {
-                // Read
+            // Read
 
-                // Do
+            // Do
 
-                // Write
-                return caseDtoModelIn;
-            }
+            // Write
+            aggregate.SetModel(null);
 
-            caseDtoModelIn.Value.SetDTOModel(null);
-            caseDtoModelIn.Status = OperationsStatus.Error;
-            caseDtoModelIn.Message = OperationsStatus.Error.ToString();
-
-            return caseDtoModelIn;
+            return aggregate;
         }
     }
 }

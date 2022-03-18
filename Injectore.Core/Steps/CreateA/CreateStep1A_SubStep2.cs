@@ -1,34 +1,25 @@
 ﻿using System;
-using Injector.Common;
-using Injector.Common.DTOModels;
-using Injector.Common.Enums;
-using Injector.Common.ICaseDTOModels;
+using Injector.Common.Interfaces.IAggregates;
 using Injectore.Core.Attributes;
+using Injectore.Core.Models;
 
 namespace Injectore.Core.Steps.CreateA
 {
     [Leaf(nameof(CreateStep1A))]
-    public class CreateStep1A_SubStep2 : ISubStep<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>>
+    public class CreateStep1A_SubStep2 : ISubStep<IAggregate<CreateModel>, IAggregate<CreateModel>>
     {
         public CreateStep1A_SubStep2(IServiceProvider service) { }
 
-        public OperationResult<ICaseDTOModel<DTOModelA>> Execute(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModelIn)
+        public IAggregate<CreateModel> Execute(IAggregate<CreateModel> aggregate)
         {
-            if (caseDtoModelIn.Status == OperationsStatus.Success)
-            {
-                // Read
+            // Read
 
-                // Do
+            // Do
 
-                // Write
-                return caseDtoModelIn;
-            }
+            // Write
+            aggregate.SetModel(null);
 
-            caseDtoModelIn.Value.SetDTOModel(null);
-            caseDtoModelIn.Status = OperationsStatus.Error;
-            caseDtoModelIn.Message = OperationsStatus.Error.ToString();
-
-            return caseDtoModelIn;
+            return aggregate;
         }
     }
 }

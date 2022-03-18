@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Injector.Web.Models
 {
-    public class VMCreateA
+    public class CreatePostViewModel
     {
         [Display(Name = "Numero di telefono")]
         [DataType(DataType.Text)]
@@ -20,14 +19,5 @@ namespace Injector.Web.Models
         [Display(Name = "Cognome")]
         [DataType(DataType.Text)]
         public string Surname { get; set; }
-
-        [ScaffoldColumn(false)]
-        public bool IsDeleted { get; set; }
-
-        [ScaffoldColumn(false)]
-        public string DeleteBy { get; set; }
-
-        [ScaffoldColumn(false)]
-        public DateTime? DeleteDate { get; set; }
     }
 }

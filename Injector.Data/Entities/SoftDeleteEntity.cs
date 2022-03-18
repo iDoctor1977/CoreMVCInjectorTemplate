@@ -2,7 +2,7 @@
 
 namespace Injector.Data.Entities
 {
-    public class SoftDelete
+    public class SoftDeleteEntity
     {
         public bool IsDeleted { get; set; }
         public string DeleteBy { get; set; }

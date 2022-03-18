@@ -5,11 +5,11 @@ namespace Injector.Data.IRepositories
 {
     public interface IRepositoryA
     {
-        int CreateEntity(EntityA entityA);
-        int UpdateEntity(EntityA entityA);
-        EntityA ReadEntityById(int id);
-        EntityA ReadEntityByName(string name);
-        int DeleteEntity(EntityA entityA);
-        IEnumerable<EntityA> ReadEntities();
+        int CreateEntity(AEntity aEntity);
+        int UpdateEntity(AEntity aEntity);
+        AEntity ReadEntityById(int id);
+        AEntity ReadEntityByName(string name);
+        int DeleteEntity(AEntity aEntity);
+        IEnumerable<AEntity> ReadEntities();
     }
 }

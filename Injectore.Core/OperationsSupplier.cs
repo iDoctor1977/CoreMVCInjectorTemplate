@@ -1,9 +1,7 @@
 ﻿using System;
-using Injector.Common;
-using Injector.Common.DTOModels;
-using Injector.Common.Enums;
-using Injector.Common.ICaseDTOModels;
-using Injectore.Core.CaseDTOModels;
+using Injector.Common.Interfaces.IAggregates;
+using Injectore.Core.Aggregates;
+using Injectore.Core.Models;
 
 namespace Injectore.Core
 {
@@ -13,36 +11,27 @@ namespace Injectore.Core
 
         #region PIPELINE PROCEDURES
 
-        protected override OperationResult<ICaseDTOModel<DTOModelA>> CreateValueA_Pipeline(OperationResult<ICaseDTOModel<DTOModelA>> operationResult)
+        protected override IAggregate<CreateModel> PipeCreate(IAggregate<CreateModel> createAggregate)
         {
-            operationResult = _createStep1A.AddStep(_createStep1A_SubStep1).AddStep(_createStep1A_SubStep2).Execute(operationResult);
+            createAggregate = _createStep1A.AddStep(_createStep1A_SubStep1).AddStep(_createStep1A_SubStep2).Execute(createAggregate);
 
-            return operationResult;
+            return createAggregate;
         }
 
         #endregion
 
         #region FUNCTIONS
 
-        protected override OperationResult<ICaseDTOModel<DTOModelA>> FuncStocasticValueA(OperationResult<ICaseDTOModel<DTOModelA>> operationResult)
+        protected override IAggregate<CreateModel> FuncStocastic(IAggregate<CreateModel> aggregate)
         {
-            if (operationResult.Value is CaseDTOModelA caseModel)
+            if (aggregate is CreateAggregate createAggregate)
             {
                 var a = 1 + 2 + 3;
 
-                caseModel.setId(a);
-
-                operationResult.Value = caseModel;
-                operationResult.Message = OperationsStatus.Success.ToString();
-                operationResult.Status = OperationsStatus.Success;
-            }
-            else
-            {
-                operationResult.Message = OperationsStatus.Error.ToString();
-                operationResult.Status = OperationsStatus.Error;
+                createAggregate.setId(a);
             }
 
-            return operationResult;
+            return aggregate;
         }
 
         #endregion

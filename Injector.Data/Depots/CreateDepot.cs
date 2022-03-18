@@ -1,41 +1,41 @@
 ﻿using System;
 using AutoMapper;
 using Injector.Common;
-using Injector.Common.DTOModels;
 using Injector.Common.Enums;
-using Injector.Common.IActionRepositories;
+using Injector.Common.Interfaces.IActionRepositories;
+using Injector.Common.Models;
 using Injector.Data.Entities;
 using Injector.Data.IRepositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Data.Depots
 {
-    public class DepotA : IDepotA
+    public class CreateDepot : ICreateDepot
     {
         private readonly IMapper _mapper;
         private readonly IRepositoryA _repositoryA;
 
-        public DepotA(IServiceProvider service) {
+        public CreateDepot(IServiceProvider service) {
             _mapper = service.GetRequiredService<IMapper>();
             _repositoryA = service.GetRequiredService<IRepositoryA>();
         }
 
-        public OperationResult<DTOModelA> CreateValue(DTOModelA dtoModelA)
+        public CreateResponseTransfertModel CreateValue(CreateRequestTransfertModel createRequestTM)
         {
-            EntityA entityA = _mapper.Map<EntityA>(dtoModelA);
+            AEntity aEntity = _mapper.Map<AEntity>(createRequestTM);
 
-            if (_repositoryA.CreateEntity(entityA) > 0)
+            if (_repositoryA.CreateEntity(aEntity) > 0)
             {
-                dtoModelA = _mapper.Map<DTOModelA>(entityA);
+                createRequestTM = _mapper.Map<CreateRequestTransfertModel>(aEntity);
 
-                return new OperationResult<DTOModelA> {
-                    Value = dtoModelA,
+                return new OperationResult<CreateRequestTransfertModel> {
+                    Value = createRequestTM,
                     Message = OperationsStatus.Success.ToString(),
                     Status = OperationsStatus.Success
                 };
             }
 
-            return new OperationResult<DTOModelA> {
+            return new OperationResult<CreateRequestTransfertModel> {
                 Value = null,
                 Message = OperationsStatus.Error.ToString(),
                 Status = OperationsStatus.Error

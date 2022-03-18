@@ -32,11 +32,11 @@ namespace Injectore.Core.Steps
             throw new Exception(newStep.GetType().Name + " it doesn't belong to the root " + GetType().Name + " or attribute was not found.");
         }
 
-        protected abstract O ExecuteRootStep(I value);
+        protected abstract O ExecuteRootStep(I aggregate);
 
-        public O Execute(I value)
+        public O Execute(I aggregate)
         {
-            _stepInput = ExecuteRootStep(value);
+            _stepInput = ExecuteRootStep(aggregate);
 
             if (_root.Count != 0)
             {
@@ -59,6 +59,6 @@ namespace Injectore.Core.Steps
 
     public interface ISubStep<I, O>
     {
-        O Execute(I value);
+        O Execute(I aggregate);
     }
 }

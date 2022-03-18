@@ -22,7 +22,7 @@ namespace Injector.Data.Entities
 
         public ProjectDbContext(DbContextOptions<ProjectDbContext> options) : base(options) { }
 
-        public DbSet<EntityA> EntitiesA { get; set; }
+        public DbSet<AEntity> EntitiesA { get; set; }
 
         private string CreateConnectionStringPath() {
             var folder = Environment.SpecialFolder.LocalApplicationData;
@@ -37,7 +37,7 @@ namespace Injector.Data.Entities
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EntityA>().ToTable("EntityA");
+            modelBuilder.Entity<AEntity>().ToTable("AEntity");
         }
     }
 }

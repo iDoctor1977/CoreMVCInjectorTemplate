@@ -15,26 +15,26 @@ namespace InjectorUnitTest.ControllerTests
         public void CreateCommandWithValidInput()
         {
             // ARRANGE
-            var vmCreateA = new VMCreateA()
+            var vmCreateA = new CreateGetViewModel()
             {
                 Name = "Pippo",
                 Surname = "iDoctor",
                 TelNumber = "+39 331 578 7943"
             };
 
-            MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<EntityA>())).Returns(1);
-            var controllerATest = new ModelAController(ServiceProvider);
+            MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<AEntity>())).Returns(1);
+            var controllerATest = new HomeController(ServiceProvider);
 
             // ACT
             var result = controllerATest.Create(vmCreateA);
 
             // ASSERT
             result.Should().BeOfType<ViewResult>();
-            result.Model.Should().BeOfType<VMCreateA>();
+            result.Model.Should().BeOfType<CreateGetViewModel>();
             result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
-            MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<EntityA>())), Times.Once());
+            MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<AEntity>())), Times.Once());
         }
     }
 }

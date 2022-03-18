@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Injector.Common.DTOModels;
+using Injector.Common.Models;
 using Injector.Web.Models;
 
 namespace Injector.Web.MapperProfiles
@@ -8,7 +8,8 @@ namespace Injector.Web.MapperProfiles
     {
         public WebMappingProfile()
         {
-            CreateMap<VMCreateA, DTOModelA>().ReverseMap();
+            CreateMap<CreateGetViewModel, CreateRequestTransfertModel>().ReverseMap();
+            CreateMap<CreateGetViewModel, CreateResponseTransfertModel>().ReverseMap();
         }
     }
 }

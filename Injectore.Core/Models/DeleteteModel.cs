@@ -1,6 +1,6 @@
-﻿namespace Injector.Common.DTOModels
+﻿namespace Injectore.Core.Models
 {
-    public class DTOModelA
+    public class DeleteModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

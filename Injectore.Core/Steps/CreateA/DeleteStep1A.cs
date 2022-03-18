@@ -1,23 +1,22 @@
 ﻿using System;
-using Injector.Common;
-using Injector.Common.DTOModels;
-using Injector.Common.IActionRepositories;
-using Injector.Common.ICaseDTOModels;
+using Injector.Common.Interfaces.IActionRepositories;
+using Injector.Common.Interfaces.IAggregates;
 using Injectore.Core.Attributes;
+using Injectore.Core.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Injectore.Core.Steps.CreateA
 {
     [Root]
-    public class DeleteStep1A : RootPipelineBuilder<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>>
+    public class DeleteStep1A : RootPipelineBuilder<IAggregate<DeleteModel>, IAggregate<DeleteModel>>
     {
-        private readonly IDepotA _depotA;
+        private readonly IDeleteDepot _deleteDepot;
         public DeleteStep1A(IServiceProvider service)
         {
-            _depotA = service.GetRequiredService<IDepotA>();
+            _deleteDepot = service.GetRequiredService<IDeleteDepot>();
         }
 
-        protected override OperationResult<ICaseDTOModel<DTOModelA>> ExecuteRootStep(OperationResult<ICaseDTOModel<DTOModelA>> caseDtoModelIn)
+        protected override IAggregate<DeleteModel> ExecuteRootStep(IAggregate<DeleteModel> aggregate)
         {
             // Read
 
@@ -25,7 +24,7 @@ namespace Injectore.Core.Steps.CreateA
 
             // Write
 
-            return caseDtoModelIn;
+            return aggregate;
         }
     }
 }

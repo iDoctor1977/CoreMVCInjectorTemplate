@@ -1,7 +1,6 @@
 ﻿using System;
-using Injector.Common;
-using Injector.Common.DTOModels;
-using Injector.Common.ICaseDTOModels;
+using Injector.Common.Interfaces.IAggregates;
+using Injectore.Core.Models;
 
 namespace Injectore.Core.Interfaces
 {
@@ -9,13 +8,13 @@ namespace Injectore.Core.Interfaces
     {
         #region OPERATIONS
 
-        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CreateValueAPipeline { get; }
+        public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CreatePipeline { get; }
 
         #endregion
 
         #region FUNCTIONS
 
-        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CalculateStocasticValueA { get; }
+        public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CalculateStocastic { get; }
 
         #endregion
     }

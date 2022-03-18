@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Injector.Data.Entities
+﻿namespace Injector.Common.Models
 {
-    public class EntityA : SoftDelete
+    public class CreateResponseTransfertModel
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

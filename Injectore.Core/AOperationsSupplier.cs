@@ -1,8 +1,7 @@
 ﻿using System;
-using Injector.Common;
-using Injector.Common.DTOModels;
-using Injector.Common.ICaseDTOModels;
+using Injector.Common.Interfaces.IAggregates;
 using Injectore.Core.Interfaces;
+using Injectore.Core.Models;
 using Injectore.Core.Steps.CreateA;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,17 +22,15 @@ namespace Injectore.Core
 
         #region PIPELINE PROCEDURES
 
-        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CreateValueAPipeline => CreateValueA_Pipeline;
-
-        protected abstract OperationResult<ICaseDTOModel<DTOModelA>> CreateValueA_Pipeline(OperationResult<ICaseDTOModel<DTOModelA>> caseDTOModelA);
+        public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CreatePipeline => PipeCreate;
+        protected abstract IAggregate<CreateModel> PipeCreate(IAggregate<CreateModel> createAggregate);
 
         #endregion
 
         #region FUNCTIONS
 
-        public Func<OperationResult<ICaseDTOModel<DTOModelA>>, OperationResult<ICaseDTOModel<DTOModelA>>> CalculateStocasticValueA => FuncStocasticValueA;
-
-        protected abstract OperationResult<ICaseDTOModel<DTOModelA>> FuncStocasticValueA(OperationResult<ICaseDTOModel<DTOModelA>> caseDTOModelA);
+        public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CalculateStocastic => FuncStocastic;
+        protected abstract IAggregate<CreateModel> FuncStocastic(IAggregate<CreateModel> aggregate);
 
         #endregion
     }

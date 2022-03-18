@@ -8,40 +8,40 @@ namespace Injector.Data.Mocks
 {
     public class RepositoryAMock : IRepositoryA
     {
-        private readonly IEnumerable<EntityA> _entitiesA;
+        private readonly IEnumerable<AEntity> _entitiesA;
 
         public RepositoryAMock()
         {
             var builder = new EntityABuilder();
-            _entitiesA = builder.AddEntityA("Pippo").AddEntityA("pluto", "foo").Build();
+            _entitiesA = builder.AddEntityA("faa").AddEntityA("pluto", "foo").Build();
         }
 
-        public int CreateEntity(EntityA entityA)
+        public int CreateEntity(AEntity aEntity)
         {
             return 1;
         }
 
-        public int UpdateEntity(EntityA entityA)
+        public int UpdateEntity(AEntity aEntity)
         {
             return 1;
         }
 
-        public EntityA ReadEntityById(int id)
+        public AEntity ReadEntityById(int id)
         {
             return _entitiesA.First();
         }
 
-        public EntityA ReadEntityByName(string name)
+        public AEntity ReadEntityByName(string name)
         {
             return _entitiesA.First();
         }
 
-        public int DeleteEntity(EntityA entityA)
+        public int DeleteEntity(AEntity aEntity)
         {
             return 1;
         }
 
-        public IEnumerable<EntityA> ReadEntities()
+        public IEnumerable<AEntity> ReadEntities()
         {
             return _entitiesA;
         }
