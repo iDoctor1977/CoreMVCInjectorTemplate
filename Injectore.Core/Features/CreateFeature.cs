@@ -19,7 +19,7 @@ namespace Injectore.Core.Features
             _operationsSupplier = service.GetRequiredService<IOperationsSupplier>();
         }
 
-        public CreateResponseTransfertModel CreateAndAddNewValueA(CreateRequestTransfertModel createRequestTM)
+        public void CreateAndAddNewValueA(CreateRequestTransfertModel createRequestTM)
         {
             var createModel = _mapper.Map<CreateModel>(createRequestTM);
             var createAggregate = new CreateAggregate(createModel);
@@ -31,8 +31,6 @@ namespace Injectore.Core.Features
             createAggregate = _operationsSupplier.CreatePipeline(createAggregate) as CreateAggregate;
 
             var createResponseTM = _mapper.Map<CreateResponseTransfertModel>(createAggregate.GetModel());
-
-            return createResponseTM;
         }
     }
 }

@@ -2,28 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Injector.Common.Models;
 using Injector.Data.Entities;
-using Injector.Data.IRepositories;
+using Injector.Data.Interfaces.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Injector.Data.Repositories
 {
     public class RepositoryA : BaseRepository, IRepositoryA
     {
-        public RepositoryA() : base() { }
+        public RepositoryA(IServiceProvider service) : base(service) { }
 
-        public RepositoryA(string dbName) : base(dbName) { }
+        public RepositoryA(IServiceProvider service, string dbName) : base(service, dbName) { }
 
-        public RepositoryA(DbContextOptions<ProjectDbContext> options) : base(options) { }
+        public RepositoryA(IServiceProvider service, DbContextOptions<ProjectDbContext> options) : base(service, options) { }
 
-        public int CreateEntity(AEntity aEntity)
+        public int CreateEntity(CreateRequestTransfertModel transfertModel)
         {
+            var entity = _mapper.Map<AEntity>(transfertModel);
+
             try
             {
-                if (aEntity != null)
+                if (entity != null)
                 {
-                    aEntity.Id = new Random().Next();
-                    BaseRepository_DbContext.EntitiesA.Add(aEntity);
+                    entity.Id = new Random().Next();
+                    BaseRepository_DbContext.EntitiesA.Add(entity);
 
                     return Commit();
                 }
@@ -36,16 +39,16 @@ namespace Injector.Data.Repositories
             return 0;
         }
 
-        public int UpdateEntity(AEntity aEntity)
+        public int UpdateEntity(CreateRequestTransfertModel transfertModel)
         {
-            AEntity original = BaseRepository_DbContext.EntitiesA.Find(aEntity.Id);
+            var original = BaseRepository_DbContext.EntitiesA.Find(transfertModel.Id);
 
             try
             {
                 if (original != null)
                 {
-                    original.Name = aEntity.Name;
-                    original.Surname = aEntity.Surname;
+                    original.Name = transfertModel.Name;
+                    original.Surname = transfertModel.Surname;
 
                     return Commit();
                 }
@@ -58,15 +61,17 @@ namespace Injector.Data.Repositories
             return 0;
         }
 
-        public AEntity ReadEntityById(int id)
+        public CreateResponseTransfertModel ReadEntityById(int id)
         {
             try
             {
-                AEntity original = BaseRepository_DbContext.EntitiesA.Find(id);
+                var original = BaseRepository_DbContext.EntitiesA.Find(id);
 
                 if (original != null)
                 {
-                    return original;
+                    var transfertModel = _mapper.Map<CreateResponseTransfertModel>(original);
+
+                    return transfertModel;
                 }
             }
             catch (Exception exception)
@@ -77,15 +82,17 @@ namespace Injector.Data.Repositories
             return null;
         }
 
-        public AEntity ReadEntityByName(string name)
+        public CreateResponseTransfertModel ReadEntityByName(string name)
         {
             try
             {
-                AEntity original = BaseRepository_DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
+                var original = BaseRepository_DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
 
                 if (original != null)
                 {
-                    return original;
+                    var transfertModel = _mapper.Map<CreateResponseTransfertModel>(original);
+
+                    return transfertModel;
                 }
             }
             catch (Exception exception)
@@ -96,11 +103,11 @@ namespace Injector.Data.Repositories
             return null;
         }
 
-        public int DeleteEntity(AEntity aEntity)
+        public int DeleteEntity(CreateRequestTransfertModel transfertModel)
         {
             try
             {
-                AEntity original = BaseRepository_DbContext.EntitiesA.Find(aEntity.Id);
+                var original = BaseRepository_DbContext.EntitiesA.Find(transfertModel.Id);
 
                 if (original != null)
                 {
@@ -116,15 +123,17 @@ namespace Injector.Data.Repositories
 
             return 0;
         }
-        public IEnumerable<AEntity> ReadEntities()
+        public IEnumerable<CreateResponseTransfertModel> ReadEntities()
         {
             try
             {
-                IEnumerable<AEntity> entitiesA = BaseRepository_DbContext.EntitiesA.ToList();
+                IEnumerable<AEntity> entities = BaseRepository_DbContext.EntitiesA.ToList();
 
-                if (entitiesA.Any())
+                if (entities.Any())
                 {
-                    return entitiesA;
+                    var transfertModels = _mapper.Map<IEnumerable<CreateResponseTransfertModel>>(entities);
+
+                    return transfertModels;
                 }
             }
             catch (Exception exception)
@@ -132,7 +141,7 @@ namespace Injector.Data.Repositories
                 throw new DbUpdateException(GetType().FullName + " - " + MethodBase.GetCurrentMethod().Name, exception);
             }
 
-            return Enumerable.Empty<AEntity>();
+            return Enumerable.Empty<CreateResponseTransfertModel>();
         }
     }
 }

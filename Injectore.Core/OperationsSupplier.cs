@@ -11,11 +11,11 @@ namespace Injectore.Core
 
         #region PIPELINE PROCEDURES
 
-        protected override IAggregate<CreateModel> PipeCreate(IAggregate<CreateModel> createAggregate)
+        protected override IAggregate<CreateModel> PipeCreate(IAggregate<CreateModel> aggregate)
         {
-            createAggregate = _createStep1A.AddStep(_createStep1A_SubStep1).AddStep(_createStep1A_SubStep2).Execute(createAggregate);
+            aggregate = _createStep1A.AddSubStep(_createStep1A_SubStep1).AddSubStep(_createStep1A_SubStep2).Execute(aggregate);
 
-            return createAggregate;
+            return aggregate;
         }
 
         #endregion

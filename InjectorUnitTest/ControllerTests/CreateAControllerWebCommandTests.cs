@@ -3,7 +3,7 @@ using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using FluentAssertions;
-using Injector.Data.Entities;
+using Injector.Common.Models;
 using Injector.Web.Controllers;
 
 namespace InjectorUnitTest.ControllerTests
@@ -15,14 +15,14 @@ namespace InjectorUnitTest.ControllerTests
         public void CreateCommandWithValidInput()
         {
             // ARRANGE
-            var vmCreateA = new CreateGetViewModel()
+            var vmCreateA = new CreateViewModel()
             {
                 Name = "Pippo",
                 Surname = "iDoctor",
                 TelNumber = "+39 331 578 7943"
             };
 
-            MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<AEntity>())).Returns(1);
+            MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<CreateRequestTransfertModel>())).Returns(1);
             var controllerATest = new HomeController(ServiceProvider);
 
             // ACT
@@ -30,11 +30,11 @@ namespace InjectorUnitTest.ControllerTests
 
             // ASSERT
             result.Should().BeOfType<ViewResult>();
-            result.Model.Should().BeOfType<CreateGetViewModel>();
+            result.Model.Should().BeOfType<CreateViewModel>();
             result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
-            MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<AEntity>())), Times.Once());
+            MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<CreateRequestTransfertModel>())), Times.Once());
         }
     }
 }

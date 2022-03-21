@@ -1,49 +1,48 @@
 using System.Collections.Generic;
 using System.Linq;
+using Injector.Common.Models;
 using Injector.Data.Builders;
-using Injector.Data.Entities;
-using Injector.Data.IRepositories;
+using Injector.Data.Interfaces.IRepositories;
 
 namespace Injector.Data.Mocks
 {
     public class RepositoryAMock : IRepositoryA
     {
-        private readonly IEnumerable<AEntity> _entitiesA;
+        private readonly IEnumerable<CreateResponseTransfertModel> _transfertModels;
 
         public RepositoryAMock()
         {
             var builder = new EntityABuilder();
-            _entitiesA = builder.AddEntityA("faa").AddEntityA("pluto", "foo").Build();
         }
 
-        public int CreateEntity(AEntity aEntity)
+        public int CreateEntity(CreateRequestTransfertModel transfertModel)
         {
             return 1;
         }
 
-        public int UpdateEntity(AEntity aEntity)
+        public int UpdateEntity(CreateRequestTransfertModel transfertModel)
         {
             return 1;
         }
 
-        public AEntity ReadEntityById(int id)
+        public CreateResponseTransfertModel ReadEntityById(int id)
         {
-            return _entitiesA.First();
+            return _transfertModels.First();
         }
 
-        public AEntity ReadEntityByName(string name)
+        public CreateResponseTransfertModel ReadEntityByName(string name)
         {
-            return _entitiesA.First();
+            return _transfertModels.First();
         }
 
-        public int DeleteEntity(AEntity aEntity)
+        public int DeleteEntity(CreateRequestTransfertModel transfertModel)
         {
             return 1;
         }
 
-        public IEnumerable<AEntity> ReadEntities()
+        public IEnumerable<CreateResponseTransfertModel> ReadEntities()
         {
-            return _entitiesA;
+            return _transfertModels;
         }
     }
 }

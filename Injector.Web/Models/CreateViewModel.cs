@@ -2,7 +2,7 @@
 
 namespace Injector.Web.Models
 {
-    public class CreatePostViewModel
+    public class CreateViewModel
     {
         [Display(Name = "Numero di telefono")]
         [DataType(DataType.Text)]

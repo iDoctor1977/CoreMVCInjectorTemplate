@@ -4,6 +4,6 @@ namespace Injector.Common.Interfaces.IActionRepositories
 {
     public interface ICreateDepot
     {
-        CreateResponseTransfertModel CreateValue(CreateRequestTransfertModel createRequestTM);
+        int CreateValue(CreateRequestTransfertModel createRequestTM);
     }
 }

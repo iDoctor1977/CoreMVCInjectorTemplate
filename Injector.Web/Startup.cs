@@ -2,7 +2,7 @@ using System;
 using Injector.Common.Interfaces.IActionRepositories;
 using Injector.Common.Interfaces.IFeatures;
 using Injector.Data.Depots;
-using Injector.Data.IRepositories;
+using Injector.Data.Interfaces.IRepositories;
 using Injector.Data.MapperProfiles;
 using Injector.Data.Mocks;
 using Injector.Data.Repositories;

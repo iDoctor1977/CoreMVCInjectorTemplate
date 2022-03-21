@@ -1,23 +1,31 @@
-﻿using Injector.Data.Entities;
+﻿using System;
+using AutoMapper;
+using Injector.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Data.Repositories
 {
     public class BaseRepository
     {
+        protected readonly IMapper _mapper;
+
         private readonly ProjectDbContext _projectDbContext;
 
-        public BaseRepository () {
+        public BaseRepository (IServiceProvider service) {
+            _mapper = service.GetRequiredService<IMapper>();
             _projectDbContext = new ProjectDbContext();
         }
 
-        public BaseRepository(string dbName)
+        public BaseRepository(IServiceProvider service, string dbName)
         {
+            _mapper = service.GetRequiredService<IMapper>();
             _projectDbContext = new ProjectDbContext(dbName);
         }
 
-        public BaseRepository(DbContextOptions<ProjectDbContext> options)
+        public BaseRepository(IServiceProvider service, DbContextOptions<ProjectDbContext> options)
         {
+            _mapper = service.GetRequiredService<IMapper>();
             _projectDbContext = new ProjectDbContext(options);
         }
 

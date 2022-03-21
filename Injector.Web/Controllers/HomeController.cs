@@ -6,19 +6,15 @@ using Injector.Common.Models;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Injector.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         private readonly IMapper _mapper;
         private readonly ICreateFeature _createFeature;
 
-        public HomeController(IServiceProvider service, ILogger<HomeController> logger) {
-            _logger = logger;
+        public HomeController(IServiceProvider service) {
             _mapper = service.GetRequiredService<IMapper>();
             _createFeature = service.GetRequiredService<ICreateFeature>();
         }
@@ -42,7 +38,7 @@ namespace Injector.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            CreateGetViewModel createGetViewModel = new CreateGetViewModel
+            CreateViewModel createGetViewModel = new CreateViewModel
             {
                 Name = "iDoctor",
                 Surname = "filippo.foglia@gmail.com",
@@ -54,17 +50,13 @@ namespace Injector.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ViewResult Create(CreateGetViewModel createGetRequestVm)
+        public ViewResult Create(CreateViewModel createViewModel)
         {
             if (ModelState.IsValid)
             {
-                var createRequestTM = _mapper.Map<CreateRequestTransfertModel>(createGetRequestVm);
+                var createRequestTM = _mapper.Map<CreateRequestTransfertModel>(createViewModel);
 
-                var createResponseTM = _createFeature.CreateAndAddNewValueA(createRequestTM);
-
-                var createResponseVM = _mapper.Map<CreateGetViewModel>(createResponseTM);
-
-                return View(createResponseVM);
+                _createFeature.CreateAndAddNewValueA(createRequestTM);
             }
 
             return View();

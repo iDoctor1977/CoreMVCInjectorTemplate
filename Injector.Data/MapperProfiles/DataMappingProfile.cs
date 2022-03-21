@@ -9,6 +9,7 @@ namespace Injector.Data.MapperProfiles
         public DataMappingProfile()
         {
             CreateMap<AEntity, CreateRequestTransfertModel>().ReverseMap();
+            CreateMap<AEntity, CreateResponseTransfertModel>().ReverseMap();
         }
     }
 }

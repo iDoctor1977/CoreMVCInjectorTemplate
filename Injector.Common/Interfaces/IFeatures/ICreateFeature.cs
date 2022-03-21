@@ -4,6 +4,6 @@ namespace Injector.Common.Interfaces.IFeatures
 {
     public interface ICreateFeature
     {
-        CreateResponseTransfertModel CreateAndAddNewValueA(CreateRequestTransfertModel createRequestTM);
+        void CreateAndAddNewValueA(CreateRequestTransfertModel createRequestTM);
     }
 }

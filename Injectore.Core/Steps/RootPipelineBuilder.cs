@@ -4,19 +4,19 @@ using Injectore.Core.Attributes;
 
 namespace Injectore.Core.Steps
 {
-    public abstract class RootPipelineBuilder<I, O> : IBuildStep<I, O>
+    public abstract class RootPipelineBuilder<TIn, TOut> : IBuildStep<TIn, TOut>
     {
         private readonly RootAttribute _localAttribute;
-        private readonly List<ISubStep<I, O>> _root;
+        private readonly List<ISubStep<TIn, TOut>> _root;
         private object _stepInput;
 
         public RootPipelineBuilder()
         {
             _localAttribute = (RootAttribute)Attribute.GetCustomAttribute(GetType(), typeof(RootAttribute));
-            _root = new List<ISubStep<I, O>>();
+            _root = new List<ISubStep<TIn, TOut>>();
         }
 
-        public IBuildStep<I, O> AddStep(ISubStep<I, O> newStep)
+        public IBuildStep<TIn, TOut> AddSubStep(ISubStep<TIn, TOut> newStep)
         {
             LeafAttribute leaf = (LeafAttribute)Attribute.GetCustomAttribute(newStep.GetType(), typeof(LeafAttribute));
             RootAttribute root = (RootAttribute)Attribute.GetCustomAttribute(newStep.GetType(), typeof(RootAttribute));
@@ -32,9 +32,9 @@ namespace Injectore.Core.Steps
             throw new Exception(newStep.GetType().Name + " it doesn't belong to the root " + GetType().Name + " or attribute was not found.");
         }
 
-        protected abstract O ExecuteRootStep(I aggregate);
+        protected abstract TOut ExecuteRootStep(TIn aggregate);
 
-        public O Execute(I aggregate)
+        public TOut Execute(TIn aggregate)
         {
             _stepInput = ExecuteRootStep(aggregate);
 
@@ -42,23 +42,23 @@ namespace Injectore.Core.Steps
             {
                 foreach (var step in _root)
                 {
-                    _stepInput = step.Execute((I)_stepInput);
+                    _stepInput = step.Execute((TIn)_stepInput);
                 }
             }
 
-            return (O)_stepInput;
+            return (TOut)_stepInput;
         }
     }
 
-    public interface IRootStep<I, O> : ISubStep<I, O>
+    public interface IRootStep<TIn, TOut> : ISubStep<TIn, TOut>
     {
-        IBuildStep<I, O> AddStep(ISubStep<I, O> newStep);
+        IBuildStep<TIn, TOut> AddSubStep(ISubStep<TIn, TOut> newStep);
     }
 
-    public interface IBuildStep<I, O> : IRootStep<I, O> { }
+    public interface IBuildStep<TIn, TOut> : IRootStep<TIn, TOut> { }
 
-    public interface ISubStep<I, O>
+    public interface ISubStep<TIn, TOut>
     {
-        O Execute(I aggregate);
+        TOut Execute(TIn aggregate);
     }
 }

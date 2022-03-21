@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Injector.Data.IRepositories;
+using Injector.Data.Interfaces.IRepositories;
 using Injector.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;

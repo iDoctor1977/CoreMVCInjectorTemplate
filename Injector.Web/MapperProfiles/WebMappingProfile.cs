@@ -8,8 +8,8 @@ namespace Injector.Web.MapperProfiles
     {
         public WebMappingProfile()
         {
-            CreateMap<CreateGetViewModel, CreateRequestTransfertModel>().ReverseMap();
-            CreateMap<CreateGetViewModel, CreateResponseTransfertModel>().ReverseMap();
+            CreateMap<CreateViewModel, CreateRequestTransfertModel>().ReverseMap();
+            CreateMap<CreateViewModel, CreateResponseTransfertModel>().ReverseMap();
         }
     }
 }
