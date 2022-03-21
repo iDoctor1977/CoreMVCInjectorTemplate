@@ -39,9 +39,9 @@ namespace Injector.Data.Repositories
             return 0;
         }
 
-        public int UpdateEntity(CreateRequestTransfertModel transfertModel)
+        public int UpdateEntity(ReadRequestTransfertModel transfertModel)
         {
-            var original = BaseRepository_DbContext.EntitiesA.Find(transfertModel.Id);
+            var original = BaseRepository_DbContext.EntitiesA.Find(transfertModel.GuId);
 
             try
             {
@@ -61,15 +61,15 @@ namespace Injector.Data.Repositories
             return 0;
         }
 
-        public CreateResponseTransfertModel ReadEntityById(int id)
+        public ReadResponseTransfertModel ReadEntityByGuid(Guid guid)
         {
             try
             {
-                var original = BaseRepository_DbContext.EntitiesA.Find(id);
+                var original = BaseRepository_DbContext.EntitiesA.Find(guid);
 
                 if (original != null)
                 {
-                    var transfertModel = _mapper.Map<CreateResponseTransfertModel>(original);
+                    var transfertModel = _mapper.Map<ReadResponseTransfertModel>(original);
 
                     return transfertModel;
                 }
@@ -82,7 +82,7 @@ namespace Injector.Data.Repositories
             return null;
         }
 
-        public CreateResponseTransfertModel ReadEntityByName(string name)
+        public ReadResponseTransfertModel ReadEntityByName(string name)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace Injector.Data.Repositories
 
                 if (original != null)
                 {
-                    var transfertModel = _mapper.Map<CreateResponseTransfertModel>(original);
+                    var transfertModel = _mapper.Map<ReadResponseTransfertModel>(original);
 
                     return transfertModel;
                 }
@@ -107,7 +107,7 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                var original = BaseRepository_DbContext.EntitiesA.Find(transfertModel.Id);
+                var original = BaseRepository_DbContext.EntitiesA.Find(transfertModel.GuId);
 
                 if (original != null)
                 {

@@ -13,6 +13,7 @@ namespace Injector.Web.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ICreateFeature _createFeature;
+        private readonly IReadFeature _readFeature;
 
         public HomeController(IServiceProvider service) {
             _mapper = service.GetRequiredService<IMapper>();
@@ -35,19 +36,6 @@ namespace Injector.Web.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpGet]
-        public ActionResult Create()
-        {
-            CreateViewModel createViewModel = new CreateViewModel
-            {
-                Name = "iDoctor",
-                Surname = "filippo.foglia@gmail.com",
-                TelNumber = "+39 331 578 7943"
-            };
-
-            return View(createViewModel);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ViewResult Create(CreateViewModel createViewModel)
@@ -60,6 +48,19 @@ namespace Injector.Web.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Read(ReadViewModel readViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var readRequestTM = _mapper.Map<ReadRequestTransfertModel>(readViewModel);
+
+                _readFeature.Execute(readRequestTM);
+            }
+
+            return View(readViewModel);
         }
     }
 }

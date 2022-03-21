@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Injector.Web.Models
 {
-    public class CreateViewModel
+    public class ReadViewModel
     {
         [ScaffoldColumn(false)]
         public Guid GuId { get; set; }

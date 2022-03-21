@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Injector.Common.Models;
@@ -8,7 +9,7 @@ namespace Injector.Data.Mocks
 {
     public class RepositoryAMock : IRepositoryA
     {
-        private readonly IEnumerable<CreateResponseTransfertModel> _transfertModels;
+        private readonly IEnumerable<ReadResponseTransfertModel> _readTransfertModels;
 
         public RepositoryAMock()
         {
@@ -20,29 +21,9 @@ namespace Injector.Data.Mocks
             return 1;
         }
 
-        public int UpdateEntity(CreateRequestTransfertModel transfertModel)
+        public ReadResponseTransfertModel ReadEntityByGuid(Guid guid)
         {
-            return 1;
-        }
-
-        public CreateResponseTransfertModel ReadEntityById(int id)
-        {
-            return _transfertModels.First();
-        }
-
-        public CreateResponseTransfertModel ReadEntityByName(string name)
-        {
-            return _transfertModels.First();
-        }
-
-        public int DeleteEntity(CreateRequestTransfertModel transfertModel)
-        {
-            return 1;
-        }
-
-        public IEnumerable<CreateResponseTransfertModel> ReadEntities()
-        {
-            return _transfertModels;
+            return _readTransfertModels.First();
         }
     }
 }

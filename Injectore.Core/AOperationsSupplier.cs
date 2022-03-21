@@ -25,6 +25,9 @@ namespace Injectore.Core
         public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CreatePipeline => PipeCreate;
         protected abstract IAggregate<CreateModel> PipeCreate(IAggregate<CreateModel> createAggregate);
 
+        public Func<IAggregate<ReadModel>, IAggregate<ReadModel>> ReadPipeline => PipeRead;
+        protected abstract IAggregate<ReadModel> PipeRead(IAggregate<ReadModel> readAggregate);
+
         #endregion
 
         #region FUNCTIONS

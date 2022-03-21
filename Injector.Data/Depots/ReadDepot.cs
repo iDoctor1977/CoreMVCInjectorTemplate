@@ -6,17 +6,19 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Injector.Data.Depots
 {
-    public class CreateDepot : ICreateDepot
+    public class ReadDepot : IReadDepot
     {
         private readonly IRepositoryA _repositoryA;
 
-        public CreateDepot(IServiceProvider service) {
+        public ReadDepot(IServiceProvider service) {
             _repositoryA = service.GetRequiredService<IRepositoryA>();
         }
 
-        public void Execute(CreateRequestTransfertModel model)
+        public ReadResponseTransfertModel Execute(ReadRequestTransfertModel model)
         {
-            _repositoryA.CreateEntity(model);
+            var responseTM = _repositoryA.ReadEntityByGuid(model.GuId);
+
+            return responseTM;
         }
     }
 }

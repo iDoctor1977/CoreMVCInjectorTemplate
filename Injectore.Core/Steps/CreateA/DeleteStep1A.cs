@@ -1,6 +1,6 @@
 ﻿using System;
-using Injector.Common.Interfaces.IActionRepositories;
 using Injector.Common.Interfaces.IAggregates;
+using Injector.Common.Interfaces.IDepots;
 using Injectore.Core.Attributes;
 using Injectore.Core.Models;
 using Microsoft.Extensions.DependencyInjection;

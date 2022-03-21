@@ -1,6 +1,6 @@
 ﻿using System;
 using AutoMapper;
-using Injector.Common.Interfaces.IActionRepositories;
+using Injector.Common.Interfaces.IDepots;
 using Injector.Common.Interfaces.IFeatures;
 using Injector.Common.Models;
 using Injectore.Core.Aggregates;
@@ -30,14 +30,20 @@ namespace Injectore.Core.Features
             // esempio di chiamata diretta al depot
             _createDepot.Execute(model);
 
-            // esempio di chiamata a funzione procedurale
+            // esempio di chiamata a funzione procedurale con aggregato
             createAggregate = _operationsSupplier.CreatePipeline(createAggregate) as CreateAggregate;
 
-            // esempio di chiamata a funzione
+            // esempio di chiamata a funzione procedurale con model
+            // createAggregate = _operationsSupplier.CreatePipeline(model) as CreateModel;
+
+            // esempio di chiamata a funzione con aggregato
             createAggregate = _operationsSupplier.CalculateStocastic(createAggregate) as CreateAggregate;
 
+            // esempio di chiamata a funzione con model
+            // createAggregate = _operationsSupplier.CalculateStocastic(model) as CreateModel;
+
             // esempio di disaccopiamento (usata generalment con CqrsQuery)
-            // var createResponseTM = _mapper.Map<CreateResponseTransfertModel>(createAggregate.GetModel());
+            // var createResponseTM = _mapper.Map<ReadResponseTransfertModel>(createAggregate.GetModel());
         }
     }
 }

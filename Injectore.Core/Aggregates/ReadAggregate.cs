@@ -3,36 +3,36 @@ using Injectore.Core.Models;
 
 namespace Injectore.Core.Aggregates
 {
-    public class CreateAggregate : ABaseAggregate<CreateModel>, IAggregate<CreateModel>
+    public class ReadAggregate : ABaseAggregate<ReadModel>, IAggregate<ReadModel>
     {
-        protected CreateModel CreateModel;
+        protected ReadModel ReadModel;
 
-        public CreateAggregate(CreateModel createModel)
+        public ReadAggregate(ReadModel readModel)
         {
-            CreateModel = createModel;
+            ReadModel = readModel;
         }
 
-        public CreateModel GetModel()
+        public ReadModel GetModel()
         {
             ConsolidateModel();
 
-            return CreateModel;
+            return ReadModel;
         }
 
-        public void SetModel(CreateModel readModel)
+        public void SetModel(ReadModel readModel)
         {
-            CreateModel = readModel;
+            ReadModel = readModel;
         }
 
         public void setId(int id)
         {
-            CreateModel.Id = id;
+            ReadModel.Id = id;
             ConsolidateModel();
         }
 
         public void setName (string name)
         {
-            CreateModel.Name = name;
+            ReadModel.Name = name;
             ConsolidateModel();
         }
 
@@ -46,7 +46,7 @@ namespace Injectore.Core.Aggregates
 
         public bool IsModelValid()
         {
-            bool value = !string.IsNullOrWhiteSpace(CreateModel.Name);
+            bool value = !string.IsNullOrWhiteSpace(ReadModel.Name);
 
             return value;
         }

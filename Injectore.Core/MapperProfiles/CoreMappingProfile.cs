@@ -10,6 +10,9 @@ namespace Injectore.Core.MapperProfiles
         {
             CreateMap<CreateModel, CreateRequestTransfertModel>().ReverseMap();
             CreateMap<CreateModel, CreateResponseTransfertModel>().ReverseMap();
+
+            CreateMap<ReadModel, ReadRequestTransfertModel>().ReverseMap();
+            CreateMap<ReadModel, ReadResponseTransfertModel>().ReverseMap();
         }
     }
 }

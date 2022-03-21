@@ -9,6 +9,7 @@ namespace Injectore.Core.Interfaces
         #region OPERATIONS
 
         public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CreatePipeline { get; }
+        public Func<IAggregate<ReadModel>, IAggregate<ReadModel>> ReadPipeline { get; }
 
         #endregion
 

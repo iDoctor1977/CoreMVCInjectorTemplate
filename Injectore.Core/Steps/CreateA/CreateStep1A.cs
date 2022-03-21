@@ -1,7 +1,7 @@
 using System;
 using AutoMapper;
-using Injector.Common.Interfaces.IActionRepositories;
 using Injector.Common.Interfaces.IAggregates;
+using Injector.Common.Interfaces.IDepots;
 using Injector.Common.Models;
 using Injectore.Core.Attributes;
 using Injectore.Core.Models;

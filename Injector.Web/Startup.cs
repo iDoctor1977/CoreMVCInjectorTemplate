@@ -1,5 +1,5 @@
 using System;
-using Injector.Common.Interfaces.IActionRepositories;
+using Injector.Common.Interfaces.IDepots;
 using Injector.Common.Interfaces.IFeatures;
 using Injector.Data.Depots;
 using Injector.Data.Interfaces.IRepositories;
@@ -37,12 +37,14 @@ namespace Injector.Web
             services.AddTransient<IOperationsSupplier, OperationsSupplier>();
 
             services.AddTransient<ICreateFeature, CreateFeature>();
+            services.AddTransient<IReadFeature, ReadFeature>();
 
             services.AddTransient<CreateStep1A, CreateStep1A>();
             services.AddTransient<CreateStep1A_SubStep1, CreateStep1A_SubStep1>();
             services.AddTransient<CreateStep1A_SubStep2, CreateStep1A_SubStep2>();
 
             services.AddTransient<ICreateDepot, CreateDepot>();
+            services.AddTransient<IReadDepot, ReadDepot>();
 
             if (Configuration["mocked"].Equals("true", StringComparison.OrdinalIgnoreCase))
             {
