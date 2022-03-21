@@ -38,14 +38,14 @@ namespace Injector.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            CreateViewModel createGetViewModel = new CreateViewModel
+            CreateViewModel createViewModel = new CreateViewModel
             {
                 Name = "iDoctor",
                 Surname = "filippo.foglia@gmail.com",
                 TelNumber = "+39 331 578 7943"
             };
 
-            return View(createGetViewModel);
+            return View(createViewModel);
         }
 
         [HttpPost]
@@ -56,7 +56,7 @@ namespace Injector.Web.Controllers
             {
                 var createRequestTM = _mapper.Map<CreateRequestTransfertModel>(createViewModel);
 
-                _createFeature.CreateAndAddNewValueA(createRequestTM);
+                _createFeature.Execute(createRequestTM);
             }
 
             return View();

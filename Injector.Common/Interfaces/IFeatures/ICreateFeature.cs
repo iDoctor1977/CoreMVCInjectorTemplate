@@ -1,9 +1,7 @@
-﻿using Injector.Common.Models;
+﻿using Injector.Common.Interfaces.Features;
+using Injector.Common.Models;
 
 namespace Injector.Common.Interfaces.IFeatures
 {
-    public interface ICreateFeature
-    {
-        void CreateAndAddNewValueA(CreateRequestTransfertModel createRequestTM);
-    }
+    public interface ICreateFeature : ICqrsCommand<CreateRequestTransfertModel> { }
 }

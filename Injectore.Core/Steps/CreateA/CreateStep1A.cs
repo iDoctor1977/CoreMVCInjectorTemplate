@@ -28,7 +28,7 @@ namespace Injectore.Core.Steps.CreateA
             var model = aggregate.GetModel();
             var transfertModel = _mapper.Map<CreateRequestTransfertModel>(aggregate.GetModel());
 
-            _createDepot.CreateValue(transfertModel);
+            _createDepot.Execute(transfertModel);
 
             // Write
 

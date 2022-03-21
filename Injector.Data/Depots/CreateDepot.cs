@@ -14,14 +14,9 @@ namespace Injector.Data.Depots
             _repositoryA = service.GetRequiredService<IRepositoryA>();
         }
 
-        public int CreateValue(CreateRequestTransfertModel createRequestTM)
+        public void Execute(CreateRequestTransfertModel model)
         {
-            if (_repositoryA.CreateEntity(createRequestTM) > 0)
-            {
-                return 1;
-            }
-
-            return 0;
+            _repositoryA.CreateEntity(model);
         }
     }
 }

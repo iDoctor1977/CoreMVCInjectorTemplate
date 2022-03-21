@@ -1,9 +1,7 @@
-﻿using Injector.Common.Models;
+﻿using Injector.Common.Interfaces.Features;
+using Injector.Common.Models;
 
 namespace Injector.Common.Interfaces.IActionRepositories
 {
-    public interface ICreateDepot
-    {
-        int CreateValue(CreateRequestTransfertModel createRequestTM);
-    }
+    public interface ICreateDepot : ICqrsCommand<CreateRequestTransfertModel> { }
 }
