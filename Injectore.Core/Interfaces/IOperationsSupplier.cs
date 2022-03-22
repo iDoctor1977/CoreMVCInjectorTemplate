@@ -1,6 +1,5 @@
 ﻿using System;
-using Injector.Common.Interfaces.IAggregates;
-using Injectore.Core.Models;
+using Injectore.Core.Aggregates;
 
 namespace Injectore.Core.Interfaces
 {
@@ -8,14 +7,14 @@ namespace Injectore.Core.Interfaces
     {
         #region OPERATIONS
 
-        public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CreatePipeline { get; }
-        public Func<IAggregate<ReadModel>, IAggregate<ReadModel>> ReadPipeline { get; }
+        public Func<CreateAggregate, CreateAggregate> CreatePipeline { get; }
+        public Func<ReadAggregate, ReadAggregate> ReadPipeline { get; }
 
         #endregion
 
         #region FUNCTIONS
 
-        public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CalculateStocastic { get; }
+        public Func<CreateAggregate, CreateAggregate> CalculateStocastic { get; }
 
         #endregion
     }

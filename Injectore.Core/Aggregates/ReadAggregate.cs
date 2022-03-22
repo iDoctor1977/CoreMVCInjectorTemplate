@@ -19,9 +19,9 @@ namespace Injectore.Core.Aggregates
             return ReadModel;
         }
 
-        public void SetModel(ReadModel readModel)
+        public void SetModel(ReadModel model)
         {
-            ReadModel = readModel;
+            ReadModel = model;
         }
 
         public void setId(int id)

@@ -11,11 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Steps\CreateA\CreateStep1A.cs" />
-    <Compile Include="Steps\CreateA\CreateStep1A_SubStep1.cs" />
-    <Compile Include="Steps\CreateA\CreateStep1A_SubStep2.cs" />
-    <Compile Include="Steps\CreateA\DeleteStep1A.cs" />
-    <Compile Include="Steps\CreateA\DeleteStep1A_SubStep1.cs" />
+    <Compile Include="Steps\Create\CreateStep1A.cs" />
+    <Compile Include="Steps\Create\CreateStep1A_SubStep1.cs" />
+    <Compile Include="Steps\Create\CreateStep1A_SubStep2.cs" />
+    <Compile Include="Steps\Read\ReadStep1A.cs" />
+    <Compile Include="Steps\Read\ReadStep1A_SubStep1.cs" />
     <Compile Include="Steps\RootPipelineBuilder.cs" />
   </ItemGroup>
 

@@ -3,7 +3,7 @@
     public interface IAggregate<T>
     {
         T GetModel();
-        void SetModel(T readModel);
+        void SetModel(T model);
         void ConsolidateModel();
         bool IsModelValid();
     }

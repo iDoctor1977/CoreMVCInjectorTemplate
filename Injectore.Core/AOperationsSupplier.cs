@@ -1,8 +1,8 @@
 ﻿using System;
-using Injector.Common.Interfaces.IAggregates;
+using Injectore.Core.Aggregates;
 using Injectore.Core.Interfaces;
-using Injectore.Core.Models;
 using Injectore.Core.Steps.CreateA;
+using Injectore.Core.Steps.Read;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Injectore.Core
@@ -13,27 +13,33 @@ namespace Injectore.Core
         protected readonly CreateStep1A_SubStep1 _createStep1A_SubStep1;
         protected readonly CreateStep1A_SubStep2 _createStep1A_SubStep2;
 
+        protected readonly ReadStep1A _readStep1A;
+        protected readonly ReadStep1A_SubStep1 _readStep1A_SubStep1;
+
         protected AOperationsSupplier(IServiceProvider service)
         {
             _createStep1A = service.GetRequiredService<CreateStep1A>();
             _createStep1A_SubStep1 = service.GetRequiredService<CreateStep1A_SubStep1>();
             _createStep1A_SubStep2 = service.GetRequiredService<CreateStep1A_SubStep2>();
+
+            _readStep1A = service.GetRequiredService<ReadStep1A>();
+            _readStep1A_SubStep1 = service.GetRequiredService<ReadStep1A_SubStep1>();
         }
 
         #region PIPELINE PROCEDURES
 
-        public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CreatePipeline => PipeCreate;
-        protected abstract IAggregate<CreateModel> PipeCreate(IAggregate<CreateModel> createAggregate);
+        public Func<CreateAggregate, CreateAggregate> CreatePipeline => PipeCreate;
+        protected abstract CreateAggregate PipeCreate(CreateAggregate aggregate);
 
-        public Func<IAggregate<ReadModel>, IAggregate<ReadModel>> ReadPipeline => PipeRead;
-        protected abstract IAggregate<ReadModel> PipeRead(IAggregate<ReadModel> readAggregate);
+        public Func<ReadAggregate, ReadAggregate> ReadPipeline => PipeRead;
+        protected abstract ReadAggregate PipeRead(ReadAggregate aggregate);
 
         #endregion
 
         #region FUNCTIONS
 
-        public Func<IAggregate<CreateModel>, IAggregate<CreateModel>> CalculateStocastic => FuncStocastic;
-        protected abstract IAggregate<CreateModel> FuncStocastic(IAggregate<CreateModel> aggregate);
+        public Func<CreateAggregate, CreateAggregate> CalculateStocastic => FuncCalculateGuid;
+        protected abstract CreateAggregate FuncCalculateGuid(CreateAggregate aggregate);
 
         #endregion
     }

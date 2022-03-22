@@ -1,18 +1,17 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using Injector.Common.Models;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using FluentAssertions;
-using Injector.Common.Models;
-using Injector.Web.Controllers;
+using NUnit.Framework;
 
-namespace InjectorUnitTest.ControllerTests
+namespace InjectorUnitTest.HomeController
 {
     [TestFixture]
     public class CreateAControllerWebCommandTests : BaseTest
     {
-        [Test(Description = "Verifica del funzionamnebto del comand CREATE")]
-        public void CreateCommandWithValidInput()
+        [Test(Description = "Verifica del funzionamento del comando CREATE")]
+        public void Should_ExecuteCreateCommandWithValidInput()
         {
             // ARRANGE
             var vmCreateA = new CreateViewModel()
@@ -23,7 +22,7 @@ namespace InjectorUnitTest.ControllerTests
             };
 
             MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<CreateRequestTransfertModel>())).Returns(1);
-            var controllerATest = new HomeController(ServiceProvider);
+            var controllerATest = new Injector.Web.Controllers.HomeController(ServiceProvider);
 
             // ACT
             var result = controllerATest.Create(vmCreateA);
@@ -34,7 +33,7 @@ namespace InjectorUnitTest.ControllerTests
             result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
-            MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<CreateRequestTransfertModel>())), Times.Once());
+            MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<CreateRequestTransfertModel>())), Times.Exactly(2));
         }
     }
 }

@@ -12,6 +12,7 @@ using Injectore.Core.Features;
 using Injectore.Core.Interfaces;
 using Injectore.Core.MapperProfiles;
 using Injectore.Core.Steps.CreateA;
+using Injectore.Core.Steps.Read;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -42,6 +43,9 @@ namespace Injector.Web
             services.AddTransient<CreateStep1A, CreateStep1A>();
             services.AddTransient<CreateStep1A_SubStep1, CreateStep1A_SubStep1>();
             services.AddTransient<CreateStep1A_SubStep2, CreateStep1A_SubStep2>();
+
+            services.AddTransient<ReadStep1A, ReadStep1A>();
+            services.AddTransient<ReadStep1A_SubStep1, ReadStep1A_SubStep1>();
 
             services.AddTransient<ICreateDepot, CreateDepot>();
             services.AddTransient<IReadDepot, ReadDepot>();

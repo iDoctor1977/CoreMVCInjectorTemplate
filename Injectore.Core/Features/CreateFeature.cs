@@ -22,28 +22,25 @@ namespace Injectore.Core.Features
             _createDepot = service.GetRequiredService<ICreateDepot>();
         }
 
-        public void Execute(CreateRequestTransfertModel model)
+        public void Execute(CreateRequestTransfertModel transfertModel)
         {
-            var createModel = _mapper.Map<CreateModel>(model);
-            var createAggregate = new CreateAggregate(createModel);
+            var model = _mapper.Map<CreateModel>(transfertModel);
+            var aggregate = new CreateAggregate(model);
 
             // esempio di chiamata diretta al depot
-            _createDepot.Execute(model);
+            _createDepot.Execute(transfertModel);
 
             // esempio di chiamata a funzione procedurale con aggregato
-            createAggregate = _operationsSupplier.CreatePipeline(createAggregate) as CreateAggregate;
+            aggregate = _operationsSupplier.CreatePipeline(aggregate) as CreateAggregate;
 
             // esempio di chiamata a funzione procedurale con model
             // createAggregate = _operationsSupplier.CreatePipeline(model) as CreateModel;
 
             // esempio di chiamata a funzione con aggregato
-            createAggregate = _operationsSupplier.CalculateStocastic(createAggregate) as CreateAggregate;
+            aggregate = _operationsSupplier.CalculateStocastic(aggregate) as CreateAggregate;
 
             // esempio di chiamata a funzione con model
             // createAggregate = _operationsSupplier.CalculateStocastic(model) as CreateModel;
-
-            // esempio di disaccopiamento (usata generalment con CqrsQuery)
-            // var createResponseTM = _mapper.Map<ReadResponseTransfertModel>(createAggregate.GetModel());
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Injector.Common.Interfaces.Features
+﻿namespace Injector.Common.Interfaces.ICqrs
 {
     public interface ICqrsQuery<TIn, TOut>
     {

@@ -40,14 +40,16 @@ namespace Injector.Web.Controllers
         [ValidateAntiForgeryToken]
         public ViewResult Create(CreateViewModel createViewModel)
         {
+            var createRequestTM = _mapper.Map<CreateRequestTransfertModel>(createViewModel);
+
             if (ModelState.IsValid)
             {
-                var createRequestTM = _mapper.Map<CreateRequestTransfertModel>(createViewModel);
-
                 _createFeature.Execute(createRequestTM);
             }
 
-            return View();
+            createViewModel = _mapper.Map<CreateViewModel>(createRequestTM);
+
+            return View(createViewModel);
         }
 
         [HttpGet]

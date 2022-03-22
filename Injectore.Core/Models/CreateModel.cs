@@ -1,8 +1,10 @@
-﻿namespace Injectore.Core.Models
+﻿using System;
+
+namespace Injectore.Core.Models
 {
     public class CreateModel
     {
-        public int Id { get; set; }
+        public Guid GuId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
     }

@@ -1,7 +1,5 @@
 ﻿using System;
-using Injector.Common.Interfaces.IAggregates;
 using Injectore.Core.Aggregates;
-using Injectore.Core.Models;
 
 namespace Injectore.Core
 {
@@ -11,32 +9,31 @@ namespace Injectore.Core
 
         #region PIPELINE PROCEDURES
 
-        protected override IAggregate<CreateModel> PipeCreate(IAggregate<CreateModel> createAggregate)
+        protected override CreateAggregate PipeCreate(CreateAggregate aggregate)
         {
-            createAggregate = _createStep1A.AddSubStep(_createStep1A_SubStep1).AddSubStep(_createStep1A_SubStep2).Execute(createAggregate);
+            aggregate = _createStep1A.AddSubStep(_createStep1A_SubStep1).AddSubStep(_createStep1A_SubStep2).Execute(aggregate);
 
-            return createAggregate;
+            return aggregate;
         }
 
-        protected override IAggregate<ReadModel> PipeRead(IAggregate<ReadModel> readAggregate)
+        protected override ReadAggregate PipeRead(ReadAggregate aggregate)
         {
-            // esempio di pipeline
-            // readAggregate = _editStep1A.AddSubStep(_editStep1A_SubStep1).AddSubStep(_editStep1A_SubStep2).Execute(readAggregate);
+            aggregate = _readStep1A.AddSubStep(_readStep1A_SubStep1).Execute(aggregate);
 
-            return readAggregate;
+            return aggregate;
         }
 
         #endregion
 
         #region FUNCTIONS
 
-        protected override IAggregate<CreateModel> FuncStocastic(IAggregate<CreateModel> aggregate)
+        protected override CreateAggregate FuncCalculateGuid(CreateAggregate aggregate)
         {
             if (aggregate is CreateAggregate createAggregate)
             {
-                var a = 1 + 2 + 3;
+                var a = Guid.NewGuid();
 
-                createAggregate.setId(a);
+                createAggregate.SetGuid(a);
             }
 
             return aggregate;
