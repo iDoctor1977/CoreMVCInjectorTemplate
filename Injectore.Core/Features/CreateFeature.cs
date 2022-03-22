@@ -31,16 +31,16 @@ namespace Injectore.Core.Features
             _createDepot.Execute(transfertModel);
 
             // esempio di chiamata a funzione procedurale con aggregato
-            aggregate = _operationsSupplier.CreatePipeline(aggregate) as CreateAggregate;
+            aggregate = _operationsSupplier.CreatePipeline(aggregate);
 
             // esempio di chiamata a funzione procedurale con model
-            // createAggregate = _operationsSupplier.CreatePipeline(model) as CreateModel;
+            // aggregate = _operationsSupplier.CreatePipeline(model) as CreateModel;
 
-            // esempio di chiamata a funzione con aggregato
-            aggregate = _operationsSupplier.CalculateStocastic(aggregate) as CreateAggregate;
+            // esempio di chiamata di funzione con aggregato
+            _operationsSupplier.CalculateStocastic(aggregate);
 
-            // esempio di chiamata a funzione con model
-            // createAggregate = _operationsSupplier.CalculateStocastic(model) as CreateModel;
+            // esempio di chiamata di funzione con model
+            // _operationsSupplier.CalculateStocastic(model) as CreateModel;
         }
     }
 }

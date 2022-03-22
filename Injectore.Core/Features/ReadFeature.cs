@@ -22,24 +22,24 @@ namespace Injectore.Core.Features
             _readDepot = service.GetRequiredService<IReadDepot>();
         }
 
-        public ReadResponseTransfertModel Execute(ReadRequestTransfertModel model)
+        public ReadResponseTransfertModel Execute(ReadRequestTransfertModel transfertModel)
         {
-            var readModel = _mapper.Map<ReadModel>(model);
-            var readAggregate = new ReadAggregate(readModel);
+            var model = _mapper.Map<ReadModel>(transfertModel);
+            var aggregate = new ReadAggregate(model);
 
             // esempio di chiamata diretta al depot
-            _readDepot.Execute(model);
+            _readDepot.Execute(transfertModel);
 
             // esempio di chiamata a funzione procedurale con aggregato
-            readAggregate = _operationsSupplier.ReadPipeline(readAggregate) as ReadAggregate;
+            aggregate = _operationsSupplier.ReadPipeline(aggregate);
 
             // esempio di chiamata a funzione procedurale con model
             // readAggregate = _operationsSupplier.ReadPipeline(model) as ReadModel;
 
             // esempio di disaccopiamento (usata generalment con CqrsQuery)
-            var responseTM = _mapper.Map<ReadResponseTransfertModel>(readAggregate.GetModel());
+            var responseTm = _mapper.Map<ReadResponseTransfertModel>(aggregate.GetModel());
 
-            return responseTM;
+            return responseTm;
         }
     }
 }
