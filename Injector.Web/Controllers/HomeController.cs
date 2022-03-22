@@ -53,7 +53,7 @@ namespace Injector.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Read(ReadViewModel readViewModel)
+        public ViewResult Read(ReadViewModel readViewModel)
         {
             if (ModelState.IsValid)
             {
