@@ -1,4 +1,5 @@
-﻿using Injector.Common.Interfaces.IAggregates;
+﻿using System;
+using Injector.Common.Interfaces.IAggregates;
 using Injectore.Core.Models;
 
 namespace Injectore.Core.Aggregates
@@ -24,13 +25,13 @@ namespace Injectore.Core.Aggregates
             ReadModel = model;
         }
 
-        public void setId(int id)
+        public void SetGuid(Guid guid)
         {
-            ReadModel.Id = id;
+            ReadModel.GuId = guid;
             ConsolidateModel();
         }
 
-        public void setName (string name)
+        public void SetName (string name)
         {
             ReadModel.Name = name;
             ConsolidateModel();

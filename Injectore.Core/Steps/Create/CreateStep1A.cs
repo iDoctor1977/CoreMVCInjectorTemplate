@@ -22,11 +22,10 @@ namespace Injectore.Core.Steps.CreateA
         protected override CreateAggregate ExecuteRootStep(CreateAggregate aggregate)
         {
             // Read
-
-            // Do
             var model = aggregate.GetModel();
             var transfertModel = _mapper.Map<CreateRequestTransfertModel>(model);
 
+            // Do
             _createDepot.Execute(transfertModel);
 
             // Write

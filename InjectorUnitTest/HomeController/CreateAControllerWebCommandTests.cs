@@ -70,7 +70,7 @@ namespace InjectorUnitTest.HomeController
             result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
-            MockRepositoryA.Verify((c => c.ReadEntityByGuid(It.IsAny<Guid>())), Times.Once);
+            MockRepositoryA.Verify((c => c.ReadEntityByGuid(It.IsAny<Guid>())), Times.Exactly(2));
         }
     }
 }
