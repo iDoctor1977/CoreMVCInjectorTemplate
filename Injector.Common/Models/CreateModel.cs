@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Injectore.Core.Models
+namespace Injector.Common.Models
 {
-    public class ReadModel
+    public class CreateModel
     {
         public Guid GuId { get; set; }
         public string Name { get; set; }

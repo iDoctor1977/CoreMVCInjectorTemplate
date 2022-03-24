@@ -3,5 +3,5 @@ using Injector.Common.Models;
 
 namespace Injector.Common.Interfaces.IFeatures
 {
-    public interface ICreateFeature : ICqrsCommand<CreateRequestTransfertModel> { }
+    public interface ICreateFeature : ICqrsCommand<CreateModel> { }
 }

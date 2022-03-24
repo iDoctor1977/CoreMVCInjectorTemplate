@@ -22,7 +22,7 @@ namespace InjectorUnitTest.HomeController
                 TelNumber = "+39 331 578 7943"
             };
 
-            MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<CreateRequestTransfertModel>())).Returns(1);
+            MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<CreateModel>())).Returns(1);
             var homeController = new Injector.Web.Controllers.HomeController(ServiceProvider);
 
             // ACT
@@ -34,7 +34,7 @@ namespace InjectorUnitTest.HomeController
             result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
-            MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<CreateRequestTransfertModel>())), Times.Exactly(2));
+            MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<CreateModel>())), Times.Exactly(2));
         }
 
         [Test(Description = "Verifica del funzionamento del comando READ")]
@@ -51,7 +51,7 @@ namespace InjectorUnitTest.HomeController
                 TelNumber = "+39 331 578 7943"
             };
 
-            var readResponseTM = new ReadResponseTransfertModel
+            var readResponseTM = new ReadModel
             {
                 GuId = newGuid,
                 Name = "Foo",

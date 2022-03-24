@@ -1,9 +1,8 @@
 using System;
 using Injectore.Core.Aggregates;
 using Injectore.Core.Attributes;
-using Injectore.Core.Steps.Read;
 
-namespace Injectore.Core.Steps.CreateA
+namespace Injectore.Core.Steps.Read
 {
     [Leaf(nameof(ReadStep1A))]
     public class ReadStep1A_SubStep1 : ISubStep<ReadAggregate, ReadAggregate>

@@ -1,6 +1,6 @@
 ﻿using System;
 using Injector.Common.Interfaces.IAggregates;
-using Injectore.Core.Models;
+using Injector.Common.Models;
 
 namespace Injectore.Core.Aggregates
 {

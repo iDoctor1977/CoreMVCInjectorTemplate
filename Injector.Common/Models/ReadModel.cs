@@ -2,7 +2,7 @@
 
 namespace Injector.Common.Models
 {
-    public class ReadRequestTransfertModel
+    public class ReadModel
     {
         public Guid GuId { get; set; }
         public string Name { get; set; }

@@ -14,9 +14,9 @@ namespace Injector.Data.Depots
             _repositoryA = service.GetRequiredService<IRepositoryA>();
         }
 
-        public void Execute(CreateRequestTransfertModel transfertModel)
+        public void Execute(CreateModel model)
         {
-            _repositoryA.CreateEntity(transfertModel);
+            _repositoryA.CreateEntity(model);
         }
     }
 }

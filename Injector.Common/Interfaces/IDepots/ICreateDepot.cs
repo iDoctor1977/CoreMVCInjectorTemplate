@@ -3,5 +3,5 @@ using Injector.Common.Models;
 
 namespace Injector.Common.Interfaces.IDepots
 {
-    public interface ICreateDepot : ICqrsCommand<CreateRequestTransfertModel> { }
+    public interface ICreateDepot : ICqrsCommand<CreateModel> { }
 }

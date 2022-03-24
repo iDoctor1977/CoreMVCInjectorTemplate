@@ -14,11 +14,11 @@ namespace Injector.Data.Depots
             _repositoryA = service.GetRequiredService<IRepositoryA>();
         }
 
-        public ReadResponseTransfertModel Execute(ReadRequestTransfertModel model)
+        public ReadModel Execute(ReadModel model)
         {
-            var responseTM = _repositoryA.ReadEntityByGuid(model.GuId);
+            var result = _repositoryA.ReadEntityByGuid(model.GuId);
 
-            return responseTM;
+            return result;
         }
     }
 }

@@ -9,19 +9,19 @@ namespace Injector.Data.Mocks
 {
     public class RepositoryAMock : IRepositoryA
     {
-        private readonly IEnumerable<ReadResponseTransfertModel> _readTransfertModels;
+        private readonly IEnumerable<ReadModel> _readTransfertModels;
 
         public RepositoryAMock()
         {
             var builder = new EntityABuilder();
         }
 
-        public int CreateEntity(CreateRequestTransfertModel transfertModel)
+        public int CreateEntity(CreateModel model)
         {
             return 1;
         }
 
-        public ReadResponseTransfertModel ReadEntityByGuid(Guid guid)
+        public ReadModel ReadEntityByGuid(Guid guid)
         {
             return _readTransfertModels.First();
         }

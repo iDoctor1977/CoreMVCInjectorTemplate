@@ -17,9 +17,9 @@ namespace Injector.Data.Repositories
 
         public RepositoryA(IServiceProvider service, DbContextOptions<ProjectDbContext> options) : base(service, options) { }
 
-        public int CreateEntity(CreateRequestTransfertModel transfertModel)
+        public int CreateEntity(CreateModel model)
         {
-            var entity = _mapper.Map<AEntity>(transfertModel);
+            var entity = _mapper.Map<AEntity>(model);
 
             try
             {
@@ -39,16 +39,16 @@ namespace Injector.Data.Repositories
             return 0;
         }
 
-        public int UpdateEntity(ReadRequestTransfertModel transfertModel)
+        public int UpdateEntity(ReadModel model)
         {
-            var original = BaseRepository_DbContext.EntitiesA.Find(transfertModel.GuId);
+            var original = BaseRepository_DbContext.EntitiesA.Find(model.GuId);
 
             try
             {
                 if (original != null)
                 {
-                    original.Name = transfertModel.Name;
-                    original.Surname = transfertModel.Surname;
+                    original.Name = model.Name;
+                    original.Surname = model.Surname;
 
                     return Commit();
                 }
@@ -61,7 +61,7 @@ namespace Injector.Data.Repositories
             return 0;
         }
 
-        public ReadResponseTransfertModel ReadEntityByGuid(Guid guid)
+        public ReadModel ReadEntityByGuid(Guid guid)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace Injector.Data.Repositories
 
                 if (original != null)
                 {
-                    var transfertModel = _mapper.Map<ReadResponseTransfertModel>(original);
+                    var transfertModel = _mapper.Map<ReadModel>(original);
 
                     return transfertModel;
                 }
@@ -82,7 +82,7 @@ namespace Injector.Data.Repositories
             return null;
         }
 
-        public ReadResponseTransfertModel ReadEntityByName(string name)
+        public ReadModel ReadEntityByName(string name)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace Injector.Data.Repositories
 
                 if (original != null)
                 {
-                    var transfertModel = _mapper.Map<ReadResponseTransfertModel>(original);
+                    var transfertModel = _mapper.Map<ReadModel>(original);
 
                     return transfertModel;
                 }
@@ -103,11 +103,11 @@ namespace Injector.Data.Repositories
             return null;
         }
 
-        public int DeleteEntity(CreateRequestTransfertModel transfertModel)
+        public int DeleteEntity(ReadModel model)
         {
             try
             {
-                var original = BaseRepository_DbContext.EntitiesA.Find(transfertModel.GuId);
+                var original = BaseRepository_DbContext.EntitiesA.Find(model.GuId);
 
                 if (original != null)
                 {
@@ -123,7 +123,8 @@ namespace Injector.Data.Repositories
 
             return 0;
         }
-        public IEnumerable<CreateResponseTransfertModel> ReadEntities()
+
+        public IEnumerable<ReadModel> ReadEntities()
         {
             try
             {
@@ -131,9 +132,9 @@ namespace Injector.Data.Repositories
 
                 if (entities.Any())
                 {
-                    var transfertModels = _mapper.Map<IEnumerable<CreateResponseTransfertModel>>(entities);
+                    var models = _mapper.Map<IEnumerable<ReadModel>>(entities);
 
-                    return transfertModels;
+                    return models;
                 }
             }
             catch (Exception exception)
@@ -141,7 +142,7 @@ namespace Injector.Data.Repositories
                 throw new DbUpdateException(GetType().FullName + " - " + MethodBase.GetCurrentMethod().Name, exception);
             }
 
-            return Enumerable.Empty<CreateResponseTransfertModel>();
+            return Enumerable.Empty<ReadModel>();
         }
     }
 }

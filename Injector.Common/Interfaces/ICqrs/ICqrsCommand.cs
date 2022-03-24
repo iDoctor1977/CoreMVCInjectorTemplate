@@ -2,6 +2,6 @@
 {
     public interface ICqrsCommand<T>
     {
-        void Execute(T transfertModel);
+        void Execute(T model);
     }
 }

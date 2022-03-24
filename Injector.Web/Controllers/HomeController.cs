@@ -41,11 +41,11 @@ namespace Injector.Web.Controllers
         [ValidateAntiForgeryToken]
         public ViewResult Create(CreateViewModel createViewModel)
         {
-            var createRequestTm = _mapper.Map<CreateRequestTransfertModel>(createViewModel);
+            var createModel = _mapper.Map<CreateModel>(createViewModel);
 
             if (ModelState.IsValid)
             {
-                _createFeature.Execute(createRequestTm);
+                _createFeature.Execute(createModel);
             }
 
             return View(createViewModel);
@@ -54,16 +54,14 @@ namespace Injector.Web.Controllers
         [HttpGet]
         public ViewResult Read(ReadViewModel readViewModel)
         {
-            ReadResponseTransfertModel readResponseTm = null;
+            var model = _mapper.Map<ReadModel>(readViewModel);
 
             if (ModelState.IsValid)
             {
-                var readRequestTm = _mapper.Map<ReadRequestTransfertModel>(readViewModel);
-
-                readResponseTm = _readFeature.Execute(readRequestTm);
+                model = _readFeature.Execute(model);
             }
 
-            readViewModel = _mapper.Map<ReadViewModel>(readResponseTm);
+            readViewModel = _mapper.Map<ReadViewModel>(model);
 
             return View(readViewModel);
         }

@@ -10,8 +10,7 @@ using Injector.Web.MapperProfiles;
 using Injectore.Core;
 using Injectore.Core.Features;
 using Injectore.Core.Interfaces;
-using Injectore.Core.MapperProfiles;
-using Injectore.Core.Steps.CreateA;
+using Injectore.Core.Steps.Create;
 using Injectore.Core.Steps.Read;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -64,7 +63,6 @@ namespace Injector.Web
             #region AUTOMAPPER
 
             services.AddAutoMapper(typeof(WebMappingProfile));
-            services.AddAutoMapper(typeof(CoreMappingProfile));
             services.AddAutoMapper(typeof(DataMappingProfile));
 
             #endregion

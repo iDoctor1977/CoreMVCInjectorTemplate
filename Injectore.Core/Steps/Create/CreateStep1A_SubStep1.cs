@@ -2,7 +2,7 @@
 using Injectore.Core.Aggregates;
 using Injectore.Core.Attributes;
 
-namespace Injectore.Core.Steps.CreateA
+namespace Injectore.Core.Steps.Create
 {
     [Leaf(nameof(CreateStep1A))]
     public class CreateStep1A_SubStep1 : ISubStep<CreateAggregate, CreateAggregate>
