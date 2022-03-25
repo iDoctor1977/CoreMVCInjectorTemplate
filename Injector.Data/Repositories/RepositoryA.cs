@@ -19,7 +19,7 @@ namespace Injector.Data.Repositories
 
         public int CreateEntity(CreateModel model)
         {
-            var entity = _mapper.Map<AEntity>(model);
+            var entity = _mapper.Map<Entity>(model);
 
             try
             {
@@ -128,7 +128,7 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                IEnumerable<AEntity> entities = BaseRepository_DbContext.EntitiesA.ToList();
+                IEnumerable<Entity> entities = BaseRepository_DbContext.EntitiesA.ToList();
 
                 if (entities.Any())
                 {

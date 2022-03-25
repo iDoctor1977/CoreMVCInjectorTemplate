@@ -8,8 +8,8 @@ namespace Injector.Data.MapperProfiles
     {
         public DataMappingProfile()
         {
-            CreateMap<AEntity, CreateModel>().ReverseMap();
-            CreateMap<AEntity, ReadModel>().ReverseMap();
+            CreateMap<Entity, CreateModel>().ReverseMap();
+            CreateMap<Entity, ReadModel>().ReverseMap();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Injector.Data.Entities
 {
-    public class AEntity : SoftDeleteEntity
+    public class Entity : SoftDeleteEntity
     {
         [Key]
         public int Id { get; set; }

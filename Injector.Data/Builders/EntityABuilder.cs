@@ -5,16 +5,16 @@ namespace Injector.Data.Builders
 {
     public class EntityABuilder : IEntityABuilder, IEntityAAdded
     {
-        private ICollection<AEntity> _entitiesA;
+        private ICollection<Entity> _entitiesA;
         private int _id;
 
         public EntityABuilder() {
-            _entitiesA = new List<AEntity>();
+            _entitiesA = new List<Entity>();
         }
 
-        private AEntity CreateIndicis(string name)
+        private Entity CreateIndicis(string name)
         {
-            var entityA = new AEntity
+            var entityA = new Entity
             {
                 Id = _id,
                 Name = name,
@@ -25,7 +25,7 @@ namespace Injector.Data.Builders
             return entityA;
         }
 
-        private AEntity CreateIndicis(string name, string surname)
+        private Entity CreateIndicis(string name, string surname)
         {
             var entityA = CreateIndicis(name);
             entityA.Surname = name;
@@ -49,7 +49,7 @@ namespace Injector.Data.Builders
             return this;
         }
 
-        public IEnumerable<AEntity> Build()
+        public IEnumerable<Entity> Build()
         {
             var result = _entitiesA;
             _entitiesA = null;
@@ -67,6 +67,6 @@ namespace Injector.Data.Builders
 
     public interface IEntityAAdded : IEntityABuilder
     {
-        IEnumerable<AEntity> Build();
+        IEnumerable<Entity> Build();
     }
 }
