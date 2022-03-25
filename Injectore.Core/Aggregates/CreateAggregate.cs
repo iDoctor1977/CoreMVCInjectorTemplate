@@ -1,43 +1,30 @@
 ﻿using System;
-using Injector.Common.Interfaces.IAggregates;
 using Injector.Common.Models;
 
 namespace Injectore.Core.Aggregates
 {
-    public class CreateAggregate : ABaseAggregate<CreateModel>, IAggregate<CreateModel>
+    public class CreateAggregate : ABaseAggregate<CreateModel>
     {
-        protected CreateModel CreateModel;
-
-        public CreateAggregate(CreateModel createModel)
-        {
-            CreateModel = createModel;
-        }
-
-        public CreateModel GetModel()
-        {
-            ConsolidateModel();
-
-            return CreateModel;
-        }
-
-        public void SetModel(CreateModel model)
-        {
-            CreateModel = model;
-        }
+        public CreateAggregate(CreateModel model) : base(model) { }
 
         public void SetGuid(Guid guid)
         {
-            CreateModel.GuId = guid;
+            Model.GuId = guid;
             ConsolidateModel();
         }
 
         public void SetName (string name)
         {
-            CreateModel.Name = name;
+            Model.Name = name;
+            ConsolidateModel();
+        }
+        public void SetSurame (string surname)
+        {
+            Model.Surname = surname;
             ConsolidateModel();
         }
 
-        public void ConsolidateModel()
+        protected override void ConsolidateModel()
         {
             if (IsModelValid())
             {
@@ -45,9 +32,10 @@ namespace Injectore.Core.Aggregates
             }
         }
 
-        public bool IsModelValid()
+        public override bool IsModelValid()
         {
-            bool value = !string.IsNullOrWhiteSpace(CreateModel.Name);
+            var value = !string.IsNullOrWhiteSpace(Model.Name);
+            value = !string.IsNullOrWhiteSpace(Model.Surname);
 
             return value;
         }

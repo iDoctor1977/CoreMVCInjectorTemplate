@@ -18,7 +18,7 @@ namespace Injectore.Core.Steps.Create
         protected override CreateAggregate ExecuteRootStep(CreateAggregate aggregate)
         {
             // Read
-            var model = aggregate.GetModel();
+            var model = aggregate.Model;
 
             // Do
             _createDepot.Execute(model);

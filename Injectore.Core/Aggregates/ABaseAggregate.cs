@@ -2,6 +2,14 @@
 {
     public abstract class ABaseAggregate<T>
     {
-        protected T model;
+        public T Model { get; set; }
+
+        protected ABaseAggregate(T model)
+        {
+            Model = model;
+        }
+
+        protected abstract void ConsolidateModel();
+        public abstract bool IsModelValid();
     }
 }

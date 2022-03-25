@@ -1,43 +1,31 @@
 ﻿using System;
-using Injector.Common.Interfaces.IAggregates;
 using Injector.Common.Models;
 
 namespace Injectore.Core.Aggregates
 {
-    public class ReadAggregate : ABaseAggregate<ReadModel>, IAggregate<ReadModel>
+    public class ReadAggregate : ABaseAggregate<ReadModel>
     {
-        protected ReadModel ReadModel;
-
-        public ReadAggregate(ReadModel readModel)
-        {
-            ReadModel = readModel;
-        }
-
-        public ReadModel GetModel()
-        {
-            ConsolidateModel();
-
-            return ReadModel;
-        }
-
-        public void SetModel(ReadModel model)
-        {
-            ReadModel = model;
-        }
+        public ReadAggregate(ReadModel model) : base(model) { }
 
         public void SetGuid(Guid guid)
         {
-            ReadModel.GuId = guid;
+            Model.GuId = guid;
             ConsolidateModel();
         }
 
         public void SetName (string name)
         {
-            ReadModel.Name = name;
+            Model.Name = name;
             ConsolidateModel();
         }
 
-        public void ConsolidateModel()
+        public void SetSurname(string surname)
+        {
+            Model.Name = surname;
+            ConsolidateModel();
+        }
+
+        protected override void ConsolidateModel()
         {
             if (IsModelValid())
             {
@@ -45,9 +33,10 @@ namespace Injectore.Core.Aggregates
             }
         }
 
-        public bool IsModelValid()
+        public override bool IsModelValid()
         {
-            bool value = !string.IsNullOrWhiteSpace(ReadModel.Name);
+            bool value = !string.IsNullOrWhiteSpace(Model.Name);
+            value = !string.IsNullOrWhiteSpace(Model.Surname);
 
             return value;
         }
