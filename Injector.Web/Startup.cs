@@ -51,11 +51,11 @@ namespace Injector.Web
 
             if (Configuration["mocked"].Equals("true", StringComparison.OrdinalIgnoreCase))
             {
-                services.AddTransient<IRepositoryA, RepositoryAMock>();
+                services.AddTransient<IRepository, RepositoryAMock>();
             }
             else
             {
-                services.AddTransient<IRepositoryA, RepositoryA>();
+                services.AddTransient<IRepository, Repository>();
             }
 
             #endregion

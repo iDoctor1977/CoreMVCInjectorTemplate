@@ -9,13 +9,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Injector.Data.Repositories
 {
-    public class RepositoryA : BaseRepository, IRepositoryA
+    public class Repository : BaseRepository, IRepository
     {
-        public RepositoryA(IServiceProvider service) : base(service) { }
+        public Repository(IServiceProvider service) : base(service) { }
 
-        public RepositoryA(IServiceProvider service, string dbName) : base(service, dbName) { }
+        public Repository(IServiceProvider service, string dbName) : base(service, dbName) { }
 
-        public RepositoryA(IServiceProvider service, DbContextOptions<ProjectDbContext> options) : base(service, options) { }
+        public Repository(IServiceProvider service, DbContextOptions<ProjectDbContext> options) : base(service, options) { }
 
         public int CreateEntity(CreateModel model)
         {
@@ -41,7 +41,7 @@ namespace Injector.Data.Repositories
 
         public int UpdateEntity(ReadModel model)
         {
-            var original = BaseRepository_DbContext.EntitiesA.Find(model.GuId);
+            var original = BaseRepository_DbContext.EntitiesA.Find(model.Guid);
 
             try
             {
@@ -107,7 +107,7 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                var original = BaseRepository_DbContext.EntitiesA.Find(model.GuId);
+                var original = BaseRepository_DbContext.EntitiesA.Find(model.Guid);
 
                 if (original != null)
                 {

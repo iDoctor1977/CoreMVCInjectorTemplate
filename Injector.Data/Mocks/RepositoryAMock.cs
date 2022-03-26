@@ -7,7 +7,7 @@ using Injector.Data.Interfaces.IRepositories;
 
 namespace Injector.Data.Mocks
 {
-    public class RepositoryAMock : IRepositoryA
+    public class RepositoryAMock : IRepository
     {
         private readonly IEnumerable<ReadModel> _readTransfertModels;
 

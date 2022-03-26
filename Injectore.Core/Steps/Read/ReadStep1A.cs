@@ -19,14 +19,15 @@ namespace Injectore.Core.Steps.Read
         protected override ReadAggregate ExecuteRootStep(ReadAggregate aggregate)
         {
             // Read
-            var model = aggregate.Model;
+            var model = aggregate.ConsolidateModel();
 
             // Do
-            aggregate.Model = _readDepot.Execute(model);
+            var resultModel = _readDepot.Execute(model);
+            var resultAggregate = new ReadAggregate(resultModel);
 
             // Write
 
-            return aggregate;
+            return resultAggregate;
         }
     }
 }

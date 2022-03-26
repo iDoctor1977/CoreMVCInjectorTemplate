@@ -9,31 +9,25 @@ namespace Injectore.Core.Aggregates
 
         public void SetGuid(Guid guid)
         {
-            Model.GuId = guid;
-            ConsolidateModel();
+            Model.Guid = guid;
         }
 
         public void SetName (string name)
         {
             Model.Name = name;
-            ConsolidateModel();
         }
 
         public void SetSurname(string surname)
         {
             Model.Name = surname;
-            ConsolidateModel();
         }
 
-        protected override void ConsolidateModel()
+        public override ReadModel ConsolidateModel()
         {
-            if (IsModelValid())
-            {
-                
-            }
+            return Model;
         }
 
-        public override bool IsModelValid()
+        protected override bool IsModelValid()
         {
             bool value = !string.IsNullOrWhiteSpace(Model.Name);
             value = !string.IsNullOrWhiteSpace(Model.Surname);

@@ -35,7 +35,7 @@ namespace Injectore.Core.Features
             // readAggregate = _operationsSupplier.ReadPipeline(model) as ReadModel;
 
             // esempio di disaccopiamento (usata generalment con CqrsQuery)
-            var responseTm = _mapper.Map<ReadModel>(aggregate.Model);
+            var responseTm = _mapper.Map<ReadModel>(aggregate.ConsolidateModel());
 
             return responseTm;
         }

@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace Injector.Common.Models
+﻿namespace Injector.Common.Models
 {
-    public class CreateModel
+    public class CreateModel : ABaseModel
     {
-        public Guid GuId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
     }

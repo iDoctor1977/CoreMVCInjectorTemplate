@@ -8,10 +8,10 @@ namespace Injector.Data.Depots
 {
     public class CreateDepot : ICreateDepot
     {
-        private readonly IRepositoryA _repositoryA;
+        private readonly IRepository _repositoryA;
 
         public CreateDepot(IServiceProvider service) {
-            _repositoryA = service.GetRequiredService<IRepositoryA>();
+            _repositoryA = service.GetRequiredService<IRepository>();
         }
 
         public void Execute(CreateModel model)

@@ -16,7 +16,7 @@ namespace Injectore.Core.Steps.Create
             // Do
 
             // Write
-            aggregate.IsModelValid();
+            aggregate.ConsolidateModel();
 
             return aggregate;
         }

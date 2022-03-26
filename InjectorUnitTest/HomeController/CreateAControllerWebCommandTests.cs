@@ -53,7 +53,7 @@ namespace InjectorUnitTest.HomeController
 
             var readResponseTM = new ReadModel
             {
-                GuId = newGuid,
+                Guid = newGuid,
                 Name = "Foo",
                 Surname = "Foo Foo"
             };
