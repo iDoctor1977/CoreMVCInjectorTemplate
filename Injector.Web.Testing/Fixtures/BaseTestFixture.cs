@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Linq;
 using Injector.Data.Interfaces.IRepositories;
-using Injector.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Moq;
-using NUnit.Framework;
 
-namespace InjectorUnitTest
+namespace Injector.Web.Testing.Fixtures
 {
-    public class BaseTest
+    public class BaseTestFixture
     {
-        protected IServiceProvider ServiceProvider { get; set; }
-        protected Mock<IRepository> MockRepository { get; set; }
+        public IServiceProvider ServiceProvider { get; set; }
+        public Mock<IRepository> MockRepository { get; set; }
 
-        [OneTimeSetUp]
-        public void TestRunSetup()
+        public void RunSetup()
         {
             MockRepository = new Mock<IRepository>();
 

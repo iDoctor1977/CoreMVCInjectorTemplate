@@ -1,17 +1,28 @@
 ﻿using System;
 using FluentAssertions;
-using Injector.Common.Models;
-using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using NUnit.Framework;
+using Injector.Common.Models;
+using Injector.Web.Models;
+using Injector.Web.Testing.Fixtures;
+using Xunit;
 
-namespace InjectorUnitTest.HomeController
+namespace Injector.Web.Testing.HomeController
 {
-    [TestFixture]
-    public class HomeControllerCommandTests : BaseTest
+    using Injector.Web.Controllers;
+
+    [Collection("BaseTest")]
+    public class HomeControllerCommandTests
     {
-        [Test(Description = "Verifica del funzionamento del comando CREATE")]
+        private readonly BaseTestFixture _fixture;
+
+        public HomeControllerCommandTests(BaseTestFixture fixture)
+        {
+            _fixture = fixture;
+            _fixture.RunSetup();
+        }
+
+        [Fact(DisplayName = "Verifica del funzionamento del comando CREATE")]
         public void Should_ExecuteCreateCommandWithValidInput()
         {
             // ARRANGE
@@ -22,8 +33,8 @@ namespace InjectorUnitTest.HomeController
                 TelNumber = "+39 331 578 7943"
             };
 
-            MockRepository.Setup(c => c.CreateEntity(It.IsAny<CreateModel>())).Returns(1);
-            var homeController = new Injector.Web.Controllers.HomeController(ServiceProvider);
+            _fixture.MockRepository.Setup(c => c.CreateEntity(It.IsAny<CreateModel>())).Returns(1);
+            var homeController = new HomeController(_fixture.ServiceProvider);
 
             // ACT
             var result = homeController.Create(createViewModel);
@@ -34,10 +45,10 @@ namespace InjectorUnitTest.HomeController
             result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
-            MockRepository.Verify((c => c.CreateEntity(It.IsAny<CreateModel>())), Times.Exactly(2));
+            _fixture.MockRepository.Verify((c => c.CreateEntity(It.IsAny<CreateModel>())), Times.Exactly(2));
         }
 
-        [Test(Description = "Verifica del funzionamento del comando READ")]
+        [Fact(DisplayName = "Verifica del funzionamento del comando READ")]
         public void Should_ExecuteReadCommandWithValidInputAndReturnViewModel()
         {
             // ARRANGE
@@ -58,8 +69,8 @@ namespace InjectorUnitTest.HomeController
                 Surname = "Foo Foo"
             };
 
-            MockRepository.Setup(c => c.ReadEntityByGuid(It.IsAny<Guid>())).Returns(readResponseTm);
-            var homeController = new Injector.Web.Controllers.HomeController(ServiceProvider);
+            _fixture.MockRepository.Setup(c => c.ReadEntityByGuid(It.IsAny<Guid>())).Returns(readResponseTm);
+            var homeController = new HomeController(_fixture.ServiceProvider);
 
             // ACT
             var result = homeController.Read(readViewModel);
@@ -70,7 +81,7 @@ namespace InjectorUnitTest.HomeController
             result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
-            MockRepository.Verify((c => c.ReadEntityByGuid(It.IsAny<Guid>())), Times.Exactly(2));
+            _fixture.MockRepository.Verify((c => c.ReadEntityByGuid(It.IsAny<Guid>())), Times.Exactly(2));
         }
     }
 }
