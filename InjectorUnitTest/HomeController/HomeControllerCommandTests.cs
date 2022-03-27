@@ -9,24 +9,24 @@ using NUnit.Framework;
 namespace InjectorUnitTest.HomeController
 {
     [TestFixture]
-    public class CreateAControllerWebCommandTests : BaseTest
+    public class HomeControllerCommandTests : BaseTest
     {
         [Test(Description = "Verifica del funzionamento del comando CREATE")]
         public void Should_ExecuteCreateCommandWithValidInput()
         {
             // ARRANGE
-            var vmCreateA = new CreateViewModel()
+            var createViewModel = new CreateViewModel()
             {
                 Name = "Pippo",
                 Surname = "iDoctor",
                 TelNumber = "+39 331 578 7943"
             };
 
-            MockRepositoryA.Setup(c => c.CreateEntity(It.IsAny<CreateModel>())).Returns(1);
+            MockRepository.Setup(c => c.CreateEntity(It.IsAny<CreateModel>())).Returns(1);
             var homeController = new Injector.Web.Controllers.HomeController(ServiceProvider);
 
             // ACT
-            var result = homeController.Create(vmCreateA);
+            var result = homeController.Create(createViewModel);
 
             // ASSERT
             result.Should().BeOfType<ViewResult>();
@@ -34,7 +34,7 @@ namespace InjectorUnitTest.HomeController
             result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
-            MockRepositoryA.Verify((c => c.CreateEntity(It.IsAny<CreateModel>())), Times.Exactly(2));
+            MockRepository.Verify((c => c.CreateEntity(It.IsAny<CreateModel>())), Times.Exactly(2));
         }
 
         [Test(Description = "Verifica del funzionamento del comando READ")]
@@ -51,14 +51,14 @@ namespace InjectorUnitTest.HomeController
                 TelNumber = "+39 331 578 7943"
             };
 
-            var readResponseTM = new ReadModel
+            var readResponseTm = new ReadModel
             {
                 Guid = newGuid,
                 Name = "Foo",
                 Surname = "Foo Foo"
             };
 
-            MockRepositoryA.Setup(c => c.ReadEntityByGuid(It.IsAny<Guid>())).Returns(readResponseTM);
+            MockRepository.Setup(c => c.ReadEntityByGuid(It.IsAny<Guid>())).Returns(readResponseTm);
             var homeController = new Injector.Web.Controllers.HomeController(ServiceProvider);
 
             // ACT
@@ -70,7 +70,7 @@ namespace InjectorUnitTest.HomeController
             result.Model.Should().NotBeNull();
 
             // Verify that DoesSomething was called only once
-            MockRepositoryA.Verify((c => c.ReadEntityByGuid(It.IsAny<Guid>())), Times.Exactly(2));
+            MockRepository.Verify((c => c.ReadEntityByGuid(It.IsAny<Guid>())), Times.Exactly(2));
         }
     }
 }

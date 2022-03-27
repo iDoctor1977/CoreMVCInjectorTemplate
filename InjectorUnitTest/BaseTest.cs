@@ -14,12 +14,12 @@ namespace InjectorUnitTest
     public class BaseTest
     {
         protected IServiceProvider ServiceProvider { get; set; }
-        protected Mock<IRepository> MockRepositoryA { get; set; }
+        protected Mock<IRepository> MockRepository { get; set; }
 
         [OneTimeSetUp]
         public void TestRunSetup()
         {
-            MockRepositoryA = new Mock<IRepository>();
+            MockRepository = new Mock<IRepository>();
 
             var host = Host.CreateDefaultBuilder().ConfigureWebHostDefaults(hostBuilder =>
             {
@@ -28,7 +28,7 @@ namespace InjectorUnitTest
             {
                 var descriptor = services.FirstOrDefault(descriptor => descriptor.ServiceType == typeof(IRepository));
                 services.Remove(descriptor);
-                services.Replace(new ServiceDescriptor(typeof(IRepository), MockRepositoryA.Object));
+                services.Replace(new ServiceDescriptor(typeof(IRepository), MockRepository.Object));
 
                 // in memory Database
                 //var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<ProjectDbContext>));

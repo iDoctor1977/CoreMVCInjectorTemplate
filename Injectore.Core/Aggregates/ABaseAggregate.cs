@@ -5,7 +5,7 @@ namespace Injectore.Core.Aggregates
 {
     public abstract class ABaseAggregate<T> where T : ABaseModel
     {
-        protected T Model;
+        protected readonly T Model;
 
         protected ABaseAggregate(T model)
         {
