@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Injector.Web.Testing.HomeController
 {
-    using Injector.Web.Controllers;
+    using Controllers;
 
     [Collection("BaseTest")]
     public class HomeControllerCommandTests
@@ -62,14 +62,14 @@ namespace Injector.Web.Testing.HomeController
                 TelNumber = "+39 331 578 7943"
             };
 
-            var readResponseTm = new ReadModel
+            var readModel = new ReadModel
             {
                 Guid = newGuid,
                 Name = "Foo",
                 Surname = "Foo Foo"
             };
 
-            _fixture.MockRepository.Setup(c => c.ReadEntityByGuid(It.IsAny<Guid>())).Returns(readResponseTm);
+            _fixture.MockRepository.Setup(c => c.ReadEntityByGuid(It.IsAny<Guid>())).Returns(readModel);
             var homeController = new HomeController(_fixture.ServiceProvider);
 
             // ACT
