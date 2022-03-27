@@ -12,11 +12,11 @@ namespace Injector.Web.Testing.HomeController
     using Controllers;
 
     [Collection("BaseTest")]
-    public class HomeControllerCommandTests
+    public class HomeControllerTests
     {
         private readonly BaseTestFixture _fixture;
 
-        public HomeControllerCommandTests(BaseTestFixture fixture)
+        public HomeControllerTests(BaseTestFixture fixture)
         {
             _fixture = fixture;
             _fixture.RunSetup();
