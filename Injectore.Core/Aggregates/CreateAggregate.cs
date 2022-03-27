@@ -21,7 +21,7 @@ namespace Injectore.Core.Aggregates
             Model.Surname = surname;
         }
 
-        public override CreateModel ConsolidateModel()
+        public override CreateModel ToModel()
         {
             return Model;
         }

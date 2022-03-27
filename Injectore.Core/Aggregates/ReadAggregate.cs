@@ -22,7 +22,7 @@ namespace Injectore.Core.Aggregates
             Model.Name = surname;
         }
 
-        public override ReadModel ConsolidateModel()
+        public override ReadModel ToModel()
         {
             return Model;
         }
