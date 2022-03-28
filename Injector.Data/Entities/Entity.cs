@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Injector.Data.Entities
 {
@@ -6,6 +7,7 @@ namespace Injector.Data.Entities
     {
         [Key]
         public int Id { get; set; }
+        public Guid Guid { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
     }

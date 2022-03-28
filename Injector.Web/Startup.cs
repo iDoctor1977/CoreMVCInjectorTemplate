@@ -51,7 +51,7 @@ namespace Injector.Web
 
             if (Configuration["mocked"].Equals("true", StringComparison.OrdinalIgnoreCase))
             {
-                services.AddTransient<IRepository, RepositoryAMock>();
+                services.AddTransient<IRepository, RepositoryMock>();
             }
             else
             {

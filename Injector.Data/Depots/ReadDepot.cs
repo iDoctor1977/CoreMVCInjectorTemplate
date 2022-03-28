@@ -8,15 +8,15 @@ namespace Injector.Data.Depots
 {
     public class ReadDepot : IReadDepot
     {
-        private readonly IRepository _repositoryA;
+        private readonly IRepository _repository;
 
         public ReadDepot(IServiceProvider service) {
-            _repositoryA = service.GetRequiredService<IRepository>();
+            _repository = service.GetRequiredService<IRepository>();
         }
 
         public ReadModel Execute(ReadModel model)
         {
-            var result = _repositoryA.ReadEntityByGuid(model.Guid);
+            var result = _repository.ReadEntityByGuid(model.Guid);
 
             return result;
         }

@@ -10,7 +10,7 @@ namespace Injector.Data.Entities
 
         public ProjectDbContext()
         {
-            _dbName = "ProjectDB";
+            _dbName = "ProjectNameDB";
             _connectionStringName = CreateConnectionStringPath();
         }
 

@@ -3,12 +3,12 @@ using Injector.Data.Entities;
 
 namespace Injector.Data.Builders
 {
-    public class EntityABuilder : IEntityABuilder, IEntityAAdded
+    public class EntityBuilder : IEntityBuilder, IEntityAdded
     {
         private ICollection<Entity> _entitiesA;
         private int _id;
 
-        public EntityABuilder() {
+        public EntityBuilder() {
             _entitiesA = new List<Entity>();
         }
 
@@ -33,7 +33,7 @@ namespace Injector.Data.Builders
             return entityA;
         }
 
-        public IEntityAAdded AddEntityA(string name)
+        public IEntityAdded AddEntity(string name)
         {
             var indicis = CreateIndicis(name);
             _entitiesA.Add(indicis);
@@ -41,7 +41,7 @@ namespace Injector.Data.Builders
             return this;
         }
 
-        public IEntityAAdded AddEntityA(string name, string surname)
+        public IEntityAdded AddEntity(string name, string surname)
         {
             var indicis = CreateIndicis(name, surname);
             _entitiesA.Add(indicis);
@@ -59,13 +59,13 @@ namespace Injector.Data.Builders
         }
     }
 
-    public interface IEntityABuilder
+    public interface IEntityBuilder
     {
-        IEntityAAdded AddEntityA(string name);
-        IEntityAAdded AddEntityA(string name, string surname);
+        IEntityAdded AddEntity(string name);
+        IEntityAdded AddEntity(string name, string surname);
     }
 
-    public interface IEntityAAdded : IEntityABuilder
+    public interface IEntityAdded : IEntityBuilder
     {
         IEnumerable<Entity> Build();
     }
