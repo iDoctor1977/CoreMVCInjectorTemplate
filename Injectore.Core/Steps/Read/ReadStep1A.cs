@@ -22,6 +22,7 @@ namespace Injectore.Core.Steps.Read
             var model = aggregate.ToModel();
 
             // Do
+
             var resultModel = _readDepot.Execute(model);
             var resultAggregate = new ReadAggregate(resultModel);
 

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
-using AutoMapper;
 using Injector.Common.Interfaces.IFeatures;
+using Injector.Common.Interfaces.IPresenters;
+using Injector.Common.Mappers;
 using Injector.Common.Models;
+using Injector.Web.CustomMappers;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,12 +13,20 @@ namespace Injector.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IMapper _mapper;
+        private readonly ICustomMapper<CreateViewModel, CreateModel> _createModelMapper;
+        private readonly ReadModelMapper _readModelMapper;
+
+        private readonly IPresenter<ReadModel, ReadViewModel> _readPresenter;
+
         private readonly ICreateFeature _createFeature;
         private readonly IReadFeature _readFeature;
 
         public HomeController(IServiceProvider service) {
-            _mapper = service.GetRequiredService<IMapper>();
+            _createModelMapper = service.GetRequiredService<DefaultMapper<CreateViewModel, CreateModel>>();
+            _readModelMapper = service.GetRequiredService<ReadModelMapper>();
+
+            _readPresenter = service.GetRequiredService<IPresenter<ReadModel, ReadViewModel>>();
+
             _createFeature = service.GetRequiredService<ICreateFeature>();
             _readFeature = service.GetRequiredService<IReadFeature>();
         }
@@ -41,7 +51,7 @@ namespace Injector.Web.Controllers
         [ValidateAntiForgeryToken]
         public ViewResult Create(CreateViewModel createViewModel)
         {
-            var createModel = _mapper.Map<CreateModel>(createViewModel);
+            var createModel = _createModelMapper.Map(createViewModel);
 
             if (ModelState.IsValid)
             {
@@ -54,14 +64,14 @@ namespace Injector.Web.Controllers
         [HttpGet]
         public ViewResult Read(ReadViewModel readViewModel)
         {
-            var model = _mapper.Map<ReadModel>(readViewModel);
-
+            var model = _readModelMapper.Map(readViewModel);
+            
             if (ModelState.IsValid)
             {
                 model = _readFeature.Execute(model);
             }
 
-            readViewModel = _mapper.Map<ReadViewModel>(model);
+            readViewModel = _readPresenter.ToViewData(model);
 
             return View(readViewModel);
         }

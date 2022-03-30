@@ -34,10 +34,12 @@ namespace Injectore.Core.Features
             // esempio di chiamata a funzione procedurale con model
             // readAggregate = _operationsSupplier.ReadPipeline(model) as ReadModel;
 
-            // esempio di disaccopiamento (usata generalment con CqrsQuery)
-            var responseTm = _mapper.Map<ReadModel>(aggregate.ToModel());
+            aggregate.SetUpReadingDay();
 
-            return responseTm;
+            // esempio di disaccopiamento (usata generalment con CqrsQuery)
+            var responseModel = _mapper.Map<ReadModel>(aggregate.ToModel());
+
+            return responseModel;
         }
     }
 }

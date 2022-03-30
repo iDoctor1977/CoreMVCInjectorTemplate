@@ -19,5 +19,8 @@ namespace Injector.Web.Models
         [Display(Name = "Cognome")]
         [DataType(DataType.Text)]
         public string Surname { get; set; }
+
+        [DataType(DataType.Text)]
+        public string ReadingDay { get; set; }
     }
 }

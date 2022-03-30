@@ -1,12 +1,19 @@
 using System;
 using Injector.Common.Interfaces.IDepots;
 using Injector.Common.Interfaces.IFeatures;
+using Injector.Common.Interfaces.IPresenters;
+using Injector.Common.Mappers;
+using Injector.Common.Models;
 using Injector.Data.Depots;
 using Injector.Data.Interfaces.IRepositories;
 using Injector.Data.MapperProfiles;
 using Injector.Data.Mocks;
 using Injector.Data.Repositories;
+using Injector.Web.Controllers;
+using Injector.Web.CustomMappers;
 using Injector.Web.MapperProfiles;
+using Injector.Web.Models;
+using Injector.Web.Presenters;
 using Injectore.Core;
 using Injectore.Core.Features;
 using Injectore.Core.Interfaces;
@@ -27,17 +34,19 @@ namespace Injector.Web
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public static IConfiguration Configuration { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             #region Dependency Injection with Service Locator
 
-            services.AddTransient<IOperationsSupplier, OperationsSupplier>();
+            services.AddTransient(typeof(IPresenter<ReadModel, ReadViewModel>), typeof(ReadPresenter));
 
             services.AddTransient<ICreateFeature, CreateFeature>();
             services.AddTransient<IReadFeature, ReadFeature>();
+
+            services.AddTransient<IOperationsSupplier, OperationsSupplier>();
 
             services.AddTransient<CreateStep1A, CreateStep1A>();
             services.AddTransient<CreateStep1A_SubStep1, CreateStep1A_SubStep1>();
@@ -61,6 +70,9 @@ namespace Injector.Web
             #endregion
 
             #region AUTOMAPPER
+
+            services.AddTransient<ICustomMapper, ReadModelMapper>();
+            services.AddTransient<ICustomMapper, BaseCustomMapper>();
 
             services.AddAutoMapper(typeof(WebMappingProfile));
             services.AddAutoMapper(typeof(DataMappingProfile));

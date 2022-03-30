@@ -12,26 +12,26 @@ namespace Injector.Data.Repositories
 
         private readonly ProjectDbContext _projectDbContext;
 
-        public BaseRepository (IServiceProvider service) {
+        protected BaseRepository (IServiceProvider service) {
             _mapper = service.GetRequiredService<IMapper>();
             _projectDbContext = new ProjectDbContext();
         }
 
-        public BaseRepository(IServiceProvider service, string dbName)
+        protected BaseRepository(IServiceProvider service, string dbName)
         {
             _mapper = service.GetRequiredService<IMapper>();
             _projectDbContext = new ProjectDbContext(dbName);
         }
 
-        public BaseRepository(IServiceProvider service, DbContextOptions<ProjectDbContext> options)
+        protected BaseRepository(IServiceProvider service, DbContextOptions<ProjectDbContext> options)
         {
             _mapper = service.GetRequiredService<IMapper>();
             _projectDbContext = new ProjectDbContext(options);
         }
 
-        public ProjectDbContext BaseRepository_DbContext => _projectDbContext;
+        protected ProjectDbContext BaseRepository_DbContext => _projectDbContext;
 
-        public int Commit()
+        protected int Commit()
         {
             ProjectDbContext dbContext = BaseRepository_DbContext;
             return dbContext.SaveChanges();

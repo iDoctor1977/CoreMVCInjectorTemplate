@@ -22,6 +22,11 @@ namespace Injectore.Core.Aggregates
             Model.Name = surname;
         }
 
+        public void SetUpReadingDay()
+        {
+            Model.ReadingDay = DateTime.Today;
+        }
+
         public override ReadModel ToModel()
         {
             return Model;
