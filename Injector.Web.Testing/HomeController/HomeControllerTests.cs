@@ -59,7 +59,7 @@ namespace Injector.Web.Testing.HomeController
                 GuId = newGuid,
                 Name = "Pippo",
                 Surname = "iDoctor",
-                TelNumber = "+39 331 578 7943"
+                TelNumber = "+39 331 578 7943",
             };
 
             var readModel = new ReadModel

@@ -1,6 +1,6 @@
 ﻿namespace Injector.Common.Interfaces.IPresenters
 {
-    public interface IPresenter<TIn, TOut>
+    public interface IPresenter<in TIn, out TOut>
     {
         TOut ToViewData(TIn model);
     }

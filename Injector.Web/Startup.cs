@@ -71,8 +71,8 @@ namespace Injector.Web
 
             #region AUTOMAPPER
 
-            services.AddTransient<ICustomMapper, ReadModelMapper>();
-            services.AddTransient<ICustomMapper, BaseCustomMapper>();
+            services.AddTransient(typeof(ICustomMapper<,>), typeof(DefaultMapper<,>));
+            services.AddTransient(typeof(ICustomMapper<ReadViewModel, ReadModel>), typeof(ReadModelMapper));
 
             services.AddAutoMapper(typeof(WebMappingProfile));
             services.AddAutoMapper(typeof(DataMappingProfile));

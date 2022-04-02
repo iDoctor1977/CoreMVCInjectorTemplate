@@ -1,6 +1,6 @@
 ﻿namespace Injector.Common.Mappers
 {
-    public interface ICustomMapper<TIn, TOut>
+    public interface ICustomMapper<in TIn, out TOut>
     {
         TOut Map(TIn value);
     }

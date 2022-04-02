@@ -4,7 +4,6 @@ using Injector.Common.Interfaces.IFeatures;
 using Injector.Common.Interfaces.IPresenters;
 using Injector.Common.Mappers;
 using Injector.Common.Models;
-using Injector.Web.CustomMappers;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +13,7 @@ namespace Injector.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ICustomMapper<CreateViewModel, CreateModel> _createModelMapper;
-        private readonly ReadModelMapper _readModelMapper;
+        private readonly ICustomMapper<ReadViewModel, ReadModel> _readModelMapper;
 
         private readonly IPresenter<ReadModel, ReadViewModel> _readPresenter;
 
@@ -22,8 +21,8 @@ namespace Injector.Web.Controllers
         private readonly IReadFeature _readFeature;
 
         public HomeController(IServiceProvider service) {
-            _createModelMapper = service.GetRequiredService<DefaultMapper<CreateViewModel, CreateModel>>();
-            _readModelMapper = service.GetRequiredService<ReadModelMapper>();
+            _createModelMapper = service.GetRequiredService<ICustomMapper<CreateViewModel, CreateModel>>();
+            _readModelMapper = service.GetRequiredService<ICustomMapper<ReadViewModel, ReadModel>>();
 
             _readPresenter = service.GetRequiredService<IPresenter<ReadModel, ReadViewModel>>();
 
