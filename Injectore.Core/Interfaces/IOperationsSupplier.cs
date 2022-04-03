@@ -14,7 +14,7 @@ namespace Injectore.Core.Interfaces
 
         #region FUNCTIONS
 
-        public Func<CreateAggregate, CreateAggregate> CalculateStocastic { get; }
+        public Func<CreateAggregate, CreateAggregate> CalculateGuid { get; }
 
         #endregion
     }

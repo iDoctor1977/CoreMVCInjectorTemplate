@@ -7,11 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Injectore.Core.Steps.Read
 {
     [Root]
-    public class ReadStep1A : RootPipelineBuilder<ReadAggregate, ReadAggregate>
+    public class ReadStep1 : RootPipelineBuilder<ReadAggregate, ReadAggregate>
     {
         private readonly IReadDepot _readDepot;
 
-        public ReadStep1A(IServiceProvider service)
+        public ReadStep1(IServiceProvider service)
         {
             _readDepot = service.GetRequiredService<IReadDepot>();
         }

@@ -41,9 +41,9 @@ namespace Injector.Web.Testing.HomeController
             var result = homeController.Create(createViewModel);
 
             // ASSERT
-            result.Should().BeOfType<ViewResult>();
-            result.Model.Should().BeOfType<CreateViewModel>();
-            result.Model.Should().NotBeNull();
+            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            redirectResult.ControllerName.Should().BeNull();
+            redirectResult.ActionName.Should().Be("Index");
 
             // Verify that DoesSomething was called only twice
             _fixture.MockRepository.Verify((c => c.CreateEntity(It.IsAny<CreateModel>())), Times.Exactly(2));

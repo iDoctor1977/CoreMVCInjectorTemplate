@@ -7,9 +7,8 @@ using Injector.Data.Interfaces.IRepositories;
 using Injector.Data.MapperProfiles;
 using Injector.Data.Mocks;
 using Injector.Data.Repositories;
-using Injector.Web.Controllers;
 using Injector.Web.Converters;
-using Injector.Web.Interfaces.IMappers;
+using Injector.Web.Interfaces.IConverters;
 using Injector.Web.Interfaces.IPresenters;
 using Injector.Web.MapperProfiles;
 using Injector.Web.Models;
@@ -46,12 +45,12 @@ namespace Injector.Web
 
             services.AddTransient<IOperationsSupplier, OperationsSupplier>();
 
-            services.AddTransient<CreateStep1A, CreateStep1A>();
-            services.AddTransient<CreateStep1A_SubStep1, CreateStep1A_SubStep1>();
-            services.AddTransient<CreateStep1A_SubStep2, CreateStep1A_SubStep2>();
+            services.AddTransient<CreateStep1, CreateStep1>();
+            services.AddTransient<CreateStep1SubStep1, CreateStep1SubStep1>();
+            services.AddTransient<CreateStep1SubStep2, CreateStep1SubStep2>();
 
-            services.AddTransient<ReadStep1A, ReadStep1A>();
-            services.AddTransient<ReadStep1A_SubStep1, ReadStep1A_SubStep1>();
+            services.AddTransient<ReadStep1, ReadStep1>();
+            services.AddTransient<ReadStep1SubStep1, ReadStep1SubStep1>();
 
             services.AddTransient<ICreateDepot, CreateDepot>();
             services.AddTransient<IReadDepot, ReadDepot>();
@@ -67,13 +66,17 @@ namespace Injector.Web
 
             #endregion
 
-            #region MAPPERS
+            #region CONVERTERS
 
             services.AddTransient(typeof(IPresenter<,>), typeof(DefaultPresenter<,>));
-            services.AddTransient(typeof(IPresenter<ReadModel, ReadViewModel>), typeof(ReadPresenter));
+            services.AddTransient(typeof(IPresenter<ReadModel, ReadViewModel>), typeof(ReadCustomPresenter));
 
-            services.AddTransient(typeof(IModelMapper<,>), typeof(DefaultConverter<,>));
-            services.AddTransient(typeof(IModelMapper<ReadViewModel, ReadModel>), typeof(ReadConverter));
+            services.AddTransient(typeof(IConverter<,>), typeof(DefaultConverter<,>));
+            services.AddTransient(typeof(IConverter<ReadViewModel, ReadModel>), typeof(ReadCustomConverter));
+
+            #endregion
+
+            #region AUTOMAPPER
 
             services.AddAutoMapper(typeof(WebMappingProfile));
             services.AddAutoMapper(typeof(DataMappingProfile));

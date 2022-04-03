@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Injector.Web.Interfaces.IMappers;
+using Injector.Web.Interfaces.IConverters;
 
 namespace Injector.Web.Converters
 {
-    public abstract class ABaseConverter<TIn, TOut> : IModelMapper<TIn, TOut>
+    public abstract class ABaseConverter<TIn, TOut> : IConverter<TIn, TOut>
     {
         private readonly IMapper _mapper;
 

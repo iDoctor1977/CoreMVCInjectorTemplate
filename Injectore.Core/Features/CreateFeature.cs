@@ -32,10 +32,10 @@ namespace Injectore.Core.Features
             // aggregate = _operationsSupplier.CreatePipeline(model) as Model;
 
             // esempio di chiamata di funzione con aggregato
-            _operationsSupplier.CalculateStocastic(aggregate);
+            _operationsSupplier.CalculateGuid(aggregate);
 
             // esempio di chiamata di funzione con model
-            // _operationsSupplier.CalculateStocastic(model) as Model;
+            // _operationsSupplier.CalculateGuid(model) as Model;
         }
     }
 }

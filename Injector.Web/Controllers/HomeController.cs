@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using Injector.Common.Interfaces.IFeatures;
 using Injector.Common.Models;
-using Injector.Web.Interfaces.IMappers;
+using Injector.Web.Interfaces.IConverters;
 using Injector.Web.Interfaces.IPresenters;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -12,19 +12,19 @@ namespace Injector.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IModelMapper<CreateViewModel, CreateModel> _createModelMapper;
-        private readonly IModelMapper<ReadViewModel, ReadModel> _readModelMapper;
+        private readonly IConverter<CreateViewModel, CreateModel> _createDefaultConverter;
+        private readonly IConverter<ReadViewModel, ReadModel> _readCustomConverter;
 
-        private readonly IPresenter<ReadModel, ReadViewModel> _readPresenter;
+        private readonly IPresenter<ReadModel, ReadViewModel> _readCustomPresenter;
 
         private readonly ICreateFeature _createFeature;
         private readonly IReadFeature _readFeature;
 
         public HomeController(IServiceProvider service) {
-            _createModelMapper = service.GetRequiredService<IModelMapper<CreateViewModel, CreateModel>>();
-            _readModelMapper = service.GetRequiredService<IModelMapper<ReadViewModel, ReadModel>>();
+            _createDefaultConverter = service.GetRequiredService<IConverter<CreateViewModel, CreateModel>>();
+            _readCustomConverter = service.GetRequiredService<IConverter<ReadViewModel, ReadModel>>();
 
-            _readPresenter = service.GetRequiredService<IPresenter<ReadModel, ReadViewModel>>();
+            _readCustomPresenter = service.GetRequiredService<IPresenter<ReadModel, ReadViewModel>>();
 
             _createFeature = service.GetRequiredService<ICreateFeature>();
             _readFeature = service.GetRequiredService<IReadFeature>();
@@ -48,31 +48,31 @@ namespace Injector.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ViewResult Create(CreateViewModel createViewModel)
+        public IActionResult Create(CreateViewModel viewModel)
         {
-            var createModel = _createModelMapper.ToModelData(createViewModel);
+            var model = _createDefaultConverter.ToModelData(viewModel);
 
             if (ModelState.IsValid)
             {
-                _createFeature.Execute(createModel);
+                _createFeature.Execute(model);
             }
 
-            return View(createViewModel);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public ViewResult Read(ReadViewModel readViewModel)
+        public ViewResult Read(ReadViewModel viewModel)
         {
-            var model = _readModelMapper.ToModelData(readViewModel);
+            var model = _readCustomConverter.ToModelData(viewModel);
             
             if (ModelState.IsValid)
             {
                 model = _readFeature.Execute(model);
             }
 
-            readViewModel = _readPresenter.ToViewData(model);
+            viewModel = _readCustomPresenter.ToViewData(model);
 
-            return View(readViewModel);
+            return View(viewModel);
         }
     }
 }

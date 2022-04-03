@@ -5,9 +5,9 @@ using Injector.Web.Models;
 
 namespace Injector.Web.Presenters
 {
-    public class ReadPresenter : ABasePresenter<ReadModel, ReadViewModel>
+    public class ReadCustomPresenter : ABasePresenter<ReadModel, ReadViewModel>
     {
-        public ReadPresenter(IMapper mapper) : base(mapper) { }
+        public ReadCustomPresenter(IMapper mapper) : base(mapper) { }
 
         public override ReadViewModel ToViewData(ReadModel model)
         {

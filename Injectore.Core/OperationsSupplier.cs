@@ -3,7 +3,7 @@ using Injectore.Core.Aggregates;
 
 namespace Injectore.Core
 {
-    public class OperationsSupplier : AOperationsSupplier
+    public sealed class OperationsSupplier : AOperationsSupplier
     {
         public OperationsSupplier(IServiceProvider service) : base(service) { }
 
@@ -11,14 +11,14 @@ namespace Injectore.Core
 
         protected override CreateAggregate PipeCreate(CreateAggregate aggregate)
         {
-            aggregate = _createStep1A.AddSubStep(_createStep1A_SubStep1).AddSubStep(_createStep1A_SubStep2).Execute(aggregate);
+            aggregate = CreateStep1.AddSubStep(CreateStep1SubStep1).AddSubStep(CreateStep1SubStep2).Execute(aggregate);
 
             return aggregate;
         }
 
         protected override ReadAggregate PipeRead(ReadAggregate aggregate)
         {
-            aggregate = _readStep1A.AddSubStep(_readStep1A_SubStep1).Execute(aggregate);
+            aggregate = ReadStep1.AddSubStep(ReadStep1SubStep1).Execute(aggregate);
 
             return aggregate;
         }
@@ -29,12 +29,9 @@ namespace Injectore.Core
 
         protected override CreateAggregate FuncCalculateGuid(CreateAggregate aggregate)
         {
-            if (aggregate is CreateAggregate createAggregate)
-            {
-                var a = Guid.NewGuid();
+            var a = Guid.NewGuid();
 
-                createAggregate.SetGuid(a);
-            }
+            aggregate.SetGuid(a);
 
             return aggregate;
         }

@@ -9,21 +9,21 @@ namespace Injectore.Core
 {
     public abstract class AOperationsSupplier : IOperationsSupplier
     {
-        protected readonly CreateStep1A _createStep1A;
-        protected readonly CreateStep1A_SubStep1 _createStep1A_SubStep1;
-        protected readonly CreateStep1A_SubStep2 _createStep1A_SubStep2;
+        protected readonly CreateStep1 CreateStep1;
+        protected readonly CreateStep1SubStep1 CreateStep1SubStep1;
+        protected readonly CreateStep1SubStep2 CreateStep1SubStep2;
 
-        protected readonly ReadStep1A _readStep1A;
-        protected readonly ReadStep1A_SubStep1 _readStep1A_SubStep1;
+        protected readonly ReadStep1 ReadStep1;
+        protected readonly ReadStep1SubStep1 ReadStep1SubStep1;
 
         protected AOperationsSupplier(IServiceProvider service)
         {
-            _createStep1A = service.GetRequiredService<CreateStep1A>();
-            _createStep1A_SubStep1 = service.GetRequiredService<CreateStep1A_SubStep1>();
-            _createStep1A_SubStep2 = service.GetRequiredService<CreateStep1A_SubStep2>();
+            CreateStep1 = service.GetRequiredService<CreateStep1>();
+            CreateStep1SubStep1 = service.GetRequiredService<CreateStep1SubStep1>();
+            CreateStep1SubStep2 = service.GetRequiredService<CreateStep1SubStep2>();
 
-            _readStep1A = service.GetRequiredService<ReadStep1A>();
-            _readStep1A_SubStep1 = service.GetRequiredService<ReadStep1A_SubStep1>();
+            ReadStep1 = service.GetRequiredService<ReadStep1>();
+            ReadStep1SubStep1 = service.GetRequiredService<ReadStep1SubStep1>();
         }
 
         #region PIPELINE PROCEDURES
@@ -38,7 +38,7 @@ namespace Injectore.Core
 
         #region FUNCTIONS
 
-        public Func<CreateAggregate, CreateAggregate> CalculateStocastic => FuncCalculateGuid;
+        public Func<CreateAggregate, CreateAggregate> CalculateGuid => FuncCalculateGuid;
         protected abstract CreateAggregate FuncCalculateGuid(CreateAggregate aggregate);
 
         #endregion
