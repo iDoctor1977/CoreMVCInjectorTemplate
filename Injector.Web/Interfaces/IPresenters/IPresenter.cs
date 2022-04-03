@@ -1,4 +1,4 @@
-﻿namespace Injector.Common.Interfaces.IPresenters
+﻿namespace Injector.Web.Interfaces.IPresenters
 {
     public interface IPresenter<in TIn, out TOut>
     {

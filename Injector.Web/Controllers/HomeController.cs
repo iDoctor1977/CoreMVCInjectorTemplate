@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Injector.Common.Interfaces.IFeatures;
-using Injector.Common.Interfaces.IPresenters;
-using Injector.Common.Mappers;
 using Injector.Common.Models;
+using Injector.Web.Interfaces.IMappers;
+using Injector.Web.Interfaces.IPresenters;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,8 +12,8 @@ namespace Injector.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ICustomMapper<CreateViewModel, CreateModel> _createModelMapper;
-        private readonly ICustomMapper<ReadViewModel, ReadModel> _readModelMapper;
+        private readonly IModelMapper<CreateViewModel, CreateModel> _createModelMapper;
+        private readonly IModelMapper<ReadViewModel, ReadModel> _readModelMapper;
 
         private readonly IPresenter<ReadModel, ReadViewModel> _readPresenter;
 
@@ -21,8 +21,8 @@ namespace Injector.Web.Controllers
         private readonly IReadFeature _readFeature;
 
         public HomeController(IServiceProvider service) {
-            _createModelMapper = service.GetRequiredService<ICustomMapper<CreateViewModel, CreateModel>>();
-            _readModelMapper = service.GetRequiredService<ICustomMapper<ReadViewModel, ReadModel>>();
+            _createModelMapper = service.GetRequiredService<IModelMapper<CreateViewModel, CreateModel>>();
+            _readModelMapper = service.GetRequiredService<IModelMapper<ReadViewModel, ReadModel>>();
 
             _readPresenter = service.GetRequiredService<IPresenter<ReadModel, ReadViewModel>>();
 
@@ -50,7 +50,7 @@ namespace Injector.Web.Controllers
         [ValidateAntiForgeryToken]
         public ViewResult Create(CreateViewModel createViewModel)
         {
-            var createModel = _createModelMapper.Map(createViewModel);
+            var createModel = _createModelMapper.ToModelData(createViewModel);
 
             if (ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace Injector.Web.Controllers
         [HttpGet]
         public ViewResult Read(ReadViewModel readViewModel)
         {
-            var model = _readModelMapper.Map(readViewModel);
+            var model = _readModelMapper.ToModelData(readViewModel);
             
             if (ModelState.IsValid)
             {

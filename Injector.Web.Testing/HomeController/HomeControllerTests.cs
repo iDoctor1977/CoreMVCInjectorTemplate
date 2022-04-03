@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -44,7 +45,7 @@ namespace Injector.Web.Testing.HomeController
             result.Model.Should().BeOfType<CreateViewModel>();
             result.Model.Should().NotBeNull();
 
-            // Verify that DoesSomething was called only once
+            // Verify that DoesSomething was called only twice
             _fixture.MockRepository.Verify((c => c.CreateEntity(It.IsAny<CreateModel>())), Times.Exactly(2));
         }
 
@@ -60,6 +61,7 @@ namespace Injector.Web.Testing.HomeController
                 Name = "Pippo",
                 Surname = "iDoctor",
                 TelNumber = "+39 331 578 7943",
+                ReadingDay = DateTime.Now.ToString(CultureInfo.InvariantCulture)
             };
 
             var readModel = new ReadModel
@@ -80,7 +82,7 @@ namespace Injector.Web.Testing.HomeController
             result.Model.Should().BeOfType<ReadViewModel>();
             result.Model.Should().NotBeNull();
 
-            // Verify that DoesSomething was called only once
+            // Verify that DoesSomething was called only twice
             _fixture.MockRepository.Verify((c => c.ReadEntityByGuid(It.IsAny<Guid>())), Times.Exactly(2));
         }
     }

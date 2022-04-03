@@ -1,8 +1,6 @@
 using System;
 using Injector.Common.Interfaces.IDepots;
 using Injector.Common.Interfaces.IFeatures;
-using Injector.Common.Interfaces.IPresenters;
-using Injector.Common.Mappers;
 using Injector.Common.Models;
 using Injector.Data.Depots;
 using Injector.Data.Interfaces.IRepositories;
@@ -10,7 +8,9 @@ using Injector.Data.MapperProfiles;
 using Injector.Data.Mocks;
 using Injector.Data.Repositories;
 using Injector.Web.Controllers;
-using Injector.Web.CustomMappers;
+using Injector.Web.Converters;
+using Injector.Web.Interfaces.IMappers;
+using Injector.Web.Interfaces.IPresenters;
 using Injector.Web.MapperProfiles;
 using Injector.Web.Models;
 using Injector.Web.Presenters;
@@ -41,8 +41,6 @@ namespace Injector.Web
         {
             #region Dependency Injection with Service Locator
 
-            services.AddTransient(typeof(IPresenter<ReadModel, ReadViewModel>), typeof(ReadPresenter));
-
             services.AddTransient<ICreateFeature, CreateFeature>();
             services.AddTransient<IReadFeature, ReadFeature>();
 
@@ -69,10 +67,13 @@ namespace Injector.Web
 
             #endregion
 
-            #region AUTOMAPPER
+            #region MAPPERS
 
-            services.AddTransient(typeof(ICustomMapper<,>), typeof(DefaultMapper<,>));
-            services.AddTransient(typeof(ICustomMapper<ReadViewModel, ReadModel>), typeof(ReadModelMapper));
+            services.AddTransient(typeof(IPresenter<,>), typeof(DefaultPresenter<,>));
+            services.AddTransient(typeof(IPresenter<ReadModel, ReadViewModel>), typeof(ReadPresenter));
+
+            services.AddTransient(typeof(IModelMapper<,>), typeof(DefaultConverter<,>));
+            services.AddTransient(typeof(IModelMapper<ReadViewModel, ReadModel>), typeof(ReadConverter));
 
             services.AddAutoMapper(typeof(WebMappingProfile));
             services.AddAutoMapper(typeof(DataMappingProfile));

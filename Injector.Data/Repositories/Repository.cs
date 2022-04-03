@@ -26,7 +26,7 @@ namespace Injector.Data.Repositories
                 if (entity != null)
                 {
                     entity.Id = new Random().Next();
-                    BaseRepository_DbContext.EntitiesA.Add(entity);
+                    DbContext.EntitiesA.Add(entity);
 
                     return Commit();
                 }
@@ -41,7 +41,7 @@ namespace Injector.Data.Repositories
 
         public int UpdateEntity(ReadModel model)
         {
-            var original = BaseRepository_DbContext.EntitiesA.Find(model.Guid);
+            var original = DbContext.EntitiesA.Find(model.Guid);
 
             try
             {
@@ -65,7 +65,7 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                var original = BaseRepository_DbContext.EntitiesA.Find(guid);
+                var original = DbContext.EntitiesA.Find(guid);
 
                 if (original != null)
                 {
@@ -86,7 +86,7 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                var original = BaseRepository_DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
+                var original = DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
 
                 if (original != null)
                 {
@@ -107,11 +107,11 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                var original = BaseRepository_DbContext.EntitiesA.Find(model.Guid);
+                var original = DbContext.EntitiesA.Find(model.Guid);
 
                 if (original != null)
                 {
-                    BaseRepository_DbContext.EntitiesA.Remove(original);
+                    DbContext.EntitiesA.Remove(original);
 
                     return Commit();
                 }
@@ -128,7 +128,7 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                IEnumerable<Entity> entities = BaseRepository_DbContext.EntitiesA.ToList();
+                IEnumerable<Entity> entities = DbContext.EntitiesA.ToList();
 
                 if (entities.Any())
                 {
