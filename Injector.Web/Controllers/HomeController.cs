@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using Injector.Common.Interfaces.IConsolidators;
 using Injector.Common.Interfaces.IFeatures;
 using Injector.Common.Models;
-using Injector.Web.Interfaces.IConverters;
-using Injector.Web.Interfaces.IPresenters;
 using Injector.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,19 +11,19 @@ namespace Injector.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IConverter<CreateViewModel, CreateModel> _createDefaultConverter;
-        private readonly IConverter<ReadViewModel, ReadModel> _readCustomConverter;
+        private readonly IConsolidators<CreateViewModel, CreateModel> _createDefaultReceiver;
+        private readonly IConsolidators<ReadViewModel, ReadModel> _readCustomReceiver;
 
-        private readonly IPresenter<ReadModel, ReadViewModel> _readCustomPresenter;
+        private readonly IConsolidators<ReadModel, ReadViewModel> _readCustomPresenter;
 
         private readonly ICreateFeature _createFeature;
         private readonly IReadFeature _readFeature;
 
         public HomeController(IServiceProvider service) {
-            _createDefaultConverter = service.GetRequiredService<IConverter<CreateViewModel, CreateModel>>();
-            _readCustomConverter = service.GetRequiredService<IConverter<ReadViewModel, ReadModel>>();
+            _createDefaultReceiver = service.GetRequiredService<IConsolidators<CreateViewModel, CreateModel>>();
+            _readCustomReceiver = service.GetRequiredService<IConsolidators<ReadViewModel, ReadModel>>();
 
-            _readCustomPresenter = service.GetRequiredService<IPresenter<ReadModel, ReadViewModel>>();
+            _readCustomPresenter = service.GetRequiredService<IConsolidators<ReadModel, ReadViewModel>>();
 
             _createFeature = service.GetRequiredService<ICreateFeature>();
             _readFeature = service.GetRequiredService<IReadFeature>();
@@ -50,7 +49,7 @@ namespace Injector.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(CreateViewModel viewModel)
         {
-            var model = _createDefaultConverter.ToModelData(viewModel);
+            var model = _createDefaultReceiver.ToData(viewModel);
 
             if (ModelState.IsValid)
             {
@@ -63,14 +62,14 @@ namespace Injector.Web.Controllers
         [HttpGet]
         public ViewResult Read(ReadViewModel viewModel)
         {
-            var model = _readCustomConverter.ToModelData(viewModel);
+            var model = _readCustomReceiver.ToData(viewModel);
             
             if (ModelState.IsValid)
             {
                 model = _readFeature.Execute(model);
             }
 
-            viewModel = _readCustomPresenter.ToViewData(model);
+            viewModel = _readCustomPresenter.ToData(model);
 
             return View(viewModel);
         }

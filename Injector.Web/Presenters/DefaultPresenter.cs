@@ -1,14 +1,15 @@
-﻿using AutoMapper;
+﻿using System;
+using Injector.Common;
 
 namespace Injector.Web.Presenters
 {
-    public sealed class DefaultPresenter<TIn, TOut> : ABasePresenter<TIn, TOut>
+    public sealed class DefaultPresenter<TIn, TOut> : ABaseConsolidator<TIn, TOut>
     {
-        public DefaultPresenter(IMapper mapper) : base(mapper) { }
+        public DefaultPresenter(IServiceProvider service) : base(service) { }
 
-        public override TOut ToViewData(TIn model)
+        public override TOut ToData(TIn model)
         {
-            var viewModel = ToExternalViewData(model);
+            var viewModel = ToExternalData(model);
 
             return viewModel;
         }

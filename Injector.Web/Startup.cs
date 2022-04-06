@@ -1,4 +1,7 @@
 using System;
+using Injector.Common;
+using Injector.Common.Interfaces.IConsolidators;
+using Injector.Common.Interfaces.ICustomMappers;
 using Injector.Common.Interfaces.IDepots;
 using Injector.Common.Interfaces.IFeatures;
 using Injector.Common.Models;
@@ -7,12 +10,10 @@ using Injector.Data.Interfaces.IRepositories;
 using Injector.Data.MapperProfiles;
 using Injector.Data.Mocks;
 using Injector.Data.Repositories;
-using Injector.Web.Converters;
-using Injector.Web.Interfaces.IConverters;
-using Injector.Web.Interfaces.IPresenters;
 using Injector.Web.MapperProfiles;
 using Injector.Web.Models;
 using Injector.Web.Presenters;
+using Injector.Web.Receivers;
 using Injectore.Core;
 using Injectore.Core.Features;
 using Injectore.Core.Interfaces;
@@ -66,13 +67,13 @@ namespace Injector.Web
 
             #endregion
 
-            #region CONVERTERS
+            #region CONSOLIDATORS
 
-            services.AddTransient(typeof(IPresenter<,>), typeof(DefaultPresenter<,>));
-            services.AddTransient(typeof(IPresenter<ReadModel, ReadViewModel>), typeof(ReadCustomPresenter));
+            services.AddTransient<ICustomMapper, CustomMapper>();
 
-            services.AddTransient(typeof(IConverter<,>), typeof(DefaultConverter<,>));
-            services.AddTransient(typeof(IConverter<ReadViewModel, ReadModel>), typeof(ReadCustomConverter));
+            services.AddTransient(typeof(IConsolidators<,>), typeof(DefaultReceiver<,>));
+            services.AddTransient(typeof(IConsolidators<ReadViewModel, ReadModel>), typeof(ReadCustomReceiver));
+            services.AddTransient(typeof(IConsolidators<ReadModel, ReadViewModel>), typeof(ReadCustomPresenter));
 
             #endregion
 
