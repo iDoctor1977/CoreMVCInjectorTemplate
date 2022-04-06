@@ -26,10 +26,10 @@ namespace Injectore.Core.Features
             _createDepot.Execute(model);
 
             // esempio di chiamata a funzione procedurale con aggregato
-            aggregate = _operationsSupplier.CreatePipeline(aggregate);
+            aggregate = _operationsSupplier.ExecuteCreatePipeline(aggregate);
 
             // esempio di chiamata a funzione procedurale con model
-            // aggregate = _operationsSupplier.CreatePipeline(model) as Model;
+            // aggregate = _operationsSupplier.ExecuteCreatePipeline(model) as Model;
 
             // esempio di chiamata di funzione con aggregato
             _operationsSupplier.CalculateGuid(aggregate);

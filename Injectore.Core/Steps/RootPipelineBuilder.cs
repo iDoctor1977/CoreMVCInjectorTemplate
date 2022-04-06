@@ -57,7 +57,7 @@ namespace Injectore.Core.Steps
 
     public interface IBuildStep<TIn, TOut> : IRootStep<TIn, TOut> { }
 
-    public interface ISubStep<TIn, TOut>
+    public interface ISubStep<in TIn, out TOut>
     {
         TOut Execute(TIn aggregate);
     }

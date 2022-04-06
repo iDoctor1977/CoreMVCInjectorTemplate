@@ -29,10 +29,10 @@ namespace Injectore.Core.Features
             _readDepot.Execute(model);
 
             // esempio di chiamata a funzione procedurale con aggregato
-            aggregate = _operationsSupplier.ReadPipeline(aggregate);
+            aggregate = _operationsSupplier.ExecuteReadPipeline(aggregate);
 
             // esempio di chiamata a funzione procedurale con model
-            // readAggregate = _operationsSupplier.ReadPipeline(model) as ReadModel;
+            // readAggregate = _operationsSupplier.ExecuteReadPipeline(model) as ReadModel;
 
             aggregate.SetUpReadingDay();
 

@@ -28,10 +28,10 @@ namespace Injectore.Core
 
         #region PIPELINE PROCEDURES
 
-        public Func<CreateAggregate, CreateAggregate> CreatePipeline => PipeCreate;
+        public Func<CreateAggregate, CreateAggregate> ExecuteCreatePipeline => PipeCreate;
         protected abstract CreateAggregate PipeCreate(CreateAggregate aggregate);
 
-        public Func<ReadAggregate, ReadAggregate> ReadPipeline => PipeRead;
+        public Func<ReadAggregate, ReadAggregate> ExecuteReadPipeline => PipeRead;
         protected abstract ReadAggregate PipeRead(ReadAggregate aggregate);
 
         #endregion

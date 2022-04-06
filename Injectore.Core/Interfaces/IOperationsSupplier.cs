@@ -7,8 +7,8 @@ namespace Injectore.Core.Interfaces
     {
         #region OPERATIONS
 
-        public Func<CreateAggregate, CreateAggregate> CreatePipeline { get; }
-        public Func<ReadAggregate, ReadAggregate> ReadPipeline { get; }
+        public Func<CreateAggregate, CreateAggregate> ExecuteCreatePipeline { get; }
+        public Func<ReadAggregate, ReadAggregate> ExecuteReadPipeline { get; }
 
         #endregion
 
