@@ -41,14 +41,14 @@ namespace Injector.Data.Repositories
 
         public int UpdateEntity(ReadModel model)
         {
-            var original = DbContext.EntitiesA.Find(model.Guid);
+            var entity = DbContext.EntitiesA.Find(model.Guid);
 
             try
             {
-                if (original != null)
+                if (entity != null)
                 {
-                    original.Name = model.Name;
-                    original.Surname = model.Surname;
+                    entity.Name = model.Name;
+                    entity.Surname = model.Surname;
 
                     return Commit();
                 }
@@ -65,13 +65,13 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                var original = DbContext.EntitiesA.Find(guid);
+                var entity = DbContext.EntitiesA.Find(guid);
 
-                if (original != null)
+                if (entity != null)
                 {
-                    var transfertModel = _mapper.Map<ReadModel>(original);
+                    var model = _mapper.Map<ReadModel>(entity);
 
-                    return transfertModel;
+                    return model;
                 }
             }
             catch (Exception exception)
@@ -86,13 +86,13 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                var original = DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
+                var entity = DbContext.EntitiesA.SingleOrDefault(eA => eA.Name == name);
 
-                if (original != null)
+                if (entity != null)
                 {
-                    var transfertModel = _mapper.Map<ReadModel>(original);
+                    var model = _mapper.Map<ReadModel>(entity);
 
-                    return transfertModel;
+                    return model;
                 }
             }
             catch (Exception exception)
@@ -107,11 +107,11 @@ namespace Injector.Data.Repositories
         {
             try
             {
-                var original = DbContext.EntitiesA.Find(model.Guid);
+                var entity = DbContext.EntitiesA.Find(model.Guid);
 
-                if (original != null)
+                if (entity != null)
                 {
-                    DbContext.EntitiesA.Remove(original);
+                    DbContext.EntitiesA.Remove(entity);
 
                     return Commit();
                 }
