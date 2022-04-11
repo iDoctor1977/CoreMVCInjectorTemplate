@@ -46,12 +46,12 @@ namespace Injector.Web
 
             services.AddTransient<IOperationsSupplier, OperationsSupplier>();
 
-            services.AddTransient<CreateStep1, CreateStep1>();
-            services.AddTransient<CreateStep1SubStep1, CreateStep1SubStep1>();
-            services.AddTransient<CreateStep1SubStep2, CreateStep1SubStep2>();
+            services.AddTransient<CreateStep1>();
+            services.AddTransient<CreateStep1SubStep1>();
+            services.AddTransient<CreateStep1SubStep2>();
 
-            services.AddTransient<ReadStep1, ReadStep1>();
-            services.AddTransient<ReadStep1SubStep1, ReadStep1SubStep1>();
+            services.AddTransient<ReadStep1>();
+            services.AddTransient<ReadStep1SubStep1>();
 
             services.AddTransient<ICreateDepot, CreateDepot>();
             services.AddTransient<IReadDepot, ReadDepot>();
