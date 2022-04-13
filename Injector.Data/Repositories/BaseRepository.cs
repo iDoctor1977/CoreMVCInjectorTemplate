@@ -8,22 +8,22 @@ namespace Injector.Data.Repositories
 {
     public class BaseRepository
     {
-        protected readonly IMapper _mapper;
+        protected readonly IMapper Mapper;
 
         protected BaseRepository (IServiceProvider service) {
-            _mapper = service.GetRequiredService<IMapper>();
+            Mapper = service.GetRequiredService<IMapper>();
             DbContext = new ProjectDbContext();
         }
 
         protected BaseRepository(IServiceProvider service, string dbName)
         {
-            _mapper = service.GetRequiredService<IMapper>();
+            Mapper = service.GetRequiredService<IMapper>();
             DbContext = new ProjectDbContext(dbName);
         }
 
         protected BaseRepository(IServiceProvider service, DbContextOptions<ProjectDbContext> options)
         {
-            _mapper = service.GetRequiredService<IMapper>();
+            Mapper = service.GetRequiredService<IMapper>();
             DbContext = new ProjectDbContext(options);
         }
 

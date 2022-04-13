@@ -19,7 +19,7 @@ namespace Injector.Data.Repositories
 
         public int CreateEntity(CreateModel model)
         {
-            var entity = _mapper.Map<Entity>(model);
+            var entity = Mapper.Map<Entity>(model);
 
             try
             {
@@ -69,7 +69,7 @@ namespace Injector.Data.Repositories
 
                 if (entity != null)
                 {
-                    var model = _mapper.Map<ReadModel>(entity);
+                    var model = Mapper.Map<ReadModel>(entity);
 
                     return model;
                 }
@@ -90,7 +90,7 @@ namespace Injector.Data.Repositories
 
                 if (entity != null)
                 {
-                    var model = _mapper.Map<ReadModel>(entity);
+                    var model = Mapper.Map<ReadModel>(entity);
 
                     return model;
                 }
@@ -132,7 +132,7 @@ namespace Injector.Data.Repositories
 
                 if (entities.Any())
                 {
-                    var models = _mapper.Map<IEnumerable<ReadModel>>(entities);
+                    var models = Mapper.Map<IEnumerable<ReadModel>>(entities);
 
                     return models;
                 }
