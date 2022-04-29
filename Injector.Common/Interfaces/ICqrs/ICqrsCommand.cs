@@ -1,7 +1,7 @@
 ﻿namespace Injector.Common.Interfaces.ICqrs
 {
-    public interface ICqrsCommand<in T>
+    public interface ICqrsCommand<in T> where T : ICqrsCommandBase
     {
-        void Execute(T model);
+        public void Execute(T model);
     }
 }

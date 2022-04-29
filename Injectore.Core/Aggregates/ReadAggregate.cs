@@ -1,9 +1,10 @@
 ﻿using System;
+using Injector.Common.Bases;
 using Injector.Common.Models;
 
 namespace Injectore.Core.Aggregates
 {
-    public class ReadAggregate : ABaseAggregate<ReadModel>
+    public class ReadAggregate : AAggregateBase<ReadModel>
     {
         public ReadAggregate(ReadModel model) : base(model) { }
 

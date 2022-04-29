@@ -1,9 +1,10 @@
 ﻿using System;
+using Injector.Common.Bases;
 using Injector.Common.Models;
 
 namespace Injectore.Core.Aggregates
 {
-    public class CreateAggregate : ABaseAggregate<CreateModel>
+    public class CreateAggregate : AAggregateBase<CreateModel>
     {
         public CreateAggregate(CreateModel model) : base(model) { }
 

@@ -1,9 +1,10 @@
 ﻿using System;
 using Injector.Common;
+using Injector.Common.Bases;
 
 namespace Injector.Web.Presenters
 {
-    public sealed class DefaultPresenter<TIn, TOut> : ABaseConsolidator<TIn, TOut>
+    public sealed class DefaultPresenter<TIn, TOut> : AConsolidatorBase<TIn, TOut>
     {
         public DefaultPresenter(IServiceProvider service) : base(service) { }
 

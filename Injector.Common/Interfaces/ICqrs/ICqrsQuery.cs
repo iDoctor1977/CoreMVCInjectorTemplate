@@ -1,7 +1,7 @@
 ﻿namespace Injector.Common.Interfaces.ICqrs
 {
-    public interface ICqrsQuery<in TIn, out TOut>
+    public interface ICqrsQuery<in TIn, TOut> where TIn : ICqrsQueryBase
     {
-        TOut Execute(TIn model);
+        public TOut Execute(TIn model);
     }
 }

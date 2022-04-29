@@ -16,7 +16,6 @@
     <Compile Include="Steps\Create\CreateStep1SubStep2.cs" />
     <Compile Include="Steps\Read\ReadStep1.cs" />
     <Compile Include="Steps\Read\ReadStep1SubStep1.cs" />
-    <Compile Include="Steps\RootPipelineBuilder.cs" />
   </ItemGroup>
 
   <ItemGroup>
